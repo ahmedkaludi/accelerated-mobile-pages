@@ -2436,6 +2436,84 @@ function ampforwp_footer_html_output() {
 	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo ampforwp_get_setting('amp-footer-text-area-for-html') ;
   }
+
+  if (ampforwp_get_setting('amp-inmobi-notice-switch')) {
+		$id = ampforwp_get_setting('amp-inmobi-id');
+  	 $hashcode = ampforwp_get_setting('amp-inmobi-hashcode');
+  	 $country = ampforwp_get_setting('amp-inmobi-publishercountrycode');
+  	 $privacy = ampforwp_get_setting('amp-inmobi-privacy-mode');
+  	 $lang = ampforwp_get_setting('amp-inmobi-lang');
+  	 if (empty($privacy)) {
+  	 	$privacy = 'GDPR';
+  	 }
+  	 if (empty($lang)) {
+  	 	$lang = 'en';
+  	 }
+	if (!empty($id) && !empty($hashcode) && !empty($country) ) {?>
+<amp-consent id="inmobi" layout="nodisplay">
+  <script type="application/json">
+    {
+      "consentInstanceId": "inmobi",
+      "checkConsentHref": "https://api.cmp.inmobi.com/amp/check-consent",
+      "consentRequired": "remote",
+      "promptUISrc": "https://cmp.inmobi.com/tcfv2/amp.html",
+      "clientConfig": {
+        "coreConfig": {
+          "vendorPurposeLegitimateInterestIds": [
+            2,
+            7,
+            8,
+            10,
+            9,
+            11
+          ],
+          "publisherPurposeIds": [],
+          "publisherSpecialPurposesIds": [],
+          "publisherFeaturesIds": [],
+          "stacks": [
+            1,
+            42
+          ],
+          "publisherLIRestrictionIds": [],
+          "inmobiAccountId": "<?=esc_attr($id)?>",
+          "vendorSpecialPurposesIds": [
+            1,
+            2
+          ],
+          "initScreenBodyTextOption": 1,
+          "publisherConsentRestrictionIds": [],
+          "vendorPurposeIds": [2,4,6,7,9,10,1,3,5,8,11],
+          "totalVendors": 1420,
+          "lang_": "en",
+          "privacyMode": ["<?=esc_attr($privacy)?>"],
+          "publisherPurposeLegitimateInterestIds": [],
+          "hashCode": "<?=esc_attr($hashcode)?>",
+          "vendorSpecialFeaturesIds": [
+            1,
+            2
+          ],
+          "displayUi": "always",
+          "publisherSpecialFeaturesIds": [],
+          "googleEnabled": false,
+          "vendorListUpdateFreq": 30,
+          "publisherCountryCode": "<?=esc_attr($country)?>",
+          "vendorFeaturesIds": [
+            1,
+            2,
+            3
+          ],
+          "gvlVersion": 3
+        },
+        "coreUiLabels": {},
+        "theme": {},
+        "tagVersion": "V3"
+      }
+    }
+  </script>
+</amp-consent>
+<?php
+	}
+}
   //Quantcast Support #4951
   if (ampforwp_get_setting('amp-quantcast-notice-switch')) {
   	 $id = $hashcode = $country = $name = '';
@@ -2452,7 +2530,7 @@ function ampforwp_footer_html_output() {
   	 	$lang = 'en';
   	 }
 
-  if (!empty($id) && !empty($hashcode) && !empty($country) && !empty($name) ) {?>
+  	if (!empty($id) && !empty($hashcode) && !empty($country) && !empty($name) ) {?>
 	<amp-consent id="quantcast" layout="nodisplay">
     	<script type="application/json">
        	{
