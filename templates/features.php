@@ -2444,8 +2444,16 @@ function ampforwp_footer_html_output() {
   	 $privacy = ampforwp_get_setting('amp-inmobi-privacy-mode');
   	 $lang = ampforwp_get_setting('amp-inmobi-lang');
   	 if (empty($privacy)) {
-  	 	$privacy = 'GDPR';
-  	 }
+  	 	$privacy[] = "GDPR";
+  	 }else{
+		$exp = explode(',',$privacy);
+		$pri_arr = array();
+		for ($i=0; $i < count($exp); $i++) { 
+			$pr ='"'.$exp[$i].'"';
+			$pri_arr[] = $pr;
+		}
+		$privacy = $pri_arr;
+	 }
   	 if (empty($lang)) {
   	 	$lang = 'en';
   	 }
@@ -2485,7 +2493,7 @@ function ampforwp_footer_html_output() {
           "vendorPurposeIds": [2,4,6,7,9,10,1,3,5,8,11],
           "totalVendors": 1420,
           "lang_": "en",
-          "privacyMode": ["<?=esc_attr($privacy)?>"],
+          "privacyMode": [<?=implode(',',$privacy);?>],
           "publisherPurposeLegitimateInterestIds": [],
           "hashCode": "<?=esc_attr($hashcode)?>",
           "vendorSpecialFeaturesIds": [
