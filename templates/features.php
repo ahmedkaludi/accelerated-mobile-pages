@@ -8804,6 +8804,9 @@ function ampforwp_remove_unwanted_code($content){
 	if(preg_match('/<square-placement(.*)<\/square-placement>/', $content)){
 		$content = preg_replace('/<square-placement(.*)<\/square-placement>/', '', $content);
 	}
+	if(preg_match('/<comentario-comments(.*)<\/comentario-comments>/', $content)){
+		$content = preg_replace('/<comentario-comments(.*)<\/comentario-comments>/', '', $content);
+	}
 	if(empty($content)){
 		return $content;
 	}
