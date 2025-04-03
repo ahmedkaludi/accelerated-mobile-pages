@@ -2483,7 +2483,7 @@ function ampforwp_footer_html_output() {
             42
           ],
           "publisherLIRestrictionIds": [],
-          "inmobiAccountId": "<?=esc_attr($id)?>",
+          "inmobiAccountId": "<?php echo esc_attr( $id )?>",
           "vendorSpecialPurposesIds": [
             1,
             2
@@ -2493,9 +2493,9 @@ function ampforwp_footer_html_output() {
           "vendorPurposeIds": [2,4,6,7,9,10,1,3,5,8,11],
           "totalVendors": 1420,
           "lang_": "en",
-          "privacyMode": [<?=implode(',',$privacy);?>],
+          "privacyMode": [<?php echo implode( ',', $privacy);?>],
           "publisherPurposeLegitimateInterestIds": [],
-          "hashCode": "<?=esc_attr($hashcode)?>",
+          "hashCode": "<?php echo esc_attr($hashcode)?>",
           "vendorSpecialFeaturesIds": [
             1,
             2
@@ -2504,7 +2504,7 @@ function ampforwp_footer_html_output() {
           "publisherSpecialFeaturesIds": [],
           "googleEnabled": false,
           "vendorListUpdateFreq": 30,
-          "publisherCountryCode": "<?=esc_attr($country)?>",
+          "publisherCountryCode": "<?php echo esc_attr( $country );?>",
           "vendorFeaturesIds": [
             1,
             2,
