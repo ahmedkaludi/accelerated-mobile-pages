@@ -1,4 +1,11 @@
 == Changelog ==
+
+= 1.1.4 (08 April 2025) =
+* Feature: Add setting button in Purge AMP CDN Cache #5671
+* Compatibility: Need to implement inMobi Choice #5678
+* Improvement: Add the close button feature in AMP Stories for better usability. #5680
+* Feature: Option to Disable Custom Third-Party Code Injection in AMP Pages #5681
+
 = 1.1.3 (14 February 2025) =
 * Fixed: PHP Deprecated: error with AMP #5669
 * Fixed: Fatal error on user end  #5673
