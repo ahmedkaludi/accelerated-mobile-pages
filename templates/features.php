@@ -8813,10 +8813,12 @@ function ampforwp_remove_unwanted_code($content){
 	if(empty($content)){
 		return $content;
 	}
-  //Remove label from anchor
+  
 	if(preg_match('/<a(.*?)\slabel\s(.*?)>/', $content)){
-		$content = preg_replace('/<a(.*?)\slabel\s(.*?)>/', '<a $1$2>', $content);
-	} 
+		$content = preg_replace_callback('/<a\b[^>]*>/i', function ($matches) {
+			return preg_replace('/\s*label\s*=\s*"[^"]*"/i', '', $matches[0]);
+		}, $content);
+	}
 	return $content;
 }
 add_filter( 'amp_post_template_css', 'ampforwp_add_penci_block_css' );
