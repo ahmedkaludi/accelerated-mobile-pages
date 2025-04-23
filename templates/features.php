@@ -10441,3 +10441,33 @@ function ampforwp_infinite_scroll_post_ajax(){
 	}
 	die;
 }
+function ampforwp_append_avif_to_img_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
+		$format = get_imagify_option( 'optimization_format' );
+		$display_nextgen = get_imagify_option( 'display_nextgen' );
+		
+		if($format==='avif' && $display_nextgen){
+			$upload_dir = wp_upload_dir();
+			$base_url = $upload_dir['baseurl'];
+			$file = get_attached_file( $attachment_id );
+			$filename = basename( $file );
+
+			// Get the base name without extension
+			$base_name = preg_replace('/\.[^.]+$/', '', $filename);
+			$upload_path = trailingslashit( dirname( wp_get_attachment_url( $attachment_id ) ) );
+			foreach ( $sources as $width => $data ) {
+				// Replace the .png or .jpg with .avif
+				$avif_url = preg_replace('/\.(png|jpg|jpeg)$/i', '.avif', $data['url']);
+				
+				// Add AVIF format version (same descriptor and value)
+				$sources[ $width . '-avif' ] = [
+					'url'        => $avif_url,
+					'descriptor' => 'w',
+					'value'      => $width,
+				];
+			}
+		}
+	return $sources;
+}
+if( function_exists('get_imagify_option')){
+	add_filter( 'wp_calculate_image_srcset', 'ampforwp_append_avif_to_img_srcset', 10, 5 );
+}
