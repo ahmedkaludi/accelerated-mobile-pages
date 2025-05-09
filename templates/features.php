@@ -997,7 +997,7 @@ function ampforwp_title_meta_save( $post_id ) {
          return ;
     }
 	$ampforwp_amp_status = '';
-
+	delete_transient('_ampforwp_get_post_percent');
     // Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
@@ -9448,57 +9448,46 @@ function ampforwp_themify_compatibility($content){
 }
 
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
-function ampforwp_referesh_related_post(){
-	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
-	if(!wp_verify_nonce($_POST['verify_nonce'],'ampforwp_refresh_related_poost') ){
-		echo wp_json_encode(array('status'=>403,'message'=>esc_html__('user request is not allowed','accelerated-mobile-pages'))) ;
-		die;
-	}
-	$orderby = 'ID';
+function ampforwp_referesh_related_post() {
+	global $wpdb;
 
-	$args=array(
-		'fields'        => 'ids',
-		'post_type'	   => 'post',
-	    'posts_per_page'=> 30,
-	    'orderby' => $orderby,
-	    'ignore_sticky_posts'=>1,
-		'has_password' => false ,
-		'post_status'=> 'publish',
-		'no_found_rows'	=> true,
-		/* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
-		'meta_query' => array(
-			array(
-					'key' => 'ampforwp-amp-on-off', 
-		    		'compare' => 'NOT EXISTS',
-				)
-		)
-	);
-	$my_query = new wp_query( $args );
-	while( $my_query->have_posts() ) {
-		$my_query->the_post();
-		update_post_meta(get_the_ID(),'ampforwp-amp-on-off','default');
+	if (
+		! isset($_POST['verify_nonce']) ||
+		! wp_verify_nonce($_POST['verify_nonce'], 'ampforwp_refresh_related_poost')
+	) {
+		wp_send_json(array('status' => 403, 'message' => esc_html__('User request is not allowed', 'accelerated-mobile-pages')));
 	}
-	/*$args=array(
-		'fields'        => 'ids',
-	    'post_status'           => 'publish',
-        'ignore_sticky_posts'   => true,
-        'posts_per_page'        => 50,
-        'no_found_rows' => true,
-		'meta_query' => array(
-			array(
-					'key' => 'ampforwp-ia-on-off', 
-		    		'compare' => 'NOT EXISTS',
-				)
-		)
-	);
-	$my_query = new wp_query( $args );
-	while( $my_query->have_posts() ) {
-		$my_query->the_post();
-		update_post_meta(get_the_ID(),'ampforwp-ia-on-off','default');
-	}*/
+
+	// Clear transient cache
+	delete_transient('_ampforwp_get_post_percent');
+
+	// Fetch up to 30 published posts without the meta key
+	$post_ids = $wpdb->get_col("
+		SELECT p.ID
+		FROM {$wpdb->posts} p
+		LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'ampforwp-amp-on-off'
+		WHERE pm.post_id IS NULL
+		AND p.post_status = 'publish'
+		AND p.post_type = 'post'
+		ORDER BY p.ID ASC
+		LIMIT 30
+	");
+
+	// Bulk insert default meta value
+	if (!empty($post_ids)) {
+		$values = array();
+		foreach ($post_ids as $post_id) {
+			$values[] = $wpdb->prepare("(%d, %s, %s)", $post_id, 'ampforwp-amp-on-off', 'default');
+		}
+		$values_sql = implode(',', $values);
+		$wpdb->query("INSERT INTO {$wpdb->postmeta} (post_id, meta_key, meta_value) VALUES $values_sql");
+	}
+
+	// Return updated percent
 	$data['response'] = ampforwp_get_post_percent();
-	echo wp_json_encode($data);
+	wp_send_json($data);
 }
+
 
 // HIDE/SHOW TAG AND CATEGORY #4326
 function ampforwp_save_taxonomy_meta($term_id){

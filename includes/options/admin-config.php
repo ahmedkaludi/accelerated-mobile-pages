@@ -3102,37 +3102,30 @@ Redux::setSection( $opt_name, array(
     ),
    )
 );
-function ampforwp_get_post_percent(){
-    $total_post = $post_count = $post_percent = '';
-    
-    $args=array(
-        'fields'        => 'ids',
-        'post_type'    => 'post',
-        'posts_per_page'=> 1,
-        'ignore_sticky_posts'=>1,
-        'has_password' => false ,
-        'post_status'=> 'publish',
-        'no_found_rows' => true,
-        /* phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query */
-        'meta_query' => array(
-            array(
-                'key' => 'ampforwp-amp-on-off', 
-                'compare' => 'NOT EXISTS',
-            )
-        )
-    );
-    $my_query   = new wp_query( $args );
-    $post_count = $my_query->post_count;    
-    if ($post_count == 0) {
+function ampforwp_get_post_percent() {
+    global $wpdb;
+    if( get_transient( '_ampforwp_get_post_percent' ) ){
+        return get_transient( '_ampforwp_get_post_percent' );
+    }
+    // Total published posts
+    $total_post = (int) $wpdb->get_var( "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = 'post'" );
+    if ( $total_post === 0 ) {
         return 100;
     }
-    $count_posts = wp_count_posts();
-    if($count_posts){
-        $total_post = $count_posts->publish;
-    }
-    $post_count = $total_post-$post_count;
-    $post_percent = ($post_count/$total_post)*100;
-    $post_percent = $post_percent - 24;
+
+    // Count posts where meta_key 'ampforwp-amp-on-off' does NOT exist
+    $sql = "SELECT COUNT(p.ID)
+        FROM {$wpdb->posts} p
+        LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'ampforwp-amp-on-off'
+        WHERE pm.post_id IS NULL
+        AND p.post_status = 'publish'
+        AND p.post_type = 'post'";
+
+    $non_amp_posts = (int) $wpdb->get_var( $sql );
+    // Calculate percentage
+    $post_percent = (($total_post - $non_amp_posts) / $total_post) * 100;
+    $post_percent = $post_percent;
+    set_transient( '_ampforwp_get_post_percent',  $post_percent);
     return round($post_percent);
 }
 $post_percent = 0;
