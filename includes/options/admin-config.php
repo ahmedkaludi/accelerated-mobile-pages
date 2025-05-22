@@ -3104,30 +3104,47 @@ Redux::setSection( $opt_name, array(
 );
 function ampforwp_get_post_percent() {
     global $wpdb;
-    if( get_transient( '_ampforwp_get_post_percent' ) ){
-        return get_transient( '_ampforwp_get_post_percent' );
+
+    // Check if the value is already stored in the options table
+    $cached_value = get_option('_ampforwp_get_post_percent');
+
+    if ($cached_value !== false) {
+        return round($cached_value);
     }
+
     // Total published posts
-    $total_post = (int) $wpdb->get_var( "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_type = 'post'" );
-    if ( $total_post === 0 ) {
+    $total_post = (int) $wpdb->get_var("
+        SELECT COUNT(ID)
+        FROM {$wpdb->posts}
+        WHERE post_status = 'publish'
+        AND post_type = 'post'
+    ");
+
+    if ($total_post === 0) {
         return 100;
     }
 
     // Count posts where meta_key 'ampforwp-amp-on-off' does NOT exist
-    $sql = "SELECT COUNT(p.ID)
+    $sql = "
+        SELECT COUNT(p.ID)
         FROM {$wpdb->posts} p
         LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'ampforwp-amp-on-off'
         WHERE pm.post_id IS NULL
         AND p.post_status = 'publish'
-        AND p.post_type = 'post'";
+        AND p.post_type = 'post'
+    ";
 
-    $non_amp_posts = (int) $wpdb->get_var( $sql );
+    $non_amp_posts = (int) $wpdb->get_var($sql);
+
     // Calculate percentage
     $post_percent = (($total_post - $non_amp_posts) / $total_post) * 100;
-    $post_percent = $post_percent;
-    set_transient( '_ampforwp_get_post_percent',  $post_percent);
+
+    // Store result in options table
+    update_option('_ampforwp_get_post_percent', $post_percent);
+
     return round($post_percent);
 }
+
 $post_percent = 0;
 $current_page = ampforwp_get_admin_current_page();
 $refresh_btn = "";

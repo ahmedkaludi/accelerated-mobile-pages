@@ -997,7 +997,6 @@ function ampforwp_title_meta_save( $post_id ) {
          return ;
     }
 	$ampforwp_amp_status = '';
-	delete_transient('_ampforwp_get_post_percent');
     // Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
@@ -9459,7 +9458,7 @@ function ampforwp_referesh_related_post() {
 	}
 
 	// Clear transient cache
-	delete_transient('_ampforwp_get_post_percent');
+	delete_option( '_ampforwp_get_post_percent' );
 
 	// Fetch up to 30 published posts without the meta key
 	$post_ids = $wpdb->get_col("
