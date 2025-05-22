@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: sans-serif; margin: 0; }
+    input { width: 100%; padding: 8px; font-size: 14px; }
+    a { text-decoration: none; color: #000; font-size: 35px;}
+  </style>
+</head>
+<body>
+  
+  <a href="javascript:void(0);" onclick="copyToClipboard()">&#128203;</a><br><br>
+  <input id="copyInput" value="" readonly/>
+
+  <script>
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    function copyToClipboard() {
+      const input = document.getElementById("copyInput");
+      input.select();
+      input.setSelectionRange(0, 99999); // Mobile
+      document.execCommand("copy");
+      alert("Copied the URL: " + input.value);
+    }
+
+    document.getElementById("copyInput").value = getQueryParam("url") || window.location.href;
+  </script>
+</body>
+</html>

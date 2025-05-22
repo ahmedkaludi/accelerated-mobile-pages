@@ -226,8 +226,7 @@ jQuery(function($) {
                  },
             success: function(response){
                 clearInterval(first_int);
-                response = response.replace("}0", "}");
-                var resp = JSON.parse(response);
+                var resp = response;
                 resp = parseInt(resp.response);
                 var id = setInterval(frame, 10);
                 var width = current_post;
