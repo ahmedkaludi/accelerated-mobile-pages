@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.7
-Stable tag: 1.1.4
+Tested up to: 6.8
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+
+= 1.1.5 (22 May 2025) =
+* Tested: Need to test with WordPress 6.8 #5686
+* Fixed : A fatal error occurs when we activate the AMP Page Builder. #5684
+* Feature : AMP is not showing .avif images #5670
+* Fixed: The attribute 'alt' may not appear in tag 'a'. #5682
+* Feature: Conflict issue with Penci widgets. #5683
+* Improvement: Need to improve Query of function ampforwp_get_post_percent() #5687
 
 = 1.1.4 (08 April 2025) =
 * Feature: Add setting button in Purge AMP CDN Cache #5671
