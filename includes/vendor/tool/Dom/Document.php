@@ -311,6 +311,7 @@ final class Document extends DOMDocument
      *
      * This is used to generate unique-per-prefix IDs.
      *
+     * 
      * @var int[]
      */
     private $indexCounter = [];
@@ -339,6 +340,10 @@ final class Document extends DOMDocument
      * @param string $version  Optional. The version number of the document as part of the XML declaration.
      * @param string $encoding Optional. The encoding of the document as part of the XML declaration.
      */
+    private $html = '';
+    private $head = '';
+    private $xpath = '';
+    private $body = '';
     public function __construct($version = '', $encoding = null)
     {
         $this->originalEncoding = (string)$encoding ?: Encoding::UNKNOWN;
@@ -2049,7 +2054,12 @@ final class Document extends DOMDocument
      */
     public function createElement($name, $value = null)
     {
-        $element = parent::createElement($name, $value);
+        $element = null;
+        if ($value !== null) {
+            $element = $dom->createElement('tagname', $value);
+        } else {
+            $element = $dom->createElement('tagname');
+        }
 
         if (!$element instanceof Element) {
             return false;
