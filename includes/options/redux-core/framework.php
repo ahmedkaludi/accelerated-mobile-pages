@@ -2859,7 +2859,7 @@
                     //    unset($process);
                     //}
 /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
-                    $sanitized_data = filter_var(stripslashes( $_POST['data'] ), FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+                    $sanitized_data = htmlspecialchars(strip_tags(stripslashes($_POST['data'])), ENT_QUOTES, 'UTF-8');
 
                     // Old method of saving, in case we need to go back! - kp
                     //parse_str( $_POST['data'], $values );

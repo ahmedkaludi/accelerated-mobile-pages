@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.8
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,6 +195,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 
+= 1.1.6 (28 July 2025) =
+* Tested: Tested upto WordPress 6.8.2
+* Fixed : Deprecated "Creation of dynamic property" #5688
+* Fixed : PHP 8.2 Deprecated Warnings in DOMDocument and Dynamic Property Creation in AMP . #5692
+* Fixed : Deprecated Warning: FILTER_SANITIZE_STRING used in framework.php line 2862 #5691
+* Fixed : Related post refresh not working #5693
+* Fixed : Fatal Error: Undefined Callback ampforwp_getty_image_compatibility in PHP 8.3 #56967
+
 = 1.1.5 (22 May 2025) =
 * Tested: Need to test with WordPress 6.8 #5686
 * Fixed : A fatal error occurs when we activate the AMP Page Builder. #5684
@@ -347,15 +355,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Validation error from recent AMP update version 1.0.88.1 #5518
 * Fixed: Fatal error in setting panel #5521
 
-= 1.0.89 (14th September 2023) =
-* New: Piwik Pro Analytics #5510
-* New: compatibility with EmbedPress #5486
-* Fixed: Conflict WP-Bakery page builder with AMP #5417
-* Fixed: Warning in error log #5504
-* Fixed: Uncaught ValueError: DOMDocument::loadHTML(): Argument #1 ($source) must not be empty #5512
-* Fixed: Header Font Size Offset Changing After Update 1.0.86 #5496
-* Fixed: Various deprecated warning in PHP 8.2+ related to dynamic property creation #5515
-* Fixed: Added post data variables in GTM advanced code #5498
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

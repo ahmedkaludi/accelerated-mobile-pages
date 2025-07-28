@@ -9448,43 +9448,84 @@ function ampforwp_themify_compatibility($content){
 
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post() {
-	global $wpdb;
+    global $wpdb;
 
-	if (
+   if (
 		! isset($_POST['verify_nonce']) ||
 		! wp_verify_nonce($_POST['verify_nonce'], 'ampforwp_refresh_related_poost')
 	) {
 		wp_send_json(array('status' => 403, 'message' => esc_html__('User request is not allowed', 'accelerated-mobile-pages')));
 	}
 
-	// Clear transient cache
-	delete_option( '_ampforwp_get_post_percent' );
 
-	// Fetch up to 30 published posts without the meta key
-	$post_ids = $wpdb->get_col("
-		SELECT p.ID
-		FROM {$wpdb->posts} p
-		LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'ampforwp-amp-on-off'
-		WHERE pm.post_id IS NULL
-		AND p.post_status = 'publish'
-		AND p.post_type = 'post'
-		ORDER BY p.ID ASC
-		LIMIT 30
-	");
+    // Clear cache to avoid interference
+    wp_cache_flush();
 
-	// Bulk insert default meta value
-	if (!empty($post_ids)) {
-		$values = array();
-		foreach ($post_ids as $post_id) {
-			$values[] = $wpdb->prepare("(%d, %s, %s)", $post_id, 'ampforwp-amp-on-off', 'default');
-		}
-		$values_sql = implode(',', $values);
-		$wpdb->query("INSERT INTO {$wpdb->postmeta} (post_id, meta_key, meta_value) VALUES $values_sql");
-	}
+    // Optimized query
+    $post_ids = $wpdb->get_col("
+        SELECT p.ID
+        FROM {$wpdb->posts} p
+        WHERE p.post_status = 'publish'
+        AND p.post_type = 'post'
+        AND NOT EXISTS (
+            SELECT 1
+            FROM {$wpdb->postmeta} pm
+            WHERE pm.post_id = p.ID
+            AND pm.meta_key = 'ampforwp-amp-on-off'
+        )
+        ORDER BY p.ID ASC
+        LIMIT 30
+    ");
 
-	// Return updated percent
-	$data['response'] = ampforwp_get_post_percent();
-	wp_send_json($data);
+    error_log("Post IDs retrieved: " . print_r($post_ids, true));
+
+    $inserted_count = 0;
+    foreach ($post_ids as $post_id) {
+        if (!is_numeric($post_id) || $post_id <= 0) {
+            error_log("Invalid post ID: $post_id");
+            continue;
+        }
+
+        $post_id = (int) $post_id;
+        // Check if meta exists to avoid redundant query
+        if (metadata_exists('post', $post_id, 'ampforwp-amp-on-off')) {
+            error_log("Meta already exists for post ID $post_id");
+            continue;
+        }
+
+        if (add_post_meta($post_id, 'ampforwp-amp-on-off', 'default', true)) {
+            error_log("Successfully added meta for post ID $post_id.");
+            $inserted_count++;
+            wp_cache_delete($post_id, 'post_meta');
+        } else {
+            error_log("Failed to add meta for post ID $post_id: " . $wpdb->last_error);
+        }
+    }
+
+    // Invalidate percentage cache if used
+    if ($inserted_count > 0) {
+        delete_option('_ampforwp_get_post_percent');
+        error_log("Total posts inserted: $inserted_count");
+    } else {
+        error_log("No posts inserted.");
+    }
+
+    // Return updated percent
+    $response = null;
+    try {
+        $response = ampforwp_get_post_percent();
+    } catch (Exception $e) {
+        error_log("Error in ampforwp_get_post_percent: " . $e->getMessage());
+        $response = 'Error calculating percentage';
+    }
+
+    $data = array(
+        'status' => 200,
+        'inserted_count' => $inserted_count,
+        'response' => $response,
+        'post_ids' => $post_ids, // Include for debugging
+    );
+    wp_send_json($data);
 }
 
 
@@ -9963,6 +10004,7 @@ function ampforwp_get_gitty_image_embed( $html, $url, $attr, $post_ID ) {
 	return $html; 
 }
 
+if( ! function_exists('ampforwp_getty_image_compatibility') ){
 function ampforwp_getty_image_compatibility($content){
 	global $getty_img_content;
 	if(is_array($getty_img_content)){
@@ -10004,6 +10046,7 @@ function ampforwp_getty_image_compatibility($content){
 		}
 		return $content;
 	}
+}
 
 if(function_exists('vp_pfui_admin_init') && function_exists('penci_setup')){
 	add_action('ampforwp_before_post_content','ampforwp_pennews_audio_embed');
