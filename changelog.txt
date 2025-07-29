@@ -1,4 +1,15 @@
 == Changelog ==
+= 1.1.6.1 (29 July 2025) =
+* Fixed : Settings not saving in version 1.1.6 #5700
+* Fixed : Call to a member function hasAttributes() in Document.php (v1.1.6) #5699
+
+= 1.1.6 (28 July 2025) =
+* Tested: Tested upto WordPress 6.8.2
+* Fixed : Deprecated "Creation of dynamic property" #5688
+* Fixed : PHP 8.2 Deprecated Warnings in DOMDocument and Dynamic Property Creation in AMP . #5692
+* Fixed : Deprecated Warning: FILTER_SANITIZE_STRING used in framework.php line 2862 #5691
+* Fixed : Related post refresh not working #5693
+* Fixed : Fatal Error: Undefined Callback ampforwp_getty_image_compatibility in PHP 8.3 #56967
 
 = 1.1.5 (22 May 2025) =
 * Tested: Need to test with WordPress 6.8 #5686

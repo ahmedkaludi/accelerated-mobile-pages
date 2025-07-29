@@ -9963,6 +9963,7 @@ function ampforwp_get_gitty_image_embed( $html, $url, $attr, $post_ID ) {
 	return $html; 
 }
 
+if( ! function_exists('ampforwp_getty_image_compatibility') ){
 function ampforwp_getty_image_compatibility($content){
 	global $getty_img_content;
 	if(is_array($getty_img_content)){
@@ -10004,6 +10005,7 @@ function ampforwp_getty_image_compatibility($content){
 		}
 		return $content;
 	}
+}
 
 if(function_exists('vp_pfui_admin_init') && function_exists('penci_setup')){
 	add_action('ampforwp_before_post_content','ampforwp_pennews_audio_embed');
