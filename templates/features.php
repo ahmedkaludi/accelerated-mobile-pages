@@ -10461,3 +10461,48 @@ function ampforwp_append_avif_to_img_srcset( $sources, $size_array, $image_src, 
 if( function_exists('get_imagify_option')){
 	add_filter( 'wp_calculate_image_srcset', 'ampforwp_append_avif_to_img_srcset', 10, 5 );
 }
+
+add_filter('ampforwp_the_content_last_filter', 'ampforwp_fix_broken_amp_carousel', 20);
+
+function ampforwp_fix_broken_amp_carousel($content) {
+    // Check if AMP is active (using AMPforWP or similar AMP plugin)
+    if (!function_exists('is_amp_endpoint') || !is_amp_endpoint()) {
+        return $content;
+    }
+
+    // Define the regex pattern to match the carousel with dynamic ID and gallery items
+    $pattern = '/<amp-carousel[^>]*id="carousel-with-carousel-preview-[0-9]+"[^>]*>.*?(<div class="ampforwp-gallery-item amp-carousel-container">.*?)<\/amp-carousel>(.*?)<amp-image-lightbox[^>]*id="gallery-lightbox"[^>]*>.*?<\/amp-image-lightbox>/s';
+
+    // Process the content if the pattern is found
+    if (preg_match($pattern, $content, $matches)) {
+        $gallery_items = $matches[1];
+        $after_carousel = $matches[2];
+
+        // Extract individual images
+        preg_match_all('/<amp-img src="([^"]+)" width="(\d+)" height="(\d+)"[^>]*>.*?<\/amp-img>/', $gallery_items, $image_matches);
+
+        // Generate a unique ID for the new carousel
+        $new_carousel_id = 'carousel-with-preview-' . wp_generate_uuid4();
+
+        // Build the new carousel
+        $new_carousel = sprintf('<amp-carousel id="%s" width="600" height="480" type="slides" layout="responsive" loop autoplay controls>', esc_attr($new_carousel_id));
+        for ($i = 0; $i < count($image_matches[0]); $i++) {
+            $src = $image_matches[1][$i];
+            $width = $image_matches[2][$i];
+            $height = $image_matches[3][$i];
+            $new_carousel .= sprintf(
+                '<amp-img src="%s" width="%s" height="%s" layout="fill" on="tap:gallery-lightbox" role="button" tabindex="%d"></amp-img>',
+                esc_url($src), esc_attr($width), esc_attr($height), $i
+            );
+        }
+        $new_carousel .= '</amp-carousel>';
+
+        // Preserve content after the carousel (e.g., bookmarks)
+        $new_content = $new_carousel . $after_carousel;
+
+        // Replace the old carousel and its lightbox with the new content
+        $content = preg_replace($pattern, $new_content, $content);
+    }
+
+    return $content;
+}
