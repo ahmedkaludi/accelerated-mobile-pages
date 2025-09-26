@@ -1,4 +1,9 @@
 == Changelog ==
+= 1.1.7 (26 September 2025) =
+* Fixed : PHP Error: Function _load_textdomain_just_in_time #5703
+* Fixed : PHP Deprecated:  Creation of dynamic property
+
+== Changelog ==
 = 1.1.6.1 (29 July 2025) =
 * Fixed : Settings not saving in version 1.1.6 #5700
 * Fixed : Call to a member function hasAttributes() in Document.php (v1.1.6) #5699

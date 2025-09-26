@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.8
-Stable tag: 1.1.6.1
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.7 (26 September 2025) =
+* Fixed : PHP Error: Function _load_textdomain_just_in_time #5703
+* Fixed : PHP Deprecated:  Creation of dynamic property
+
 = 1.1.6.1 (29 July 2025) =
 * Fixed : Settings not saving in version 1.1.6 #5700
 * Fixed : Call to a member function hasAttributes() in Document.php (v1.1.6) #5699
@@ -341,16 +345,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.91.1 (20th October 2023) =
 * Fixed: Version 1.0.91 breaks Swift Theme #5537
-
-= 1.0.91 (16th October 2023) =
-* New: Compatibility with webpushr notification #5517
-* Fixed: Jetpack Stats are not showing in the AMP. #5495
-* Fixed: Double curly brackets parsed from {{}} to %7B%7B%7D%7D in src attribute in amp-iframe component #5522
-* Fixed: Amp Validation Error in New update #5528
-* Fixed: A warning (Warning: Undefined property: WP_Post_Type::$taxonomy) is appearing on the AMP version #5532
-* Fixed: The author link and date not showing properly on the homepage #5533
-* Fixed: AAWP Images not loading if WebP Express is active #5535
-
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
