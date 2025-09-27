@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.1.7 (27 September 2025) =
+* Fixed : Issue persists in AMP plugin version 1.1.7. #5707
+
 = 1.1.7 (26 September 2025) =
 * Fixed : PHP Error: Function _load_textdomain_just_in_time #5703
 * Fixed : PHP Deprecated:  Creation of dynamic property

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.8
-Stable tag: 1.1.7
+Stable tag: 1.1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.7.1 (27 September 2025) =
+* Fixed : Issue persists in AMP plugin version 1.1.7. #5707
+
 = 1.1.7 (26 September 2025) =
 * Fixed : PHP Error: Function _load_textdomain_just_in_time #5703
 * Fixed : PHP Deprecated:  Creation of dynamic property
@@ -342,9 +345,6 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Invalid Layout Issue in AMP HTML Tag for Missing 'height' Attribute. #5542
 * Fixed: Getting blank screen on amp pages #5546
 * Fixed: Images from Slider revolution plugin not visible in AMP #5548
-
-= 1.0.91.1 (20th October 2023) =
-* Fixed: Version 1.0.91 breaks Swift Theme #5537
 
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
