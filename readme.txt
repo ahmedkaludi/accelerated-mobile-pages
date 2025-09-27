@@ -1,4 +1,4 @@
-﻿=== AMP for WP - Accelerated Mobile Pages ===
+=== AMP for WP - Accelerated Mobile Pages ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
@@ -213,6 +213,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed : Related post refresh not working #5693
 * Fixed : Fatal Error: Undefined Callback ampforwp_getty_image_compatibility in PHP 8.3 #56967
 
+= 1.1.6 (28 July 2025) =
+* Tested: Tested upto WordPress 6.8.2
+* Fixed : Deprecated "Creation of dynamic property" #5688
+* Fixed : PHP 8.2 Deprecated Warnings in DOMDocument and Dynamic Property Creation in AMP . #5692
+* Fixed : Deprecated Warning: FILTER_SANITIZE_STRING used in framework.php line 2862 #5691
+* Fixed : Related post refresh not working #5693
+* Fixed : Fatal Error: Undefined Callback ampforwp_getty_image_compatibility in PHP 8.3 #56967
+
 = 1.1.5 (22 May 2025) =
 * Tested: Need to test with WordPress 6.8 #5686
 * Fixed : A fatal error occurs when we activate the AMP Page Builder. #5684
@@ -345,6 +353,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Invalid Layout Issue in AMP HTML Tag for Missing 'height' Attribute. #5542
 * Fixed: Getting blank screen on amp pages #5546
 * Fixed: Images from Slider revolution plugin not visible in AMP #5548
-
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
