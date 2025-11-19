@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.8
-Stable tag: 1.1.7.1
+Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,11 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.8 (19 November 2025) =
+* Fixed : Function _load_textdomain_just_in_time was called incorrectly #5703
+* Fixed : PHP Notice: Function _load_textdomain_just_in_time was called incorrectly - Version: 1.1.7.1 #5709
+* Fixed : PHP Warning : Trying to access array offset on null #5704
+
 = 1.1.7.1 (27 September 2025) =
 * Fixed : Issue persists in AMP plugin version 1.1.7. #5707
 

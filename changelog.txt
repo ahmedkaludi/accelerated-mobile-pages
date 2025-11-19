@@ -1,5 +1,10 @@
 == Changelog ==
-= 1.1.7 (27 September 2025) =
+= 1.1.8 (19 November 2025) =
+* Fixed : Function _load_textdomain_just_in_time was called incorrectly #5703
+* Fixed : PHP Notice: Function _load_textdomain_just_in_time was called incorrectly - Version: 1.1.7.1 #5709
+* Fixed : PHP Warning : Trying to access array offset on null #5704
+
+= 1.1.7.1 (27 September 2025) =
 * Fixed : Issue persists in AMP plugin version 1.1.7. #5707
 
 = 1.1.7 (26 September 2025) =
