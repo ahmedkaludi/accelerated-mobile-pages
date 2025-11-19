@@ -89,7 +89,7 @@ return array(
 		 						'type'		=>'text',		
 		 						'name'		=>"video_upload_link",		
 		 						'label'		=>'Video link',
-		 						'helpmessage'	=> esc_html__('Please make sure to enter https url link.', 'accelerated-mobile-pages'),
+		 						'helpmessage'	=> did_action( 'init' ) ? esc_html__('Please make sure to enter https url link.', 'accelerated-mobile-pages') : esc_html('Please make sure to enter https url link.'),
 		           				'tab'       =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',

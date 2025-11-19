@@ -47,7 +47,7 @@ return array(
 	 					array(		
 		 						'type'		=>'checkbox_bool',		
 		 						'name'		=>"image_caption",		
-		 						'label'		=> esc_html__('Caption','accelerated-mobile-pages'),
+		 						'label'		=> did_action( 'init' ) ? esc_html__('Caption','accelerated-mobile-pages') : esc_html('Caption'),
 		           				'tab'     	=>'customizer',
 		 						'default'	=> 1,
 		 						'content_type'=>'html',	

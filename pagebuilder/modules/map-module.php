@@ -13,7 +13,7 @@ $output = '
 $css = '';
 
 return array(
-		'label' => esc_html__('Map', 'accelerated-mobile-pages'),
+		'label' => did_action( 'init' ) ? esc_html__('Map', 'accelerated-mobile-pages') : esc_html('Map'),
 		'name' =>'map',
 		'default_tab'=> 'customizer',
 		'tabs' => array(
@@ -26,7 +26,7 @@ return array(
                             array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"width",		
-		 						'label'		=>esc_html__('Map Width','accelerated-mobile-pages'),
+		 						'label'		=> did_action( 'init' ) ? esc_html__('Map Width','accelerated-mobile-pages') : esc_html('Map Width'),
 		           				'tab'      =>'design',
 		 						'default'	=>'600',	
 		           				'content_type'=>'html',
@@ -34,7 +34,7 @@ return array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"height",		
-		 						'label'		=>esc_html__('Map Height','accelerated-mobile-pages'),
+		 						'label'		=> did_action( 'init' ) ? esc_html__('Map Height','accelerated-mobile-pages') : esc_html('Map Height'),
 		           				'tab'      =>'design',
 		 						'default'	=>'450',	
 		           				'content_type'=>'html',
@@ -43,7 +43,7 @@ return array(
 	 						array(		
 		 						'type'		=>'text',		
 		 						'name'		=>"map_key",		
-		 						'label'		=>esc_html__('API Key','accelerated-mobile-pages'),
+		 						'label'		=> did_action( 'init' ) ? esc_html__('API Key','accelerated-mobile-pages') : esc_html('API Key'),
 		           				'tab'      =>'customizer',
 		 						'default'	=>'',	
 		           				'content_type'=>'html',
@@ -52,7 +52,7 @@ return array(
 	 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'mode_type',		
-	 							'label' =>esc_html__("Select Mode Type",'accelerated-mobile-pages'),
+	 							'label' => did_action( 'init' ) ? esc_html__("Select Mode Type",'accelerated-mobile-pages') : esc_html("Select Mode Type"),
 								'tab'     =>'customizer',
 	 							'default' =>'place',
 	 							'options_details'=>array(
@@ -64,7 +64,7 @@ return array(
 		 						array(		
 			 						'type'		=>'text',		
 			 						'name'		=>"address",		
-			 						'label'		=>esc_html__('Address','accelerated-mobile-pages'),
+			 						'label'		=> did_action( 'init' ) ? esc_html__('Address','accelerated-mobile-pages') : esc_html('Address'),
 			           				'tab'     =>'customizer',
 			 						'default'	=>'Eiffel Tower,Paris France',	
 			           				'content_type'=>'html',
@@ -73,7 +73,7 @@ return array(
 		 						array(		
 			 						'type'		=>'text',		
 			 						'name'		=>"latitude",		
-			 						'label'		=>esc_html__('Latitude','accelerated-mobile-pages'),
+			 						'label'		=> did_action( 'init' ) ? esc_html__('Latitude','accelerated-mobile-pages') : esc_html('Latitude'),
 			           				'tab'     =>'customizer',
 			 						'default'	=>'-33.8569',	
 			           				'content_type'=>'html',
@@ -82,7 +82,7 @@ return array(
 		 						array(		
 			 						'type'		=>'text',		
 			 						'name'		=>"longitude",		
-			 						'label'		=>esc_html__('Longitude','accelerated-mobile-pages'),
+			 						'label'		=> did_action( 'init' ) ? esc_html__('Longitude','accelerated-mobile-pages') : esc_html('Longitude'),
 			           				'tab'     =>'customizer',
 			 						'default'	=>'151.2152',	
 			           				'content_type'=>'html',
@@ -91,7 +91,7 @@ return array(
 		 						array(		
 			 						'type'		=>'text',		
 			 						'name'		=>"zooming",		
-			 						'label'		=>esc_html__('Zooming','accelerated-mobile-pages'),
+			 						'label'		=> did_action( 'init' ) ? esc_html__('Zooming','accelerated-mobile-pages') : esc_html('Zooming'),
 			           				'tab'     =>'customizer',
 			 						'default'	=>'18',	
 			           				'content_type'=>'html',
@@ -100,7 +100,7 @@ return array(
 		 						array(		
 			 						'type'		=>'select',		
 			 						'name'		=>"map_type",		
-			 						'label'		=>esc_html__('Map Type','accelerated-mobile-pages'),
+			 						'label'		=> did_action( 'init' ) ? esc_html__('Map Type','accelerated-mobile-pages') : esc_html('Map Type'),
 			           				'tab'     =>'customizer',
 			 						'default'	=>'roadmap',	
 			           				'content_type'=>'html',
@@ -115,7 +115,7 @@ return array(
 			 					array(
 			 						'type'		=>'upload',		
 			 						'name'		=>"map_placeholder",		
-			 						'label'		=>esc_html__('Upload Placeholder','accelerated-mobile-pages'),
+			 						'label'		=> did_action( 'init' ) ? esc_html__('Upload Placeholder','accelerated-mobile-pages') : esc_html('Upload Placeholder'),
 			           				'tab'     =>'customizer',
 			 						'default'	=>'',	
 			           				'content_type'=>'html',
@@ -123,7 +123,7 @@ return array(
 			 					array(
 								'type'		=>'text',
 								'name'		=>"id",
-								'label'		=>esc_html__('ID','accelerated-mobile-pages'),
+								'label'		=> did_action( 'init' ) ? esc_html__('ID','accelerated-mobile-pages') : esc_html('ID'),
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'
@@ -131,7 +131,7 @@ return array(
 			 					array(
 								'type'		=>'text',
 								'name'		=>"user_class",
-								'label'		=>esc_html__('Class','accelerated-mobile-pages'),
+								'label'		=> did_action( 'init' ) ? esc_html__('Class','accelerated-mobile-pages') : esc_html('Class'),
 								'tab'		=>'advanced',
 								'default'	=>'',
 								'content_type'=>'html'

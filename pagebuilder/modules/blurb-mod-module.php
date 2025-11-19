@@ -381,7 +381,7 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'blurb_head_type',
-	 							'label' => esc_html__('Header Type', 'accelerated-mobile-pages'),
+	 							'label' => did_action( 'init' ) ? esc_html__('Header Type', 'accelerated-mobile-pages') : esc_html('Header Type'),
 								'tab'     =>'customizer',
 	 							'default' =>'h3',
 	 							'options_details'=>array(

@@ -44,13 +44,13 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 					'dev_mode' => false, 
 					'steps' => array(
 									1=>array(
-									'title'=> esc_html__('Welcome','accelerated-mobile-pages'),
+									'title'=> did_action( 'init' ) ? esc_html__('Welcome','accelerated-mobile-pages') : esc_html('Welcome'),
 									'fields'=>'',
-									'description'=>esc_html__('This wizard will set up AMP on your website, install plugin, and import content. It is optional & should take only a few minutes.','accelerated-mobile-pages'),
+									'description'=>did_action( 'init' ) ? esc_html__('This wizard will set up AMP on your website, install plugin, and import content. It is optional & should take only a few minutes.','accelerated-mobile-pages') : esc_html('This wizard will set up AMP on your website, install plugin, and import content. It is optional & should take only a few minutes.'),
 									),
 									2=>array(
-									'title'=>esc_html__('Upload Logo','accelerated-mobile-pages'),
-									'description'=>esc_html__('Recommend logo size is: 190x36','accelerated-mobile-pages'),
+									'title'=>did_action( 'init' ) ? esc_html__('Upload Logo','accelerated-mobile-pages') : esc_html('Upload Logo'),
+									'description'=>did_action( 'init' ) ? esc_html__('Recommend logo size is: 190x36','accelerated-mobile-pages') : esc_html('Recommend logo size is: 190x36'),
 									'fields'=>'<li class="amp_install_center">
 											    <input type="hidden" value="" class="regular-text process_custom_images" id="process_custom_images" name="opt-media" value="">
 
@@ -59,8 +59,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 												</li>'
 									),
 									3=>array(
-									'title'=>esc_html__('Select Pages','accelerated-mobile-pages'),
-									'description'=>esc_html__('Where you would like to enable AMP.','accelerated-mobile-pages'),
+									'title'=>did_action( 'init' ) ? esc_html__('Select Pages','accelerated-mobile-pages') : esc_html('Select Pages'),
+									'description'=>did_action( 'init' ) ? esc_html__('Where you would like to enable AMP.','accelerated-mobile-pages') : esc_html('Where you would like to enable AMP.'),
 									'fields'=>'<li class="merlin__drawer--import-content__list-item status status--pending">
 												<input type="checkbox" class="checkbox" name="amp-on-off-for-all-posts" id="amp-on-posts" '.(ampforwp_get_setting('amp-on-off-for-all-posts')? 'checked': '').'>
 												<label for="amp-on-posts">
@@ -86,8 +86,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 												',
 									),
 									4=>array(
-									'title'=>esc_html__('Setup Analytics','accelerated-mobile-pages'),
-									'description'=>esc_html__('Enter your Google Analytics Tracking code','accelerated-mobile-pages'),
+									'title'=>did_action( 'init' ) ? esc_html__('Setup Analytics','accelerated-mobile-pages') : esc_html('Setup Analytics'),
+									'description'=>did_action( 'init' ) ? esc_html__('Enter your Google Analytics Tracking code','accelerated-mobile-pages') : esc_html('Enter your Google Analytics Tracking code'),
 									'fields'=>'<li class="amp_install_center">
                                     <input type="hidden" name="amp-analytics-select-option" value="1">
 									<input type="text" name="ga-feild" id="ga-feild" value="'.(ampforwp_get_setting('ga-feild')? $redux_builder_amp['ga-feild'] : '').'">
@@ -95,7 +95,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 									</li>',
 									),
 									5=>array(
-									'title'=>esc_html__('Select Design','accelerated-mobile-pages'),
+									'title'=>did_action( 'init' ) ? esc_html__('Select Design','accelerated-mobile-pages') : esc_html('Select Design'),
 									'description'=>'',
 									'fields'=>'<li class="amp_install_center"><select name="amp-design-selector" id="ampforwp-design-select">
 											<option value="1" '.(ampforwp_get_setting('amp-design-selector')==1? 'selected' : '').'>Design One</option>
@@ -109,8 +109,8 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
  									</li>',
 									),
 									6=>array(
-									'title'=>esc_html__('Enjoy','accelerated-mobile-pages'),
-									'description'=>esc_html__('Navigate to ','accelerated-mobile-pages'),
+									'title'=>did_action( 'init' ) ? esc_html__('Enjoy','accelerated-mobile-pages') : esc_html('Enjoy'),
+									'description'=>did_action( 'init' ) ? esc_html__('Navigate to ','accelerated-mobile-pages') : esc_html('Navigate to '),
 									'fields'=>'',
 									),
 								),
@@ -177,7 +177,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 		ob_start();
 		ampforwp_install_header(); ?>
 		<div class="merlin__wrapper">
-            <div class="amp_install_wizard"><?php echo esc_html__('AMP Installation Wizard','accelerated-mobile-pages'); ?></div>
+            <div class="amp_install_wizard"><?php echo did_action( 'init' ) ? esc_html__('AMP Installation Wizard','accelerated-mobile-pages') : esc_html('AMP Installation Wizard'); ?></div>
 			<div class="merlin__content merlin__content--<?php echo esc_attr( strtolower( $title ) ); ?>">
 
 				<?php
@@ -192,7 +192,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 
 			</div>
 
-			<?php echo sprintf( '<a class="return-to-dashboard" href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=amp_options' ) ), esc_html__( 'Return to dashboard','accelerated-mobile-pages' ) ); ?>
+			<?php echo sprintf( '<a class="return-to-dashboard" href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=amp_options' ) ), did_action( 'init' ) ? esc_html__( 'Return to dashboard','accelerated-mobile-pages' ) : esc_html('Return to dashboard') ); ?>
 
 		</div>
 
@@ -227,7 +227,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 
 			<h1><?php echo esc_html($stepDetails['title']); ?></h1>
 
-			<p><?php echo esc_html__( 'This Installation Wizard helps you to setup the necessary options for AMP. It is optional & should take only a few minutes.' ,'accelerated-mobile-pages'); ?></p>
+			<p><?php echo did_action( 'init' ) ? esc_html__( 'This Installation Wizard helps you to setup the necessary options for AMP. It is optional & should take only a few minutes.' ,'accelerated-mobile-pages') : esc_html('This Installation Wizard helps you to setup the necessary options for AMP. It is optional & should take only a few minutes.'); ?></p>
 	
 		</div>
 
@@ -274,10 +274,10 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 			<footer class="merlin__content__footer">
 				<?php ampforwp_skip_button(); ?>
 				
-				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html__( 'Skip','accelerated-mobile-pages' ); ?></a>
+				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo did_action( 'init' ) ? esc_html__( 'Skip','accelerated-mobile-pages' ) : esc_html('Skip'); ?></a>
 				
 				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
-					<span class="merlin__button--loading__text"><?php echo esc_html__( 'Save' ,'accelerated-mobile-pages'); ?></span>
+					<span class="merlin__button--loading__text"><?php echo did_action( 'init' ) ? esc_html__( 'Save' ,'accelerated-mobile-pages') : esc_html('Save'); ?></span>
 					<?php //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo ampforwp_loading_spinner(); 
 					?>
@@ -321,10 +321,10 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 			<footer class="merlin__content__footer">
 				<?php ampforwp_skip_button(); ?>
 				
-				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html__( 'Skip','accelerated-mobile-pages' ); ?></a>
+				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo did_action( 'init' ) ? esc_html__( 'Skip','accelerated-mobile-pages' ) : esc_html('Skip'); ?></a>
 				
 				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
-					<span class="merlin__button--loading__text"><?php echo esc_html__( 'Save','accelerated-mobile-pages' ); ?></span><?php
+					<span class="merlin__button--loading__text"><?php echo did_action( 'init' ) ? esc_html__( 'Save','accelerated-mobile-pages' ) : esc_html('Save'); ?></span><?php
 					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					 echo ampforwp_loading_spinner(); 
 					 ?>
@@ -368,10 +368,10 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 			<footer class="merlin__content__footer">
 				<?php ampforwp_skip_button(); ?>
 				
-				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html__( 'Skip','accelerated-mobile-pages' ); ?></a>
+				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo did_action( 'init' ) ? esc_html__( 'Skip','accelerated-mobile-pages' ) : esc_html('Skip'); ?></a>
 				
 				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
-					<span class="merlin__button--loading__text"><?php echo esc_html__( 'Save','accelerated-mobile-pages' ); ?></span><?php 
+					<span class="merlin__button--loading__text"><?php echo did_action( 'init' ) ? esc_html__( 'Save','accelerated-mobile-pages' ) : esc_html('Save'); ?></span><?php 
 					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo ampforwp_loading_spinner(); 
 					?>
@@ -419,10 +419,10 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 				ampforwp_skip_button(); 
 				?>
 				
-				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo esc_html__( 'Skip','accelerated-mobile-pages' ); ?></a>
+				<a id="skip" href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip merlin__button--proceed"><?php echo did_action( 'init' ) ? esc_html__( 'Skip','accelerated-mobile-pages' ) : esc_html('Skip'); ?></a>
 				
 				<a href="<?php echo esc_url( ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--next button-next" data-callback="save_logo">
-					<span class="merlin__button--loading__text"><?php echo esc_html__( 'Save','accelerated-mobile-pages' ); ?></span>
+					<span class="merlin__button--loading__text"><?php echo did_action( 'init' ) ? esc_html__( 'Save','accelerated-mobile-pages' ) : esc_html('Save'); ?></span>
 					<?php 
 					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo ampforwp_loading_spinner(); 
@@ -446,7 +446,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	function ampforwp_save_steps_data(){
 		/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		if(!wp_verify_nonce( $_REQUEST['wpnonce'], 'ampforwp_install_nonce' ) ) {
-	        echo wp_json_encode(array("status"=>300,"message"=>esc_html__('Request not valid','accelerated-mobile-pages')));
+	        echo wp_json_encode(array("status"=>300,"message"=>did_action( 'init' ) ? esc_html__('Request not valid','accelerated-mobile-pages') : esc_html('Request not valid')));
 	        die;
 	    }
 		// Exit if the user does not have proper permissions
@@ -477,7 +477,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 	
 	function ampforwp_skip_button(){
 		?>
-		<a href="<?php echo esc_url(  ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip"><?php echo esc_html__( 'Skip','accelerated-mobile-pages' ); ?></a>
+		<a href="<?php echo esc_url(  ampforwp_step_next_link() ); ?>" class="merlin__button merlin__button--skip"><?php echo did_action( 'init' ) ? esc_html__( 'Skip','accelerated-mobile-pages' ) : esc_html('Skip'); ?></a>
 		<?php
 	}
 	function ampforwp_finish_page() {
@@ -502,7 +502,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 
 			<div class="amp_branding"></div>
 			
-			<h1><?php echo esc_html__( 'Setup Done. Have fun!','accelerated-mobile-pages' ); ?></h1>
+			<h1><?php echo did_action( 'init' ) ? esc_html__( 'Setup Done. Have fun!','accelerated-mobile-pages' ) : esc_html('Setup Done. Have fun!'); ?></h1>
 
 			<p><?php echo wp_kses(  'Basic Setup has been done. Navigate to AMP options panel to access all the options.','ampforwp_install' ); ?></p>
 
@@ -510,7 +510,7 @@ if(isset($redux_builder_amp['opt-media']['url']) && $redux_builder_amp['opt-medi
 
 		<footer class="merlin__content__footer merlin__content__footer--fullwidth">
 			
-			<a href="<?php echo esc_url( admin_url( 'admin.php?page=amp_options' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo esc_html__( 'Let\'s Go','accelerated-mobile-pages' ); ?></a>
+			<a href="<?php echo esc_url( admin_url( 'admin.php?page=amp_options' ) ); ?>" class="merlin__button merlin__button--blue merlin__button--fullwidth merlin__button--popin"><?php echo did_action( 'init' ) ? esc_html__( 'Let\'s Go','accelerated-mobile-pages' ) : esc_html('Let\'s Go'); ?></a>
 			
 			
 			<ul class="merlin__drawer merlin__drawer--extras">

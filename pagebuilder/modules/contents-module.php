@@ -254,7 +254,7 @@ if ( is_admin() ) {
             array(    
               'type'  =>'select',   
               'name'  =>"taxonomy_selection",   
-              'label' => esc_html__("Select Taxonomy","accelerated-mobile-pages"),
+              'label' => did_action( 'init' ) ? esc_html__("Select Taxonomy","accelerated-mobile-pages") : esc_html("Select Taxonomy"),
               'tab'     =>'customizer',
               'default' =>'',    
               'options' => $options,    
@@ -285,7 +285,7 @@ if ( is_admin() ) {
             array(    
             'type'    =>'text',   
             'name'    =>'posts_offset',
-            'label'   => esc_html__('Offset','accelerated-mobile-pages'),  
+            'label'   => did_action( 'init' ) ? esc_html__('Offset','accelerated-mobile-pages') : esc_html('Offset'),  
             'tab'     =>'customizer',
             'default' =>'0',
             'content_type'=>'html',
@@ -312,7 +312,7 @@ if ( is_admin() ) {
             array(    
             'type'    =>'text',
             'name'    =>"ampforwp_read_more",
-            'label'   =>esc_html__("Read More Text","accelerated-mobile-pages"),
+            'label'   => did_action( 'init' ) ? esc_html__("Read More Text","accelerated-mobile-pages") : esc_html("Read More Text"),
             'tab'     =>'customizer',
             'default' =>'Read More',    
             'content_type'=>'html',
