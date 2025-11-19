@@ -112,7 +112,7 @@ return array(
 								'content_type'=> 'html',
 								'options'	=> array(
 												array(
-													'label'=>esc_html__('Autoplay','accelerated-mobile-pages'),
+													'label'=> did_action( 'init' ) ? esc_html__('Autoplay','accelerated-mobile-pages') : esc_html('Autoplay'),
 													'value'=>1,
 												),
 											),
@@ -125,7 +125,7 @@ return array(
 								'default'	=>0,
 								'options'	=>array(
 												array(
-													'label'=>esc_html__('Make a Lightbox for Images','accelerated-mobile-pages'),
+													'label'=> did_action( 'init' ) ? esc_html__('Make a Lightbox for Images','accelerated-mobile-pages') : esc_html('Make a Lightbox for Images'),
 													'value'=>1,
 												),
 											),

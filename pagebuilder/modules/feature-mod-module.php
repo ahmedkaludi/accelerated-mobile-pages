@@ -68,7 +68,7 @@ return array(
 						array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'heading_tags',		
-	 							'label' => esc_html__('Heading Tags','accelerated-mobile-pages'),
+	 							'label' => did_action( 'init' ) ? esc_html__('Heading Tags','accelerated-mobile-pages') : esc_html('Heading Tags'),
 								'tab'     =>'customizer',
 	 							'default' =>'h3',
 	 							'options_details'=>array(
@@ -143,7 +143,7 @@ return array(
 	 					array(		
 	 							'type'	=>'select',		
 	 							'name'  =>'align_type',		
-	 							'label' =>esc_html__('Content Alignment','accelerated-mobile-pages'),
+	 							'label' => did_action( 'init' ) ? esc_html__('Content Alignment','accelerated-mobile-pages') : esc_html('Content Alignment'),
 								'tab'     =>'design',
 	 							'default' =>'center',
 	 							'options_details'=>array(
