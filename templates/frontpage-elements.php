@@ -14,13 +14,13 @@ function ampforwp_frontpage_file() {
 		add_action('ampforwp_design_3_frontpage_title','ampforwp_design_3_frontpage_title');
 
 	// Content
-	if ( $redux_builder_amp['amp-design-selector'] == '1') {
+	if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] == '1') {
 		add_action('ampforwp_frontpage_above_loop', 'ampforwp_design_1_frontpage_content', 10 , 2);
 	}
-	if ( $redux_builder_amp['amp-design-selector'] == '2') {
+	if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] == '2') {
 		add_action('ampforwp_frontpage_above_loop', 'ampforwp_design_2_frontpage_content', 10 , 2);
 	}
-	if ( $redux_builder_amp['amp-design-selector'] == '3') {
+	if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] == '3') {
 		add_action('ampforwp_frontpage_above_loop', 'ampforwp_design_3_frontpage_content', 10 , 2);
 	}
 }

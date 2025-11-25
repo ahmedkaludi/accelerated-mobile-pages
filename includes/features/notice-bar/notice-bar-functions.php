@@ -54,7 +54,7 @@ add_filter( 'amp_post_template_data', 'ampforwp_add_notification_scripts', 75 );
 function ampforwp_add_notification_scripts( $data ) {
 	global $redux_builder_amp;
 
-	if ( $redux_builder_amp['amp-enable-notifications'] == true && (isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] == 0)) {
+	if ( isset($redux_builder_amp['amp-enable-notifications']) && $redux_builder_amp['amp-enable-notifications'] == true && (isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] == 0)) {
 					if ( empty( $data['amp_component_scripts']['amp-user-notification'] ) ) {
 						$data['amp_component_scripts']['amp-user-notification'] = 'https://cdn.ampproject.org/v0/amp-user-notification-0.1.js';
 					}

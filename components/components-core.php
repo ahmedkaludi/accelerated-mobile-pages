@@ -61,7 +61,7 @@ function add_amp_icon($args=array()){
 			$amp_icons_css[$key] = $amp_icons_css_array[$key]; 
 	}
 	// Design-1,2,3
-	if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
+	if ( isset($redux_builder_amp['amp-design-selector']) && ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) ) {
 		add_action('amp_post_template_css', 'amp_icon_css',999);
 
 	}

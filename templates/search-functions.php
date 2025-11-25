@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action('pre_amp_render_post','ampforwp_search_related_functions',12);
 function ampforwp_search_related_functions(){
 	global $redux_builder_amp;
-	if ( $redux_builder_amp['amp-design-selector'] == 1 ||
+	if ( isset($redux_builder_amp['amp-design-selector']) && ( $redux_builder_amp['amp-design-selector'] == 1 ||
 	     $redux_builder_amp['amp-design-selector'] == 2 ||
-	     $redux_builder_amp['amp-design-selector'] == 3 ) {
+	     $redux_builder_amp['amp-design-selector'] == 3 ) ) {
 
 				add_filter( 'ampforwp_post_template_data', 'ampforwp_add_lightbox_and_form_scripts');
 				add_action('ampforwp_search_form','ampforwp_the_search_form');

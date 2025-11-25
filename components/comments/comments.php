@@ -149,7 +149,7 @@ function ampforwp_framework_get_facebook_comments(){
 global $redux_builder_amp;
 	$facebook_comments_markup = $lang = $locale = '';
 	$lang = ampforwp_get_setting('ampforwp-fb-comments-lang');
-	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
+	if ( isset($redux_builder_amp['ampforwp-facebook-comments-support']) && $redux_builder_amp['ampforwp-facebook-comments-support'] ) {
 	if( ampforwp_is_non_amp() && isset($redux_builder_amp['ampforwp-amp-convert-to-wp']) && $redux_builder_amp['ampforwp-amp-convert-to-wp']) {
 		$facebook_comments_markup = '<div class="fb-comments" data-href="' . esc_url(get_permalink()) . '" data-width="800px" data-numposts="'.esc_attr($redux_builder_amp['ampforwp-number-of-fb-no-of-comments']).'"></div>';
 	}
@@ -248,7 +248,7 @@ function ampforwp_framework_comments_scripts( $data ) {
 				$data['amp_component_scripts']['amp-facebook-comments'] = 'https://cdn.ampproject.org/v0/amp-facebook-comments-0.1.js';
 			}
 		}
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on  && comments_open() && !$is_pb_enabled ) {
+	if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_builder_amp['ampforwp-disqus-comments-support'] && $display_comments_on  && comments_open() && !$is_pb_enabled ) {
 		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
