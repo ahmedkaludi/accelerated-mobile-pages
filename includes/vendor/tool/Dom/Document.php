@@ -200,7 +200,7 @@ final class Document extends DOMDocument
                                         . Attribute::AMP_EMOJI
                                         . ')(4(?:ads|email))?[^>]*?)>/i';
 
-    // Attribute to use as a placeholder to move the emoji AMP symbol (âš¡) over to DOM.
+    // Attribute to use as a placeholder to move the emoji AMP symbol (⚡) over to DOM.
     const EMOJI_AMP_ATTRIBUTE_PLACEHOLDER = 'emoji-amp';
 
     // Patterns used for fixing the mangled encoding of src attributes with SVG data.
@@ -1566,7 +1566,7 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Covert the emoji AMP symbol (âš¡) into pure text.
+     * Covert the emoji AMP symbol (⚡) into pure text.
      *
      * The emoji symbol gets stripped by DOMDocument::loadHTML().
      *
@@ -1617,7 +1617,7 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Restore the emoji AMP symbol (âš¡) from its pure text placeholder.
+     * Restore the emoji AMP symbol (⚡) from its pure text placeholder.
      *
      * @param string $html HTML string to restore the AMP emoji symbol in.
      * @return string Adapted HTML string.

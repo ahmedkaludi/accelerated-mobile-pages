@@ -987,7 +987,7 @@ $freepro_listing = '
                     <div class="fr-fe">
                         <div class="fe-1">
                             <h4>Continious Development</h4>
-                            <p>We take bug reports and feature requests seriously. Weâ€™re continiously developing & improve this product for last 2 years with passion and love.</p>
+                            <p>We take bug reports and feature requests seriously. We’re continiously developing & improve this product for last 2 years with passion and love.</p>
                         </div>
                         <div class="fe-1">
                             <h4>300+ Features</h4>
@@ -1191,7 +1191,7 @@ $freepro_listing = '
                         </li>
                         <li>
                             <span>Do you offer support if I need help?</span>
-                            <p>Yes! Top-notch customer support for our paid customers is key for a quality product, so weâ€™ll do our very best to resolve any issues you encounter via our support page.</p>
+                            <p>Yes! Top-notch customer support for our paid customers is key for a quality product, so we’ll do our very best to resolve any issues you encounter via our support page.</p>
                         </li>
                         <li>
                             <span>Can I use the plugins after my subscription is expired?</span>
@@ -1211,7 +1211,7 @@ $freepro_listing = '
                         </li>
                         <li>
                             <span>Do you offer refunds?</span>
-                            <p>You are fully protected by our 100% Money Back Guarantee Unconditional. If during the next 14 days you experience an issue that makes the plugin unusable and we are unable to resolve it, weâ€™ll happily offer a full refund.</p>
+                            <p>You are fully protected by our 100% Money Back Guarantee Unconditional. If during the next 14 days you experience an issue that makes the plugin unusable and we are unable to resolve it, we’ll happily offer a full refund.</p>
                         </li>
                         <li>
                             <span>Do I get updates for the premium plugin?</span>
@@ -9250,7 +9250,7 @@ Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extension
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Documentation', 'accelerated-mobile-pages' ),
         'subsection' => false,
-        'desc' => '<div class="fp-cnt doc-cnt"><h1>'.esc_html__('Documentation','accelerated-mobile-pages').'</h1><p>'.esc_html__('Without documentation, software is just a black box that arenâ€™t anywhere near as useful as they could be because their inner workings are hidden from those who need them. Documentation turns your software into a glass box by explaining to users as well as developers how it operates.','accelerated-mobile-pages').'</p><a class="buy" href="https://ampforwp.com/tutorials/" target="_blank">'.esc_html__('View Documentation','accelerated-mobile-pages').'</a></div>',
+        'desc' => '<div class="fp-cnt doc-cnt"><h1>'.esc_html__('Documentation','accelerated-mobile-pages').'</h1><p>'.esc_html__('Without documentation, software is just a black box that aren’t anywhere near as useful as they could be because their inner workings are hidden from those who need them. Documentation turns your software into a glass box by explaining to users as well as developers how it operates.','accelerated-mobile-pages').'</p><a class="buy" href="https://ampforwp.com/tutorials/" target="_blank">'.esc_html__('View Documentation','accelerated-mobile-pages').'</a></div>',
     ) );
 /*
 * <--- END SECTIONS
