@@ -1,4 +1,8 @@
 == Changelog ==
+= 1.1.9 (25 November 2025) =
+* Fixed : PHP Fatal error & More Warnings #5713
+* Fixed : Settings are not getting saved #5714
+
 = 1.1.8 (19 November 2025) =
 * Fixed : Function _load_textdomain_just_in_time was called incorrectly #5703
 * Fixed : PHP Notice: Function _load_textdomain_just_in_time was called incorrectly - Version: 1.1.7.1 #5709

@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.8
-Stable tag: 1.1.8
+Tested up to: 6.9
+Stable tag: 1.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.9 (25 November 2025) =
+* Fixed : PHP Fatal error & More Warnings #5713
+* Fixed : Settings are not getting saved #5714
+
 = 1.1.8 (19 November 2025) =
 * Fixed : Function _load_textdomain_just_in_time was called incorrectly #5703
 * Fixed : PHP Notice: Function _load_textdomain_just_in_time was called incorrectly - Version: 1.1.7.1 #5709
@@ -346,17 +350,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 = 1.0.92.1 (16th December 2023) =
 * Fixed:  Cross-Site Scripting issue on shortcode [amp-gist] for contributer+ access (Reported by Wordfence)
-
-= 1.0.92 (18th November 2023) =
-* New: Compatibility with Publytics.net #5477
-* Fixed: Add a filter to modify unused CSS #5478
-* Fixed: Local Fonts option not working properly. #5506
-* Fixed: Autoload is termed as yes in wp_options. #5523
-* Fixed: Deprecated error in query monitor #5527
-* Fixed: PHP Fatal error appears in AMP #5539
-* Fixed: CSS issue with 1.0.91 Version #5540
-* Fixed: Invalid Layout Issue in AMP HTML Tag for Missing 'height' Attribute. #5542
-* Fixed: Getting blank screen on amp pages #5546
-* Fixed: Images from Slider revolution plugin not visible in AMP #5548
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
