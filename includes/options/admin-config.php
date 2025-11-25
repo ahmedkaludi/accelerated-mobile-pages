@@ -4150,7 +4150,7 @@ Redux::setSection( $opt_name, array(
                 'subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ).' or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
     top: 20px;text-decoration: none;
     background: #eee;padding: 5px 8px 5px 9px;
-    border-radius: 30px;" target="_blank">View More AMP Themes â†’</a>',
+    border-radius: 30px;" target="_blank">View More AMP Themes →</a>',
                 'options'  => $themeDesign,
                 'default'  => '4'
                 ),
