@@ -200,7 +200,7 @@ final class Document extends DOMDocument
                                         . Attribute::AMP_EMOJI
                                         . ')(4(?:ads|email))?[^>]*?)>/i';
 
-    // Attribute to use as a placeholder to move the emoji AMP symbol (⚡) over to DOM.
+    // Attribute to use as a placeholder to move the emoji AMP symbol (âš¡) over to DOM.
     const EMOJI_AMP_ATTRIBUTE_PLACEHOLDER = 'emoji-amp';
 
     // Patterns used for fixing the mangled encoding of src attributes with SVG data.
@@ -311,7 +311,6 @@ final class Document extends DOMDocument
      *
      * This is used to generate unique-per-prefix IDs.
      *
-     * 
      * @var int[]
      */
     private $indexCounter = [];
@@ -340,10 +339,6 @@ final class Document extends DOMDocument
      * @param string $version  Optional. The version number of the document as part of the XML declaration.
      * @param string $encoding Optional. The encoding of the document as part of the XML declaration.
      */
-    private $html = '';
-    private $head = '';
-    private $xpath = '';
-    private $body = '';
     public function __construct($version = '', $encoding = null)
     {
         $this->originalEncoding = (string)$encoding ?: Encoding::UNKNOWN;
@@ -1571,7 +1566,7 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Covert the emoji AMP symbol (⚡) into pure text.
+     * Covert the emoji AMP symbol (âš¡) into pure text.
      *
      * The emoji symbol gets stripped by DOMDocument::loadHTML().
      *
@@ -1622,7 +1617,7 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Restore the emoji AMP symbol (⚡) from its pure text placeholder.
+     * Restore the emoji AMP symbol (âš¡) from its pure text placeholder.
      *
      * @param string $html HTML string to restore the AMP emoji symbol in.
      * @return string Adapted HTML string.
@@ -1899,7 +1894,7 @@ final class Document extends DOMDocument
     public function getRemainingCustomCssSpace()
     {
         if ($this->cssMaxByteCountEnforced < 0) {
-            // No CSS byte count limit is being enforced, so return the next best thing to +∞.
+            // No CSS byte count limit is being enforced, so return the next best thing to +âˆž.
             return PHP_INT_MAX;
         }
 
@@ -2054,12 +2049,7 @@ final class Document extends DOMDocument
      */
     public function createElement($name, $value = null)
     {
-        $element = null;
-        if ($value !== null) {
-            $element = $dom->createElement('tagname', $value);
-        } else {
-            $element = $dom->createElement('tagname');
-        }
+        $element = parent::createElement($name, $value);
 
         if (!$element instanceof Element) {
             return false;

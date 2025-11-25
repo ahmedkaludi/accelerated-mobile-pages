@@ -987,7 +987,7 @@ $freepro_listing = '
                     <div class="fr-fe">
                         <div class="fe-1">
                             <h4>Continious Development</h4>
-                            <p>We take bug reports and feature requests seriously. We’re continiously developing & improve this product for last 2 years with passion and love.</p>
+                            <p>We take bug reports and feature requests seriously. Weâ€™re continiously developing & improve this product for last 2 years with passion and love.</p>
                         </div>
                         <div class="fe-1">
                             <h4>300+ Features</h4>
@@ -1191,7 +1191,7 @@ $freepro_listing = '
                         </li>
                         <li>
                             <span>Do you offer support if I need help?</span>
-                            <p>Yes! Top-notch customer support for our paid customers is key for a quality product, so we’ll do our very best to resolve any issues you encounter via our support page.</p>
+                            <p>Yes! Top-notch customer support for our paid customers is key for a quality product, so weâ€™ll do our very best to resolve any issues you encounter via our support page.</p>
                         </li>
                         <li>
                             <span>Can I use the plugins after my subscription is expired?</span>
@@ -1211,7 +1211,7 @@ $freepro_listing = '
                         </li>
                         <li>
                             <span>Do you offer refunds?</span>
-                            <p>You are fully protected by our 100% Money Back Guarantee Unconditional. If during the next 14 days you experience an issue that makes the plugin unusable and we are unable to resolve it, we’ll happily offer a full refund.</p>
+                            <p>You are fully protected by our 100% Money Back Guarantee Unconditional. If during the next 14 days you experience an issue that makes the plugin unusable and we are unable to resolve it, weâ€™ll happily offer a full refund.</p>
                         </li>
                         <li>
                             <span>Do I get updates for the premium plugin?</span>
@@ -3105,11 +3105,11 @@ Redux::setSection( $opt_name, array(
 function ampforwp_get_post_percent() {
     global $wpdb;
 
-    // Check cached value
+    // Check if the value is already stored in the options table
     $cached_value = get_option('_ampforwp_get_post_percent');
-    if ($cached_value !== false && is_numeric($cached_value)) {
-        error_log("Returning cached percentage: " . $cached_value);
-        return round($cached_value, 2); // Return cached value with 2 decimal places
+
+    if ($cached_value !== false) {
+        return round($cached_value);
     }
 
     // Total published posts
@@ -3120,53 +3120,29 @@ function ampforwp_get_post_percent() {
         AND post_type = 'post'
     ");
 
-    if ($wpdb->last_error) {
-        error_log("Database error in total_post query: " . $wpdb->last_error);
-        return 0; // Return 0 to avoid breaking the calling function
-    }
-
     if ($total_post === 0) {
-        error_log("No published posts found.");
-        update_option('_ampforwp_get_post_percent', 0);
-        return 0; // No posts, so percentage is 0
+        return 100;
     }
 
     // Count posts where meta_key 'ampforwp-amp-on-off' does NOT exist
     $sql = "
         SELECT COUNT(p.ID)
         FROM {$wpdb->posts} p
-        WHERE p.post_status = 'publish'
+        LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'ampforwp-amp-on-off'
+        WHERE pm.post_id IS NULL
+        AND p.post_status = 'publish'
         AND p.post_type = 'post'
-        AND NOT EXISTS (
-            SELECT 1
-            FROM {$wpdb->postmeta} pm
-            WHERE pm.post_id = p.ID
-            AND pm.meta_key = 'ampforwp-amp-on-off'
-        )
     ";
 
     $non_amp_posts = (int) $wpdb->get_var($sql);
-
-    if ($wpdb->last_error) {
-        error_log("Database error in non_amp_posts query: " . $wpdb->last_error);
-        return 0; // Return 0 to avoid breaking the calling function
-    }
-
-    // Validate counts
-    if ($non_amp_posts > $total_post) {
-        error_log("Invalid data: non_amp_posts ($non_amp_posts) exceeds total_post ($total_post)");
-        update_option('_ampforwp_get_post_percent', 0);
-        return 0; // Return 0 for invalid data
-    }
 
     // Calculate percentage
     $post_percent = (($total_post - $non_amp_posts) / $total_post) * 100;
 
     // Store result in options table
     update_option('_ampforwp_get_post_percent', $post_percent);
-    error_log("Calculated percentage: " . $post_percent);
 
-    return round($post_percent, 2); // Return with 2 decimal places
+    return round($post_percent);
 }
 
 $post_percent = 0;
@@ -4174,7 +4150,7 @@ Redux::setSection( $opt_name, array(
                 'subtitle' => esc_html__( 'Select your design from dropdown', 'accelerated-mobile-pages' ).' or <br /><a href="https://ampforwp.com/themes/" style="position: relative;
     top: 20px;text-decoration: none;
     background: #eee;padding: 5px 8px 5px 9px;
-    border-radius: 30px;" target="_blank">View More AMP Themes →</a>',
+    border-radius: 30px;" target="_blank">View More AMP Themes â†’</a>',
                 'options'  => $themeDesign,
                 'default'  => '4'
                 ),
@@ -9274,7 +9250,7 @@ Redux::setExtensions( $opt_name, AMPFORWP_PLUGIN_DIR.'includes/options/extension
     Redux::setSection( $opt_name, array(
         'title'      => esc_html__( 'Documentation', 'accelerated-mobile-pages' ),
         'subsection' => false,
-        'desc' => '<div class="fp-cnt doc-cnt"><h1>'.esc_html__('Documentation','accelerated-mobile-pages').'</h1><p>'.esc_html__('Without documentation, software is just a black box that aren’t anywhere near as useful as they could be because their inner workings are hidden from those who need them. Documentation turns your software into a glass box by explaining to users as well as developers how it operates.','accelerated-mobile-pages').'</p><a class="buy" href="https://ampforwp.com/tutorials/" target="_blank">'.esc_html__('View Documentation','accelerated-mobile-pages').'</a></div>',
+        'desc' => '<div class="fp-cnt doc-cnt"><h1>'.esc_html__('Documentation','accelerated-mobile-pages').'</h1><p>'.esc_html__('Without documentation, software is just a black box that arenâ€™t anywhere near as useful as they could be because their inner workings are hidden from those who need them. Documentation turns your software into a glass box by explaining to users as well as developers how it operates.','accelerated-mobile-pages').'</p><a class="buy" href="https://ampforwp.com/tutorials/" target="_blank">'.esc_html__('View Documentation','accelerated-mobile-pages').'</a></div>',
     ) );
 /*
 * <--- END SECTIONS
