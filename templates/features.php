@@ -561,7 +561,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 add_filter('amp_post_template_dir','ampforwp_new_dir');
 function ampforwp_new_dir( $dir ) {
 		global $redux_builder_amp;
-		if ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) {
+		if ( isset($redux_builder_amp['amp-design-selector']) && ( 1 == $redux_builder_amp['amp-design-selector'] || 2 == $redux_builder_amp['amp-design-selector'] || 3 == $redux_builder_amp['amp-design-selector'] ) ) {
 			$dir = AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-'. ampforwp_design_selector();
 		}
 		else {
@@ -2322,8 +2322,8 @@ function ampforwp_add_disqus_support() {
 add_filter( 'amp_post_template_data', 'ampforwp_add_disqus_scripts' );
 function ampforwp_add_disqus_scripts( $data ) {
 	global $redux_builder_amp;
-	if ( $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular() ) {
-		if( $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
+	if ( isset($redux_builder_amp['ampforwp-disqus-comments-support']) && $redux_builder_amp['ampforwp-disqus-comments-support'] && is_singular() ) {
+		if( isset($redux_builder_amp['ampforwp-disqus-comments-name']) && $redux_builder_amp['ampforwp-disqus-comments-name'] !== '' ) {
 			if ( empty( $data['amp_component_scripts']['amp-iframe'] ) ) {
 				$data['amp_component_scripts']['amp-iframe'] = 'https://cdn.ampproject.org/v0/amp-iframe-0.1.js';
 			}
@@ -2351,7 +2351,7 @@ function ampforwp_facebook_comments_markup() {
 	$lang = ampforwp_get_setting('ampforwp-fb-comments-lang');
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
-	if ( $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on ) { 
+	if ( isset($redux_builder_amp['ampforwp-facebook-comments-support']) && $redux_builder_amp['ampforwp-facebook-comments-support'] && $display_comments_on ) { 
 
 		$facebook_comments_markup = '<section class="amp-wp-content post-comments amp-wp-article-content amp-facebook-comments" id="comments">';
 		if(true == ampforwp_get_setting('ampforwp-facebook-comments-title')){
@@ -2404,7 +2404,7 @@ add_action('amp_init','ampforwp_copat_wp_html_compression');
 add_action('pre_amp_render_post','ampforwp_add_extra_functions',12);
 function ampforwp_add_extra_functions() {
 	global $redux_builder_amp;
-	if ( $redux_builder_amp['amp-design-selector'] == 3 ) {
+	if ( isset($redux_builder_amp['amp-design-selector']) && $redux_builder_amp['amp-design-selector'] == 3 ) {
 		require AMPFORWP_PLUGIN_DIR . '/templates/design-manager/design-3/functions.php';
 	}
 }
@@ -5389,7 +5389,7 @@ function ampforwp_inline_related_posts(){
 add_action('pre_amp_render_post','ampforwp_add_inline_related_posts');
 function ampforwp_add_inline_related_posts(){
 	global $redux_builder_amp;
-	if($redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() && ampforwp_inline_related_posts() ){
+	if( isset($redux_builder_amp['ampforwp-inline-related-posts']) && $redux_builder_amp['ampforwp-inline-related-posts'] == 1 && is_single() && ampforwp_inline_related_posts() ){
 		if( isset($redux_builder_amp['ampforwp-inline-related-posts-display-type']) && $redux_builder_amp['ampforwp-inline-related-posts-display-type']=='middle' ){
 			add_filter('ampforwp_modify_the_content','ampforwp_generate_inline_related_posts');
 		}else{
@@ -7077,7 +7077,7 @@ function ampforwp_add_spotim_scripts( $data ) {
 	global $redux_builder_amp;
 	$display_comments_on = "";
 	$display_comments_on = ampforwp_get_comments_status();
-	if ( 4 != $redux_builder_amp['amp-design-selector']
+	if ( isset($redux_builder_amp['amp-design-selector']) && 4 != $redux_builder_amp['amp-design-selector']
 		 && isset($redux_builder_amp['ampforwp-spotim-comments-support'])
 		 && $redux_builder_amp['ampforwp-spotim-comments-support']
 		 && $display_comments_on  && comments_open() 
@@ -9448,84 +9448,43 @@ function ampforwp_themify_compatibility($content){
 
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post() {
-    global $wpdb;
+	global $wpdb;
 
-   if (
+	if (
 		! isset($_POST['verify_nonce']) ||
 		! wp_verify_nonce($_POST['verify_nonce'], 'ampforwp_refresh_related_poost')
 	) {
 		wp_send_json(array('status' => 403, 'message' => esc_html__('User request is not allowed', 'accelerated-mobile-pages')));
 	}
 
+	// Clear transient cache
+	delete_option( '_ampforwp_get_post_percent' );
 
-    // Clear cache to avoid interference
-    wp_cache_flush();
+	// Fetch up to 30 published posts without the meta key
+	$post_ids = $wpdb->get_col("
+		SELECT p.ID
+		FROM {$wpdb->posts} p
+		LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'ampforwp-amp-on-off'
+		WHERE pm.post_id IS NULL
+		AND p.post_status = 'publish'
+		AND p.post_type = 'post'
+		ORDER BY p.ID ASC
+		LIMIT 30
+	");
 
-    // Optimized query
-    $post_ids = $wpdb->get_col("
-        SELECT p.ID
-        FROM {$wpdb->posts} p
-        WHERE p.post_status = 'publish'
-        AND p.post_type = 'post'
-        AND NOT EXISTS (
-            SELECT 1
-            FROM {$wpdb->postmeta} pm
-            WHERE pm.post_id = p.ID
-            AND pm.meta_key = 'ampforwp-amp-on-off'
-        )
-        ORDER BY p.ID ASC
-        LIMIT 30
-    ");
+	// Bulk insert default meta value
+	if (!empty($post_ids)) {
+		$values = array();
+		foreach ($post_ids as $post_id) {
+			$values[] = $wpdb->prepare("(%d, %s, %s)", $post_id, 'ampforwp-amp-on-off', 'default');
+		}
+		$values_sql = implode(',', $values);
+		$wpdb->query("INSERT INTO {$wpdb->postmeta} (post_id, meta_key, meta_value) VALUES $values_sql");
+	}
 
-    error_log("Post IDs retrieved: " . print_r($post_ids, true));
-
-    $inserted_count = 0;
-    foreach ($post_ids as $post_id) {
-        if (!is_numeric($post_id) || $post_id <= 0) {
-            error_log("Invalid post ID: $post_id");
-            continue;
-        }
-
-        $post_id = (int) $post_id;
-        // Check if meta exists to avoid redundant query
-        if (metadata_exists('post', $post_id, 'ampforwp-amp-on-off')) {
-            error_log("Meta already exists for post ID $post_id");
-            continue;
-        }
-
-        if (add_post_meta($post_id, 'ampforwp-amp-on-off', 'default', true)) {
-            error_log("Successfully added meta for post ID $post_id.");
-            $inserted_count++;
-            wp_cache_delete($post_id, 'post_meta');
-        } else {
-            error_log("Failed to add meta for post ID $post_id: " . $wpdb->last_error);
-        }
-    }
-
-    // Invalidate percentage cache if used
-    if ($inserted_count > 0) {
-        delete_option('_ampforwp_get_post_percent');
-        error_log("Total posts inserted: $inserted_count");
-    } else {
-        error_log("No posts inserted.");
-    }
-
-    // Return updated percent
-    $response = null;
-    try {
-        $response = ampforwp_get_post_percent();
-    } catch (Exception $e) {
-        error_log("Error in ampforwp_get_post_percent: " . $e->getMessage());
-        $response = 'Error calculating percentage';
-    }
-
-    $data = array(
-        'status' => 200,
-        'inserted_count' => $inserted_count,
-        'response' => $response,
-        'post_ids' => $post_ids, // Include for debugging
-    );
-    wp_send_json($data);
+	// Return updated percent
+	$data['response'] = ampforwp_get_post_percent();
+	wp_send_json($data);
 }
 
 

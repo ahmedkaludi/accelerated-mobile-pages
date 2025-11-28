@@ -133,7 +133,7 @@ function ampforwp_minify_html_output($content_buffer){
     }
 
     global $redux_builder_amp;
-    if(!$redux_builder_amp['ampforwp_cache_minimize_mode']){
+    if( isset($redux_builder_amp['ampforwp_cache_minimize_mode']) && !$redux_builder_amp['ampforwp_cache_minimize_mode']){
            return $content_buffer;       
     }
     $buffer = $content_buffer ; 

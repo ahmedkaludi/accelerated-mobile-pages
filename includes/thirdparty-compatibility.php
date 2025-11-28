@@ -260,7 +260,7 @@ require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
 			if ( 'single' === $type ) {
 	        	$file = $filePath . '/index.php';
 	        
-		        if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 ) {
+		        if ( isset($redux_builder_amp['amp-frontpage-select-option']) && $redux_builder_amp['amp-frontpage-select-option'] == 1 ) {
 					$file = $filePath . '/page.php';
 		        }
 		        if ( ampforwp_is_blog() ) {

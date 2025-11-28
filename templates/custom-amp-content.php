@@ -10,7 +10,7 @@ add_filter( 'amp_post_template_data', 'ampforwp_custom_post_content_sanitizer', 
 function ampforwp_custom_post_content_sanitizer( $data, $post ) {
     global $redux_builder_amp;
 
-      if ( is_home() && $redux_builder_amp['amp-frontpage-select-option'] === 0 ) {
+      if ( is_home() && isset($redux_builder_amp['amp-frontpage-select-option']) && $redux_builder_amp['amp-frontpage-select-option'] === 0 ) {
           return $data;
       }
 

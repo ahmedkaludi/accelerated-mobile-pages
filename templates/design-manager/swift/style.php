@@ -45,7 +45,7 @@ if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor') && !empty($goo
 <?php
 $hovercolor = '';
 $hovercolor = ampforwp_get_setting('swift-hover-color-scheme');
-$hovercolor = $hovercolor['color'];
+$hovercolor = isset($hovercolor['color']) ? $hovercolor['color'] : '';
 
 $swift_cs_color = '#005be2';
 $swift_btn_hvr_color = '#fff';

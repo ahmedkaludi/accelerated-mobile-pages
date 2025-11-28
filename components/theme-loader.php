@@ -52,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			if ( 'single' === $type ) {
 	        	$file = AMPFORWP_CUSTOM_THEME . '/index.php';
 	        
-		        if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 ) {
+		        if ( isset($redux_builder_amp['amp-frontpage-select-option']) && $redux_builder_amp['amp-frontpage-select-option'] == 1 ) {
 					$file = AMPFORWP_CUSTOM_THEME . '/page.php';
 		        }
 		        if ( ampforwp_is_blog() ) {

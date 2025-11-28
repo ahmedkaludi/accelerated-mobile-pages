@@ -126,7 +126,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 
 				// Get image metadata from The Content
-				if( true == $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
+				if( isset($redux_builder_amp['ampforwp-featured-image-from-content']) && $redux_builder_amp['ampforwp-featured-image-from-content'] && ampforwp_get_featured_image_from_content() ){
 					$metadata['image'] = array(
 							'@type' 	=> 'ImageObject',
 							'url' 		=> ampforwp_get_featured_image_from_content('url') ,
