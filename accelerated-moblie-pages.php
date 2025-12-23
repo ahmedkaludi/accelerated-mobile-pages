@@ -1661,8 +1661,3 @@ if(!function_exists('is_amp_plugin_active')){
 	}
 
 }
-
-/*
- * Include Custom BFCM 25 Module
- */
-require_once plugin_dir_path( __FILE__ ) . 'bfcm25/bfcm25.php';

@@ -2,7 +2,6 @@
 = 1.1.10 (23 December 2025) =
 * Fixed : CSRF issue for comment submission disclosed by 0N0ise (Wordfence)
 * Fixed : Fixed AMP error for labels #5716
-* Added : BFCM banner on plugin dashboard page #5717
 
 = 1.1.9 (25 November 2025) =
 * Fixed : PHP Fatal error & More Warnings #5713
