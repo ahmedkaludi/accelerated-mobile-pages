@@ -116,7 +116,7 @@ Class AMPforWP_theme_mode{
 		  header("access-control-expose-headers:AMP-Access-Control-Allow-Source-Origin");
 		  header("Content-Type:application/json;charset=utf-8");
 		  /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
-		  if(wp_verify_nonce($_POST['amp_comment_form_nonce'], 'commentform_submission')){
+		  if( ! wp_verify_nonce($_POST['amp_comment_form_nonce'], 'commentform_submission') ){
 			$comment_status = array('response' => 'Nonce not verified' );
 			echo wp_json_encode($comment_status);
 			die;
