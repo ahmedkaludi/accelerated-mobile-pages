@@ -1,4 +1,8 @@
 == Changelog ==
+= 1.1.10 (23 December 2025) =
+* Fixed : CSRF issue for comment submission disclosed by 0N0ise (Wordfence)
+* Fixed : Fixed AMP error for labels #5716
+
 = 1.1.9 (25 November 2025) =
 * Fixed : PHP Fatal error & More Warnings #5713
 * Fixed : Settings are not getting saved #5714

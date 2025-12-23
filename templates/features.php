@@ -288,7 +288,7 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 		if ( is_category_amp_disabled() ) {
 			return;
 		}
-      	if ( is_page() && ! ampforwp_get_setting('amp-on-off-for-all-pages') && ! is_home() && ! is_front_page() ) {
+      	if ( is_page() && false == ampforwp_get_setting('amp-on-off-for-all-pages') && ! is_home() && ! is_front_page() ) {
 			return;
 		}
 		if ( is_home() && ! ampforwp_is_blog() && !ampforwp_get_setting('ampforwp-homepage-on-off-support') ) {
@@ -7996,7 +7996,7 @@ function ampforwp_rel_attributes_social_links(){
 	$rel_attributes = array_map('esc_attr', $rel_attributes);
 	if ( $rel_attributes ) {
 		/* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
-		echo 'rel="' . implode(" ",$rel_attributes).'"';
+		echo 'rel="' . implode(" ",$rel_attributes).'" ';
 	}
 	return;
 }
@@ -8815,7 +8815,8 @@ function ampforwp_remove_unwanted_code($content){
   
 	if(preg_match('/<a(.*?)\slabel\s(.*?)>/', $content)){
 		$content = preg_replace_callback('/<a\b[^>]*>/i', function ($matches) {
-			return preg_replace('/\s*label\s*=\s*"[^"]*"/i', '', $matches[0]);
+			// Only match standalone 'label' attribute, not 'aria-label' or other attributes containing 'label'
+			return preg_replace('/(?<!aria-)\blabel\s*=\s*"[^"]*"/i', '', $matches[0]);
 		}, $content);
 	}
 	return $content;
