@@ -10340,13 +10340,32 @@ add_filter('wp_handle_upload_prefilter', 'ampforwp_sanitize_svg_upload');
  * Sanitize SVG files before upload.
  *
  * This function checks if the uploaded file is an SVG. If it is, it sanitizes the SVG file by removing
- * any <script> tags and their content.
+ * script tags, event handlers, foreignObject elements, and other XSS vectors. Users with the
+ * 'unfiltered_html' capability can upload unfiltered SVG files.
  *
  * @param array $file An array of file information. 
  * @return array The modified file information array with sanitized SVG file path.
  */
 function ampforwp_sanitize_svg_upload( $file ) {
+	// Check both MIME type and file extension to catch SVG files
+	$is_svg = false;
 	if ( isset( $file['type'] ) && 'image/svg+xml' === $file['type'] ) {
+		$is_svg = true;
+	} elseif ( isset( $file['name'] ) && preg_match( '/\.svg$/i', $file['name'] ) ) {
+		// Fallback: check file extension if MIME type is not set correctly
+		$is_svg = true;
+	}
+	
+	if ( $is_svg ) {
+		// Allow filtering to skip sanitization for specific users/roles
+		// By default, sanitize all SVG uploads regardless of user capabilities
+		// Site owners can use this filter to bypass sanitization for trusted users
+		$skip_sanitization = apply_filters( 'ampforwp_skip_svg_sanitization', false, $file );
+		
+		if ( $skip_sanitization ) {
+			return $file;
+		}
+		
 		$file['tmp_name'] = ampforwp_sanitize_svg_file( $file['tmp_name'] );
 	}
 	return $file;
@@ -10354,7 +10373,7 @@ function ampforwp_sanitize_svg_upload( $file ) {
 
 
 /**
- * Sanitize SVG file by removing <script> tags and their content.
+ * Sanitize SVG file by removing script tags, event handlers, foreignObject elements, and other XSS vectors.
  *
  * @param string $file_path The path to the SVG file.
  * @return string The path to the sanitized SVG file.
@@ -10370,11 +10389,194 @@ function ampforwp_sanitize_svg_file( $file_path ) {
 
     $svg_content = $wp_filesystem->get_contents( $file_path );
 
-    $sanitized_svg = preg_replace( '/<script\b[^>]*>(.*?)<\/script>/is', '', $svg_content );
+    if ( empty( $svg_content ) ) {
+        return $file_path;
+    }
+
+    // Use DOMDocument for proper XML parsing if available
+    if ( class_exists( 'DOMDocument' ) ) {
+        libxml_use_internal_errors( true );
+        $dom = new DOMDocument();
+        $dom->formatOutput = false;
+        $dom->preserveWhiteSpace = true;
+        
+        // Load SVG with UTF-8 encoding
+        // Disable entity loading to prevent XXE attacks (PHP < 8.0)
+        if ( function_exists( 'libxml_disable_entity_loader' ) ) {
+            $old_value = libxml_disable_entity_loader( true );
+        }
+        $success = @$dom->loadXML( $svg_content, LIBXML_NOBLANKS );
+        if ( function_exists( 'libxml_disable_entity_loader' ) && isset( $old_value ) ) {
+            libxml_disable_entity_loader( $old_value );
+        }
+        
+        if ( $success ) {
+            $xpath = new DOMXPath( $dom );
+            
+            // Register SVG namespace
+            $xpath->registerNamespace( 'svg', 'http://www.w3.org/2000/svg' );
+            
+            // Remove script tags (try both namespaced and non-namespaced)
+            $scripts = $xpath->query( '//svg:script | //script' );
+            foreach ( $scripts as $script ) {
+                if ( $script->parentNode ) {
+                    $script->parentNode->removeChild( $script );
+                }
+            }
+            
+            // Remove foreignObject elements (can contain HTML/JS)
+            $foreign_objects = $xpath->query( '//svg:foreignObject | //foreignObject' );
+            foreach ( $foreign_objects as $foreign_object ) {
+                if ( $foreign_object->parentNode ) {
+                    $foreign_object->parentNode->removeChild( $foreign_object );
+                }
+            }
+            
+            // Remove event handler attributes (on* attributes)
+            // Query all elements (both namespaced and non-namespaced)
+            $all_elements = $xpath->query( '//*' );
+            foreach ( $all_elements as $element ) {
+                if ( $element->hasAttributes() ) {
+                    $attributes_to_remove = array();
+                    // Create a snapshot of attributes to iterate over (since we'll be modifying the list)
+                    $attr_list = array();
+                    foreach ( $element->attributes as $attr ) {
+                        $attr_list[] = $attr;
+                    }
+                    
+                    // Check each attribute
+                    foreach ( $attr_list as $attr ) {
+                        // Get both local name and full name to handle namespaced attributes
+                        $attr_local_name = strtolower( $attr->localName ? $attr->localName : $attr->nodeName );
+                        $attr_node_name = strtolower( $attr->nodeName );
+                        
+                        // Remove event handlers (on* attributes) - check both local name and full name
+                        // Also check for common event handler patterns
+                        if ( preg_match( '/^on[a-z]+/i', $attr_local_name ) || 
+                             preg_match( '/^on[a-z]+/i', $attr_node_name ) ||
+                             strpos( $attr_local_name, 'on' ) === 0 ||
+                             strpos( $attr_node_name, 'on' ) === 0 ) {
+                            $attributes_to_remove[] = $attr->nodeName;
+                        }
+                    }
+                    
+                    // Remove the identified event handler attributes
+                    foreach ( $attributes_to_remove as $attr_name ) {
+                        // Try removing by both the full name and local name
+                        if ( $element->hasAttribute( $attr_name ) ) {
+                            $element->removeAttribute( $attr_name );
+                        }
+                        // Also try removing by local name if different
+                        $local_name = strpos( $attr_name, ':' ) !== false ? substr( $attr_name, strpos( $attr_name, ':' ) + 1 ) : $attr_name;
+                        if ( $local_name !== $attr_name && $element->hasAttribute( $local_name ) ) {
+                            $element->removeAttribute( $local_name );
+                        }
+                    }
+                }
+            }
+            
+            $sanitized_svg = $dom->saveXML();
+            libxml_clear_errors();
+            
+            // Additional safety pass: use regex to catch any event handlers that DOMDocument might have missed
+            // This provides defense in depth
+            $sanitized_svg = ampforwp_sanitize_svg_fallback( $sanitized_svg );
+        } else {
+            // Fallback to regex if DOMDocument fails
+            $sanitized_svg = ampforwp_sanitize_svg_fallback( $svg_content );
+        }
+    } else {
+        // Fallback to regex if DOMDocument is not available
+        $sanitized_svg = ampforwp_sanitize_svg_fallback( $svg_content );
+    }
 
     $wp_filesystem->put_contents( $file_path, $sanitized_svg, FS_CHMOD_FILE );
 
     return $file_path;
+}
+
+/**
+ * Fallback SVG sanitization using regex when DOMDocument is not available.
+ *
+ * @param string $svg_content The SVG content to sanitize.
+ * @return string The sanitized SVG content.
+ */
+function ampforwp_sanitize_svg_fallback( $svg_content ) {
+    // Remove script tags and their content
+    $sanitized_svg = preg_replace( '/<script\b[^>]*>(.*?)<\/script>/is', '', $svg_content );
+    
+    // Remove foreignObject elements
+    $sanitized_svg = preg_replace( '/<foreignObject\b[^>]*>.*?<\/foreignObject>/is', '', $sanitized_svg );
+    
+    // Remove event handler attributes (on* attributes) - comprehensive approach
+    // List of common event handlers to explicitly remove
+    $event_handlers = array(
+        'onabort', 'onblur', 'oncanplay', 'oncanplaythrough', 'onchange', 'onclick', 'oncontextmenu',
+        'oncuechange', 'ondblclick', 'ondrag', 'ondragend', 'ondragenter', 'ondragleave', 'ondragover',
+        'ondragstart', 'ondrop', 'ondurationchange', 'onemptied', 'onended', 'onerror', 'onfocus',
+        'oninput', 'oninvalid', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onloadeddata',
+        'onloadedmetadata', 'onloadstart', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove',
+        'onmouseover', 'onmouseout', 'onmouseup', 'onpause', 'onplay', 'onplaying', 'onprogress',
+        'onratechange', 'onreset', 'onresize', 'onscroll', 'onseeked', 'onseeking', 'onselect',
+        'onshow', 'onstalled', 'onsubmit', 'onsuspend', 'ontimeupdate', 'ontoggle', 'onvolumechange',
+        'onwaiting', 'onwheel', 'onbegin', 'onend', 'onrepeat'
+    );
+    
+    // Remove each event handler with various quote styles and formats
+    foreach ( $event_handlers as $handler ) {
+        // Pattern 1: handler="value" with double quotes (multiline, dotall)
+        $sanitized_svg = preg_replace( '/\s+' . preg_quote( $handler, '/' ) . '\s*=\s*"[^"]*"/is', '', $sanitized_svg );
+        // Pattern 2: handler='value' with single quotes
+        $sanitized_svg = preg_replace( '/\s+' . preg_quote( $handler, '/' ) . '\s*=\s*\'[^\']*\'/is', '', $sanitized_svg );
+        // Pattern 3: handler=value without quotes
+        $sanitized_svg = preg_replace( '/\s+' . preg_quote( $handler, '/' ) . '\s*=\s*[^\s>\/"\'=]+/i', '', $sanitized_svg );
+        // Pattern 4: handler at start of line or after > (no leading whitespace requirement)
+        $sanitized_svg = preg_replace( '/(\s|>|^)' . preg_quote( $handler, '/' ) . '\s*=\s*"[^"]*"/i', '$1', $sanitized_svg );
+        $sanitized_svg = preg_replace( '/(\s|>|^)' . preg_quote( $handler, '/' ) . '\s*=\s*\'[^\']*\'/i', '$1', $sanitized_svg );
+    }
+    
+    // Also remove any remaining on* attributes using generic pattern (catch-all)
+    // Match on[letters]="..." with double quotes
+    $sanitized_svg = preg_replace( '/\s+on[a-z]+\s*=\s*"[^"]*"/is', '', $sanitized_svg );
+    // Match on[letters]='...' with single quotes
+    $sanitized_svg = preg_replace( '/\s+on[a-z]+\s*=\s*\'[^\']*\'/is', '', $sanitized_svg );
+    // Match on[letters]=value without quotes
+    $sanitized_svg = preg_replace( '/\s+on[a-z]+\s*=\s*[^\s>\/"\'=]+/i', '', $sanitized_svg );
+    // Final catch-all without leading whitespace requirement
+    $sanitized_svg = preg_replace( '/on[a-z]+\s*=\s*"[^"]*"/is', '', $sanitized_svg );
+    $sanitized_svg = preg_replace( '/on[a-z]+\s*=\s*\'[^\']*\'/is', '', $sanitized_svg );
+    $sanitized_svg = preg_replace( '/on[a-z]+\s*=\s*[^\s>\/"\'=]+/i', '', $sanitized_svg );
+    
+    // Apply patterns multiple times to catch any edge cases (defense in depth)
+    $previous_svg = '';
+    $iterations = 0;
+    while ( $previous_svg !== $sanitized_svg && $iterations < 5 ) {
+        $previous_svg = $sanitized_svg;
+        // Re-apply the generic patterns
+        $sanitized_svg = preg_replace( '/\s+on[a-z]+\s*=\s*"[^"]*"/is', '', $sanitized_svg );
+        $sanitized_svg = preg_replace( '/\s+on[a-z]+\s*=\s*\'[^\']*\'/is', '', $sanitized_svg );
+        $sanitized_svg = preg_replace( '/on[a-z]+\s*=\s*"[^"]*"/is', '', $sanitized_svg );
+        $sanitized_svg = preg_replace( '/on[a-z]+\s*=\s*\'[^\']*\'/is', '', $sanitized_svg );
+        $iterations++;
+    }
+    
+    return $sanitized_svg;
+}
+
+// Also sanitize existing SVG files when they are edited/updated
+add_filter( 'wp_handle_upload', 'ampforwp_sanitize_existing_svg_on_update', 10, 2 );
+function ampforwp_sanitize_existing_svg_on_update( $upload, $context ) {
+    // Check if this is an SVG file
+    if ( isset( $upload['type'] ) && 'image/svg+xml' === $upload['type'] ) {
+        // Allow filtering to skip sanitization
+        $skip_sanitization = apply_filters( 'ampforwp_skip_svg_sanitization', false, $upload );
+        
+        if ( ! $skip_sanitization && isset( $upload['file'] ) && file_exists( $upload['file'] ) ) {
+            // Sanitize the uploaded file
+            ampforwp_sanitize_svg_file( $upload['file'] );
+        }
+    }
+    return $upload;
 }
 
 if(defined('JNEWS_THEME_CLASS')){

@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.1.11 (08 January 2026) =
+* Fixed : Authenticated (Contributor+) Stored Cross-Site Scripting via SVG File Upload reported by Andrea Bocchetti (Wordfence)
+
 = 1.1.10 (23 December 2025) =
 * Fixed : CSRF issue for comment submission disclosed by 0N0ise (Wordfence)
 * Fixed : Fixed AMP error for labels #5716
