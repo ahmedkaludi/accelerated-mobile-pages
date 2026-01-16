@@ -2443,7 +2443,7 @@ function ampforwp_footer_html_output() {
   	 $privacy = ampforwp_get_setting('amp-inmobi-privacy-mode');
   	 $lang = ampforwp_get_setting('amp-inmobi-lang');
   	 if (empty($privacy)) {
-  	 	$privacy[] = "GDPR";
+  	 	$privacy = ["GDPR"];
   	 }else{
 		$exp = explode(',',$privacy);
 		$pri_arr = array();
