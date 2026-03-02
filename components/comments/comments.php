@@ -134,7 +134,7 @@ function ampforwp_framework_get_comments(){
 							 ?>
 							 <a href="<?php 
 							 //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-							 echo ampforwp_comment_button_url(); ?>" title="<?php echo esc_attr(ampforwp_get_setting('amp-translator-leave-a-comment-text'))?>" <?php echo esc_html($nofollow) ?> ><?php echo esc_html(ampforwp_translation( ampforwp_get_setting('amp-translator-leave-a-comment-text'), 'Leave a Comment' ) ); ?></a> <?php } ?>
+							 echo ampforwp_comment_button_url(); ?>" title="<?php echo esc_attr(ampforwp_get_setting('amp-translator-leave-a-comment-text') ? ampforwp_get_setting('amp-translator-leave-a-comment-text') : 'Leave a Comment')?>" <?php echo esc_html($nofollow) ?> ><?php echo esc_html(ampforwp_translation( ampforwp_get_setting('amp-translator-leave-a-comment-text'), 'Leave a Comment' ) ); ?></a> <?php } ?>
 						</div>	 
 				<?php } ?>
 				</div>

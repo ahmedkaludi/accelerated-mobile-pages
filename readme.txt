@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 6.9
-Stable tag: 1.1.11
+Stable tag: 1.1.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.12 (02 March 2026) =
+* Fixed : Fatal error when inmobi privacy mode is enabled #5722
+* Fixed : Multiple image candidates with the same width or pixel density found in attribute 'srcset' in tag 'amp-img' when Imagify plugin is active. #5724
+* Fixed : Warning in debug log #5723
+* Fixed : AMP comment button is broken #5718
+
 = 1.1.11 (08 January 2026) =
 * Fixed : Authenticated (Contributor+) Stored Cross-Site Scripting via SVG File Upload reported by Andrea Bocchetti (Wordfence)
 
@@ -333,10 +339,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Warning appears related to author-box #5577
 * Fixed: The excerpt is not showing inside the em tag in AMP, and the font is not working. #5487
 * Fixed: Issue with a cookie banner (GDPR) #5561
-
-= 1.0.93.2 (1st February 2024) =
-* Fixed: Video docking not working in AMP Newspaper theme #5566
-* Fixed: Video not loading on Amp if video set in Soledad theme Video Embed. #5571
-* Fixed: Authenticated(Contributor+) Arbitrary Post Deletion Vulnerability (Reported by Wordfence)
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
