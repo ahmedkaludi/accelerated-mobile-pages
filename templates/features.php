@@ -10635,6 +10635,14 @@ function ampforwp_infinite_scroll_post_ajax(){
 	die;
 }
 function ampforwp_append_avif_to_img_srcset( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
+		// Exclude AVIF from AMP: duplicate width/pixel density in srcset fails AMP validation.
+		if ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) {
+			return $sources;
+		}
+		if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+			return $sources;
+		}
+
 		$format = get_imagify_option( 'optimization_format' );
 		$display_nextgen = get_imagify_option( 'display_nextgen' );
 		
@@ -10664,6 +10672,84 @@ function ampforwp_append_avif_to_img_srcset( $sources, $size_array, $image_src, 
 if( function_exists('get_imagify_option')){
 	add_filter( 'wp_calculate_image_srcset', 'ampforwp_append_avif_to_img_srcset', 10, 5 );
 }
+
+/**
+ * Remove duplicate AVIF entries from amp-img srcset to satisfy AMP validation
+ * (multiple candidates with same width/pixel density are invalid).
+ * Only removes AVIF when a non-AVIF candidate exists for the same descriptor,
+ * so "only AVIF" srcsets are left intact.
+ */
+if ( ! function_exists( 'ampforwp_sanitize_amp_img_srcset_remove_avif' ) ) {
+	function ampforwp_sanitize_amp_img_srcset_remove_avif( $content ) {
+		if ( ! is_string( $content ) ) {
+			return $content;
+		}
+		if ( ! ( function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() )
+			&& ! ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) ) {
+			return $content;
+		}
+		$result = preg_replace_callback(
+			'/<amp-img([^>]*\ssrcset=["\'])([^"\']*)(["\'][^>]*)>/i',
+			function ( $m ) {
+				if ( ! is_array( $m ) || ! isset( $m[1], $m[2], $m[3] ) ) {
+					return isset( $m[0] ) ? $m[0] : '';
+				}
+				try {
+					$prefix = $m[1];
+					$srcset = $m[2];
+					$suffix = $m[3];
+					$parts  = array_map( 'trim', explode( ',', $srcset ) );
+					$kept   = array();
+					$by_descriptor = array();
+					foreach ( $parts as $part ) {
+						if ( $part === '' ) {
+							continue;
+						}
+						if ( preg_match( '/^(\S+)\s+(\d+w|\d+(?:\.\d+)?x)$/', $part, $match ) && isset( $match[1], $match[2] ) ) {
+							$url        = $match[1];
+							$descriptor = $match[2];
+							$is_avif    = (bool) preg_match( '/\.avif(\?|$)/i', $url );
+							if ( ! isset( $by_descriptor[ $descriptor ] ) ) {
+								$by_descriptor[ $descriptor ] = array();
+							}
+							$by_descriptor[ $descriptor ][] = array( 'part' => $part, 'is_avif' => $is_avif );
+						} else {
+							$kept[] = $part;
+						}
+					}
+					foreach ( $by_descriptor as $candidates ) {
+						if ( ! is_array( $candidates ) ) {
+							continue;
+						}
+						$has_non_avif = false;
+						foreach ( $candidates as $c ) {
+							if ( is_array( $c ) && isset( $c['is_avif'] ) && ! $c['is_avif'] ) {
+								$has_non_avif = true;
+								break;
+							}
+						}
+						foreach ( $candidates as $c ) {
+							if ( ! is_array( $c ) || ! isset( $c['part'] ) ) {
+								continue;
+							}
+							if ( $has_non_avif && ! empty( $c['is_avif'] ) ) {
+								continue;
+							}
+							$kept[] = $c['part'];
+						}
+					}
+					$new_srcset = implode( ', ', $kept );
+					return '<amp-img' . $prefix . $new_srcset . $suffix . '>';
+				} catch ( \Exception $e ) {
+					return isset( $m[0] ) ? $m[0] : ( '<amp-img' . $m[1] . $m[2] . $m[3] . '>' );
+				}
+			},
+			$content
+		);
+		return ( null !== $result ) ? $result : $content;
+	}
+}
+add_filter( 'ampforwp_the_content_last_filter', 'ampforwp_sanitize_amp_img_srcset_remove_avif', 5 );
 
 add_filter('ampforwp_the_content_last_filter', 'ampforwp_fix_broken_amp_carousel', 20);
 
