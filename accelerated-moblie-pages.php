@@ -71,6 +71,10 @@ function ampforwp_add_custom_post_support() {
 	if ( isset($redux_builder_amp['amp-on-off-for-all-pages']) && $redux_builder_amp['amp-on-off-for-all-pages'] ) {
 		add_post_type_support( 'page', AMPFORWP_AMP_QUERY_VAR );
 	}
+	// Posts - Add support only when enabled in settings
+	if ( isset($redux_builder_amp['amp-on-off-for-all-posts']) && $redux_builder_amp['amp-on-off-for-all-posts'] ) {
+		add_post_type_support( 'post', AMPFORWP_AMP_QUERY_VAR );
+	}
 	// Custom Post Types
 	if ( isset($redux_builder_amp['ampforwp-custom-type'] ) && $redux_builder_amp['ampforwp-custom-type'] ) {
 	        foreach ( $redux_builder_amp['ampforwp-custom-type'] as $custom_post ) {
@@ -800,18 +804,23 @@ if ( ! function_exists('ampforwp_init') ) {
 			define( 'AMP__VENDOR__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 		}
 
-		do_action( 'amp_init' );
+	do_action( 'amp_init' );
 
-		load_plugin_textdomain( 'accelerated-mobile-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-		
-		// Adding rewrite rules only when we are in standard mode
-		if (!is_amp_plugin_active()) {
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
-		}
+	load_plugin_textdomain( 'accelerated-mobile-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	
+	// Adding rewrite rules only when we are in standard mode
+	if (!is_amp_plugin_active()) {
+	add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
+	}
+	
+	// Only add post type support if enabled in settings
+	global $redux_builder_amp;
+	if ( isset($redux_builder_amp['amp-on-off-for-all-posts']) && $redux_builder_amp['amp-on-off-for-all-posts'] ) {
 		add_post_type_support( 'post', AMP_QUERY_VAR );
+	}
 
-		add_filter( 'request', 'AMPforWP\\AMPVendor\\amp_force_query_var_value' );
-		add_action( 'wp', 'AMPforWP\\AMPVendor\\amp_maybe_add_actions');
+	add_filter( 'request', 'AMPforWP\\AMPVendor\\amp_force_query_var_value' );
+	add_action( 'wp', 'AMPforWP\\AMPVendor\\amp_maybe_add_actions');
 
 		// Redirect the old url of amp page to the updated url. #1033 (Vendor Update)
 		add_filter( 'old_slug_redirect_url', 'ampforwp_redirect_old_slug_to_new_url' );
