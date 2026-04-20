@@ -23,6 +23,24 @@ define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
 define('AMPFORWP_VERSION','1.1.12');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
+
+add_action( 'init', 'ampforwp_maybe_flush_rewrite_on_version_change', 5 );
+function ampforwp_maybe_flush_rewrite_on_version_change() {
+	$last_flushed_version = get_option( 'ampforwp_last_flushed_version', '' );
+	if ( $last_flushed_version === AMPFORWP_VERSION ) {
+		return;
+	}
+
+	// For FTP/manual updates, WordPress upgrader hooks won't run. A DB-backed option is reliable even with persistent object caching.
+	delete_option( 'ampforwp_rewrite_flush_option' );
+
+	flush_rewrite_rules();
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+
+	update_option( 'ampforwp_last_flushed_version', AMPFORWP_VERSION, false );
+}
+
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
 	$url = parse_url($urlinfo);
@@ -449,23 +467,38 @@ function ampforwp_rewrite_activation() {
 	$wp_rewrite->flush_rules();
 
 	delete_option('ampforwp_rewrite_flush_option');
+	update_option( 'ampforwp_last_flushed_version', AMPFORWP_VERSION, false );
 
     // Set transient for Welcome page
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
 
 }
 
-add_action( 'admin_init', 'ampforwp_flush_after_update');
-function ampforwp_flush_after_update() {
-	// Flushing rewrite urls ONLY on after Update is installed
-	$older_version = "";
-	$older_version = get_transient('ampforwp_current_version_check');
-	if ( empty($older_version) || ( $older_version <  AMPFORWP_VERSION ) ) {
-		flush_rewrite_rules();
-		global $wp_rewrite;
-		$wp_rewrite->flush_rules();
-		set_transient('ampforwp_current_version_check', AMPFORWP_VERSION);
+add_action( 'upgrader_process_complete', 'ampforwp_flush_rewrite_after_plugin_update', 10, 2 );
+function ampforwp_flush_rewrite_after_plugin_update( $upgrader_object, $options ) {
+	if ( empty( $options['action'] ) || 'update' !== $options['action'] ) {
+		return;
 	}
+	if ( empty( $options['type'] ) || 'plugin' !== $options['type'] ) {
+		return;
+	}
+	if ( empty( $options['plugins'] ) || ! is_array( $options['plugins'] ) ) {
+		return;
+	}
+
+	$our_plugin = plugin_basename( __FILE__ );
+	if ( ! in_array( $our_plugin, $options['plugins'], true ) ) {
+		return;
+	}
+
+	// Ensure rewrite rules are refreshed after plugin update (avoid transient checks; object caches can evict them).
+	delete_option( 'ampforwp_rewrite_flush_option' );
+
+	flush_rewrite_rules();
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+
+	update_option( 'ampforwp_last_flushed_version', AMPFORWP_VERSION, false );
 }
 
 
