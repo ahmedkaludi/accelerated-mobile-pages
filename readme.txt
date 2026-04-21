@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 6.9
-Stable tag: 1.1.12
+Tested up to: 7.0
+Stable tag: 1.1.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.13 (21 April 2026) =
+* Improvement : flush_rewrite_rules() being called on every admin visit when using Memcached #5725
+* Improvement : Showing header and footer in each post in infinite scroll #5729
+* Fixed : Fatal error in ServerSideRendering.php: removeAttribute() called on bool #5730
+* Fixed : AMP is still showing on posts even after disabling all the options in the General Settings. #5734
+* Fixed : After PHP 8.5 Update: Undefined $postID & Null ID Warnings in amp-elementor-pagebuilder.php #5733
+* Fixed : Warning for missing social option keys after plugin upgrade #5731
+
 = 1.1.12 (02 March 2026) =
 * Fixed : Fatal error when inmobi privacy mode is enabled #5722
 * Fixed : Multiple image candidates with the same width or pixel density found in attribute 'srcset' in tag 'amp-img' when Imagify plugin is active. #5724
@@ -332,12 +340,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: PHP Warning: Attempt to read property "ID" on null #5589
 * Test: Test with new version of wordpress i.e. 6.5v #5581
 * Fixed: Validation issues in images when using Pencil builder #5592
-
-= 1.0.94 (3rd April 2024) =
-* New: Added Shortcode so that user can show or hide some content in AMP. #5474
-* Improvements: Code improvement part 2 #5567
-* Fixed: Warning appears related to author-box #5577
-* Fixed: The excerpt is not showing inside the em tag in AMP, and the font is not working. #5487
-* Fixed: Issue with a cookie banner (GDPR) #5561
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

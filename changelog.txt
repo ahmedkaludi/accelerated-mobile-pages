@@ -1,4 +1,13 @@
 == Changelog ==
+= 1.1.13 (21 April 2026) =
+* Improvement : flush_rewrite_rules() being called on every admin visit when using Memcached #5725
+* Improvement : Showing header and footer in each post in infinite scroll #5729
+* Fixed : Fatal error in ServerSideRendering.php: removeAttribute() called on bool #5730
+* Fixed : AMP is still showing on posts even after disabling all the options in the General Settings. #5734
+* Fixed : After PHP 8.5 Update: Undefined $postID & Null ID Warnings in amp-elementor-pagebuilder.php #5733
+* Fixed : Warning for missing social option keys after plugin upgrade #5731
+
+
 = 1.1.12 (02 March 2026) =
 * Fixed : Fatal error when inmobi privacy mode is enabled #5722
 * Fixed : Multiple image candidates with the same width or pixel density found in attribute 'srcset' in tag 'amp-img' when Imagify plugin is active. #5724
