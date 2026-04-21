@@ -4701,7 +4701,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-infinite-scroll-new-features',
                         'type'     => 'switch',
                         'class'    => 'child_opt child_opt_arrow',
-                        'title'    => esc_html__('New Features', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Hide Header and Footer', 'accelerated-mobile-pages'),
                         'default' => false,
                         'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
                     ),
@@ -4709,7 +4709,7 @@ Redux::setSection( $opt_name, array(
                         'id'       => 'ampforwp-infinite-scroll-new-features',
                         'type'     => 'switch',
                         'class'    => 'child_opt child_opt_arrow',
-                        'title'    => esc_html__('New Features', 'accelerated-mobile-pages'),
+                        'title'    => esc_html__('Hide Header and Footer', 'accelerated-mobile-pages'),
                         'default' => false,
                         'required' => array( 'ampforwp-infinite-scroll', '=' , 1 )
                     ),    
