@@ -1638,8 +1638,24 @@ if(!function_exists('ampforwp_delete_transient_on_update')){
 }
 if(!function_exists('ampforwp_save_local_font')){
 	function ampforwp_save_local_font(){
-		// Security: Only administrators can upload font files
-		if ( ! current_user_can( 'manage_options' ) ) {
+		// Security: Check if user has proper permissions
+		// Respect Role Based Access settings for Editors and Authors
+		$user = wp_get_current_user();
+		$amp_access = ampforwp_get_setting('ampforwp-role-based-access');
+		$has_permission = false;
+
+		if ( current_user_can( 'manage_options' ) ) {
+			// Administrators always have access
+			$has_permission = true;
+		} elseif ( in_array( 'editor', $user->roles ) && is_array($amp_access) && in_array('editor', $amp_access) && current_user_can('edit_pages') ) {
+			// Editors with granted access
+			$has_permission = true;
+		} elseif ( in_array( 'author', $user->roles ) && is_array($amp_access) && in_array('author', $amp_access) && current_user_can('edit_posts') ) {
+			// Authors with granted access
+			$has_permission = true;
+		}
+
+		if ( ! $has_permission ) {
 			return;
 		}
 

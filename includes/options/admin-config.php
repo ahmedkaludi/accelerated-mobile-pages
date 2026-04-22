@@ -4541,9 +4541,8 @@ Redux::setSection( $opt_name, array(
                'mode'      => 'zip',
                'class'    => 'child_opt child_opt_arrow',
                'title' => esc_html__('Upload Local Font', 'accelerated-mobile-pages'),
-               'tooltip-subtitle'  => esc_html__('Upload Local Font (Administrators Only)','accelerated-mobile-pages'),
+               'tooltip-subtitle'  => esc_html__('Upload Local Font (Secure - Only allowed font file types)','accelerated-mobile-pages'),
                'required' => array('ampforwp-local-font-switch', '=', '1'),
-               'permissions' => 'manage_options',
                 'default' => '',
             ),
         );
