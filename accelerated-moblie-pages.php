@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.1.12
+Version: 1.1.13
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,9 +20,27 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.1.12');
+define('AMPFORWP_VERSION','1.1.13');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
+
+add_action( 'init', 'ampforwp_maybe_flush_rewrite_on_version_change', 5 );
+function ampforwp_maybe_flush_rewrite_on_version_change() {
+	$last_flushed_version = get_option( 'ampforwp_last_flushed_version', '' );
+	if ( $last_flushed_version === AMPFORWP_VERSION ) {
+		return;
+	}
+
+	// For FTP/manual updates, WordPress upgrader hooks won't run. A DB-backed option is reliable even with persistent object caching.
+	delete_option( 'ampforwp_rewrite_flush_option' );
+
+	flush_rewrite_rules();
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+
+	update_option( 'ampforwp_last_flushed_version', AMPFORWP_VERSION, false );
+}
+
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
 	$url = parse_url($urlinfo);
@@ -52,6 +70,10 @@ function ampforwp_add_custom_post_support() {
 	// Pages
 	if ( isset($redux_builder_amp['amp-on-off-for-all-pages']) && $redux_builder_amp['amp-on-off-for-all-pages'] ) {
 		add_post_type_support( 'page', AMPFORWP_AMP_QUERY_VAR );
+	}
+	// Posts - Add support only when enabled in settings
+	if ( isset($redux_builder_amp['amp-on-off-for-all-posts']) && $redux_builder_amp['amp-on-off-for-all-posts'] ) {
+		add_post_type_support( 'post', AMPFORWP_AMP_QUERY_VAR );
 	}
 	// Custom Post Types
 	if ( isset($redux_builder_amp['ampforwp-custom-type'] ) && $redux_builder_amp['ampforwp-custom-type'] ) {
@@ -449,23 +471,38 @@ function ampforwp_rewrite_activation() {
 	$wp_rewrite->flush_rules();
 
 	delete_option('ampforwp_rewrite_flush_option');
+	update_option( 'ampforwp_last_flushed_version', AMPFORWP_VERSION, false );
 
     // Set transient for Welcome page
 	set_transient( 'ampforwp_welcome_screen_activation_redirect', true, 30 );
 
 }
 
-add_action( 'admin_init', 'ampforwp_flush_after_update');
-function ampforwp_flush_after_update() {
-	// Flushing rewrite urls ONLY on after Update is installed
-	$older_version = "";
-	$older_version = get_transient('ampforwp_current_version_check');
-	if ( empty($older_version) || ( $older_version <  AMPFORWP_VERSION ) ) {
-		flush_rewrite_rules();
-		global $wp_rewrite;
-		$wp_rewrite->flush_rules();
-		set_transient('ampforwp_current_version_check', AMPFORWP_VERSION);
+add_action( 'upgrader_process_complete', 'ampforwp_flush_rewrite_after_plugin_update', 10, 2 );
+function ampforwp_flush_rewrite_after_plugin_update( $upgrader_object, $options ) {
+	if ( empty( $options['action'] ) || 'update' !== $options['action'] ) {
+		return;
 	}
+	if ( empty( $options['type'] ) || 'plugin' !== $options['type'] ) {
+		return;
+	}
+	if ( empty( $options['plugins'] ) || ! is_array( $options['plugins'] ) ) {
+		return;
+	}
+
+	$our_plugin = plugin_basename( __FILE__ );
+	if ( ! in_array( $our_plugin, $options['plugins'], true ) ) {
+		return;
+	}
+
+	// Ensure rewrite rules are refreshed after plugin update (avoid transient checks; object caches can evict them).
+	delete_option( 'ampforwp_rewrite_flush_option' );
+
+	flush_rewrite_rules();
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
+
+	update_option( 'ampforwp_last_flushed_version', AMPFORWP_VERSION, false );
 }
 
 
@@ -767,18 +804,23 @@ if ( ! function_exists('ampforwp_init') ) {
 			define( 'AMP__VENDOR__DIR__', plugin_dir_path(__FILE__) . 'includes/vendor/amp/' );
 		}
 
-		do_action( 'amp_init' );
+	do_action( 'amp_init' );
 
-		load_plugin_textdomain( 'accelerated-mobile-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-		
-		// Adding rewrite rules only when we are in standard mode
-		if (!is_amp_plugin_active()) {
-		add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
-		}
+	load_plugin_textdomain( 'accelerated-mobile-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	
+	// Adding rewrite rules only when we are in standard mode
+	if (!is_amp_plugin_active()) {
+	add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
+	}
+	
+	// Only add post type support if enabled in settings
+	global $redux_builder_amp;
+	if ( isset($redux_builder_amp['amp-on-off-for-all-posts']) && $redux_builder_amp['amp-on-off-for-all-posts'] ) {
 		add_post_type_support( 'post', AMP_QUERY_VAR );
+	}
 
-		add_filter( 'request', 'AMPforWP\\AMPVendor\\amp_force_query_var_value' );
-		add_action( 'wp', 'AMPforWP\\AMPVendor\\amp_maybe_add_actions');
+	add_filter( 'request', 'AMPforWP\\AMPVendor\\amp_force_query_var_value' );
+	add_action( 'wp', 'AMPforWP\\AMPVendor\\amp_maybe_add_actions');
 
 		// Redirect the old url of amp page to the updated url. #1033 (Vendor Update)
 		add_filter( 'old_slug_redirect_url', 'ampforwp_redirect_old_slug_to_new_url' );
@@ -1596,6 +1638,27 @@ if(!function_exists('ampforwp_delete_transient_on_update')){
 }
 if(!function_exists('ampforwp_save_local_font')){
 	function ampforwp_save_local_font(){
+		// Security: Check if user has proper permissions
+		// Respect Role Based Access settings for Editors and Authors
+		$user = wp_get_current_user();
+		$amp_access = ampforwp_get_setting('ampforwp-role-based-access');
+		$has_permission = false;
+
+		if ( current_user_can( 'manage_options' ) ) {
+			// Administrators always have access
+			$has_permission = true;
+		} elseif ( in_array( 'editor', $user->roles ) && is_array($amp_access) && in_array('editor', $amp_access) && current_user_can('edit_pages') ) {
+			// Editors with granted access
+			$has_permission = true;
+		} elseif ( in_array( 'author', $user->roles ) && is_array($amp_access) && in_array('author', $amp_access) && current_user_can('edit_posts') ) {
+			// Authors with granted access
+			$has_permission = true;
+		}
+
+		if ( ! $has_permission ) {
+			return;
+		}
+
 		if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')!=""){
 			$upload_dir = wp_upload_dir(); 
 			$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-local-fonts';
@@ -1604,41 +1667,199 @@ if(!function_exists('ampforwp_save_local_font')){
 			$abs_path 	= explode("wp-content", $font_url);
 			if(isset($abs_path[1])){
 		        $permfile   = ABSPATH.'wp-content'.$abs_path[1];
+		        
+		        // Security: Validate file exists and is readable
+		        if ( ! file_exists( $permfile ) || ! is_readable( $permfile ) ) {
+		        	return;
+		        }
+		        
 		        $files = explode('/', $abs_path[1]);
 		        $file_name = end($files);
 		        $copy_to   = esc_attr($user_dirname).'/'.esc_attr($file_name);
+		        
 		        if(!file_exists($copy_to)){
-		        	$files = glob( $user_dirname . '/*' );
-		            foreach ( $files as $file ) {
-		                wp_delete_file( $file );
-		            }
+		        	// Clean up existing files using recursive deletion
+		        	ampforwp_recursive_delete_directory( $user_dirname, true );
+		        	
+		        	// Recreate directory after cleanup
+		        	if(!file_exists($user_dirname)) wp_mkdir_p($user_dirname);
+		        	
 	            	copy($permfile, $copy_to);
-		        	unzip_file($permfile, $user_dirname );
-		        	$files = glob( $user_dirname . '/*' );
-		            foreach ( $files as $file ) {
-		            	if(is_dir($file)){
-							/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir */
-		            		rmdir($file);
-		            	}
-			            $fonts = explode("/", $file);
-		               	$font_names = end($fonts);
-						$ext = end(explode(".", $font_names));
-						if($ext!='ttf' && $ext!='eot' && $ext!='svg'){
-							wp_delete_file( $file );
-						}
-		            }
+	            	
+	            	// Security: Validate and extract ZIP file safely
+	            	$extraction_result = ampforwp_safe_unzip_fonts( $permfile, $user_dirname );
+	            	
+	            	// If extraction failed, clean up
+	            	if ( is_wp_error( $extraction_result ) ) {
+	            		ampforwp_recursive_delete_directory( $user_dirname, true );
+	            		if(!file_exists($user_dirname)) wp_mkdir_p($user_dirname);
+	            		return;
+	            	}
+	            	
+	            	// Remove the ZIP file after extraction
+	            	wp_delete_file( $copy_to );
 		        }
 		    }
 		}else if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')==""){
 			$upload_dir   = wp_upload_dir();
 	        $user_dirname = esc_attr($upload_dir['basedir']) . '/' . 'ampforwp-local-fonts';
 	        if ( file_exists( $user_dirname ) ) {
-	            $files = glob( $user_dirname . '/*' );
-	            foreach ( $files as $file ) {
-					wp_delete_file( $file );
-	            }
+	        	// Use recursive deletion
+	        	ampforwp_recursive_delete_directory( $user_dirname, true );
 	        }
 		}
+	}
+}
+
+if(!function_exists('ampforwp_safe_unzip_fonts')){
+	/**
+	 * Safely extract font files from ZIP archive with security validation
+	 * 
+	 * @param string $zip_file Path to ZIP file
+	 * @param string $destination Destination directory
+	 * @return true|WP_Error True on success, WP_Error on failure
+	 */
+	function ampforwp_safe_unzip_fonts( $zip_file, $destination ) {
+		// Allowed font file extensions
+		$allowed_extensions = array( 'ttf', 'otf', 'woff', 'woff2', 'eot', 'svg' );
+		
+		// Load WordPress file functions if not available
+		if ( ! function_exists( 'WP_Filesystem' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		}
+		
+		WP_Filesystem();
+		global $wp_filesystem;
+		
+		// Open ZIP file
+		$zip = new ZipArchive();
+		if ( $zip->open( $zip_file ) !== true ) {
+			return new WP_Error( 'zip_open_failed', 'Failed to open ZIP file' );
+		}
+		
+		// Validate all entries before extraction
+		for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+			$entry = $zip->statIndex( $i );
+			$entry_name = $entry['name'];
+			
+			// Security: Prevent path traversal attacks
+			if ( strpos( $entry_name, '..' ) !== false || strpos( $entry_name, '/' ) === 0 || strpos( $entry_name, '\\' ) === 0 ) {
+				$zip->close();
+				return new WP_Error( 'path_traversal_detected', 'Invalid file path detected in ZIP archive' );
+			}
+			
+			// Skip directories and hidden files
+			if ( substr( $entry_name, -1 ) === '/' || substr( basename( $entry_name ), 0, 1 ) === '.' ) {
+				continue;
+			}
+			
+			// Validate file extension
+			$file_ext = strtolower( pathinfo( $entry_name, PATHINFO_EXTENSION ) );
+			if ( ! in_array( $file_ext, $allowed_extensions, true ) ) {
+				$zip->close();
+				return new WP_Error( 'invalid_file_type', 'ZIP archive contains non-font files: ' . $entry_name );
+			}
+			
+			// Validate file size (max 10MB per file)
+			if ( $entry['size'] > 10 * 1024 * 1024 ) {
+				$zip->close();
+				return new WP_Error( 'file_too_large', 'Font file exceeds maximum size: ' . $entry_name );
+			}
+		}
+		
+		// Extract only font files to destination
+		for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+			$entry = $zip->statIndex( $i );
+			$entry_name = $entry['name'];
+			
+			// Skip directories and hidden files
+			if ( substr( $entry_name, -1 ) === '/' || substr( basename( $entry_name ), 0, 1 ) === '.' ) {
+				continue;
+			}
+			
+			// Get file extension
+			$file_ext = strtolower( pathinfo( $entry_name, PATHINFO_EXTENSION ) );
+			
+			// Extract only allowed font files
+			if ( in_array( $file_ext, $allowed_extensions, true ) ) {
+				// Extract to flat directory structure (remove subdirectories)
+				$target_file = $destination . '/' . basename( $entry_name );
+				
+				// Ensure target file path is within destination
+				$real_destination = realpath( $destination );
+				$real_target = realpath( dirname( $target_file ) );
+				
+				if ( $real_target === false || strpos( $real_target, $real_destination ) !== 0 ) {
+					$zip->close();
+					return new WP_Error( 'invalid_target_path', 'Invalid extraction path' );
+				}
+				
+				// Extract file
+				$content = $zip->getFromIndex( $i );
+				if ( $content === false ) {
+					$zip->close();
+					return new WP_Error( 'extraction_failed', 'Failed to extract file: ' . $entry_name );
+				}
+				
+				// Write file
+				if ( ! $wp_filesystem->put_contents( $target_file, $content, FS_CHMOD_FILE ) ) {
+					$zip->close();
+					return new WP_Error( 'write_failed', 'Failed to write file: ' . basename( $entry_name ) );
+				}
+			}
+		}
+		
+		$zip->close();
+		return true;
+	}
+}
+
+if(!function_exists('ampforwp_recursive_delete_directory')){
+	/**
+	 * Recursively delete a directory and all its contents
+	 * 
+	 * @param string $dir Directory path to delete
+	 * @param bool $keep_root Whether to keep the root directory (only delete contents)
+	 * @return bool True on success, false on failure
+	 */
+	function ampforwp_recursive_delete_directory( $dir, $keep_root = false ) {
+		if ( ! file_exists( $dir ) ) {
+			return true;
+		}
+		
+		if ( ! is_dir( $dir ) ) {
+			return wp_delete_file( $dir );
+		}
+		
+		// Scan directory
+		$items = scandir( $dir );
+		if ( $items === false ) {
+			return false;
+		}
+		
+		foreach ( $items as $item ) {
+			if ( $item === '.' || $item === '..' ) {
+				continue;
+			}
+			
+			$path = $dir . '/' . $item;
+			
+			if ( is_dir( $path ) ) {
+				// Recursively delete subdirectory
+				ampforwp_recursive_delete_directory( $path, false );
+			} else {
+				// Delete file
+				wp_delete_file( $path );
+			}
+		}
+		
+		// Remove directory itself unless we want to keep root
+		if ( ! $keep_root ) {
+			/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir */
+			return @rmdir( $dir );
+		}
+		
+		return true;
 	}
 }
 

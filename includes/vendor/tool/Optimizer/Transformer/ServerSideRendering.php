@@ -164,9 +164,9 @@ final class ServerSideRendering implements Transformer
             }
 
             // Removal of attributes is deferred as layout application needs them.
-            if (is_array($attributesToRemove)) {
+            if (is_array($attributesToRemove) && $adaptedElement instanceof Element) {
                 foreach ($attributesToRemove as $attributeToRemove) {
-                    if(!empty($attributeToRemove)){
+                    if (! empty($attributeToRemove)) {
                         $adaptedElement->removeAttribute($attributeToRemove);
                     }
                 }

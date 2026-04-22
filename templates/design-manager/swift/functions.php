@@ -211,7 +211,7 @@ function ampforwp_swift_social_icons(){
 
 								?>
 							<li>
-								<a class="s_wp" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['whatsapp-group-link'])?>" data-action="share/whatsapp/share" aria-label="whatsapp group"><?php 
+								<a class="s_wp" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="<?php echo esc_url(ampforwp_get_setting('whatsapp-group-link'))?>" data-action="share/whatsapp/share" aria-label="whatsapp group"><?php 
 								//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								echo $whatsapp_icon; ?></a>
 							</li>

@@ -233,7 +233,7 @@ if( (is_single() && $redux_builder_amp['enable-single-social-icons']) || (is_pag
 								}
 								?>
 		<li>
-			<a title="whatsapp group" class="s_wp" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="<?php echo esc_url($redux_builder_amp['whatsapp-group-link'])?>" data-action="share/whatsapp/share">
+			<a title="whatsapp group" class="s_wp" target="_blank" <?php ampforwp_rel_attributes_social_links(); ?> href="<?php echo esc_url(ampforwp_get_setting('whatsapp-group-link'))?>" data-action="share/whatsapp/share">
 				<?php 
 					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo $whatsapp_icon; ?>
