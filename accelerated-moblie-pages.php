@@ -1638,6 +1638,11 @@ if(!function_exists('ampforwp_delete_transient_on_update')){
 }
 if(!function_exists('ampforwp_save_local_font')){
 	function ampforwp_save_local_font(){
+		// Security: Only administrators can upload font files
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')!=""){
 			$upload_dir = wp_upload_dir(); 
 			$user_dirname = $upload_dir['basedir'] . '/' . 'ampforwp-local-fonts';
@@ -1646,41 +1651,199 @@ if(!function_exists('ampforwp_save_local_font')){
 			$abs_path 	= explode("wp-content", $font_url);
 			if(isset($abs_path[1])){
 		        $permfile   = ABSPATH.'wp-content'.$abs_path[1];
+		        
+		        // Security: Validate file exists and is readable
+		        if ( ! file_exists( $permfile ) || ! is_readable( $permfile ) ) {
+		        	return;
+		        }
+		        
 		        $files = explode('/', $abs_path[1]);
 		        $file_name = end($files);
 		        $copy_to   = esc_attr($user_dirname).'/'.esc_attr($file_name);
+		        
 		        if(!file_exists($copy_to)){
-		        	$files = glob( $user_dirname . '/*' );
-		            foreach ( $files as $file ) {
-		                wp_delete_file( $file );
-		            }
+		        	// Clean up existing files using recursive deletion
+		        	ampforwp_recursive_delete_directory( $user_dirname, true );
+		        	
+		        	// Recreate directory after cleanup
+		        	if(!file_exists($user_dirname)) wp_mkdir_p($user_dirname);
+		        	
 	            	copy($permfile, $copy_to);
-		        	unzip_file($permfile, $user_dirname );
-		        	$files = glob( $user_dirname . '/*' );
-		            foreach ( $files as $file ) {
-		            	if(is_dir($file)){
-							/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir */
-		            		rmdir($file);
-		            	}
-			            $fonts = explode("/", $file);
-		               	$font_names = end($fonts);
-						$ext = end(explode(".", $font_names));
-						if($ext!='ttf' && $ext!='eot' && $ext!='svg'){
-							wp_delete_file( $file );
-						}
-		            }
+	            	
+	            	// Security: Validate and extract ZIP file safely
+	            	$extraction_result = ampforwp_safe_unzip_fonts( $permfile, $user_dirname );
+	            	
+	            	// If extraction failed, clean up
+	            	if ( is_wp_error( $extraction_result ) ) {
+	            		ampforwp_recursive_delete_directory( $user_dirname, true );
+	            		if(!file_exists($user_dirname)) wp_mkdir_p($user_dirname);
+	            		return;
+	            	}
+	            	
+	            	// Remove the ZIP file after extraction
+	            	wp_delete_file( $copy_to );
 		        }
 		    }
 		}else if(ampforwp_get_setting('ampforwp-local-font-switch') && ampforwp_get_setting('ampforwp-local-font-upload','url')==""){
 			$upload_dir   = wp_upload_dir();
 	        $user_dirname = esc_attr($upload_dir['basedir']) . '/' . 'ampforwp-local-fonts';
 	        if ( file_exists( $user_dirname ) ) {
-	            $files = glob( $user_dirname . '/*' );
-	            foreach ( $files as $file ) {
-					wp_delete_file( $file );
-	            }
+	        	// Use recursive deletion
+	        	ampforwp_recursive_delete_directory( $user_dirname, true );
 	        }
 		}
+	}
+}
+
+if(!function_exists('ampforwp_safe_unzip_fonts')){
+	/**
+	 * Safely extract font files from ZIP archive with security validation
+	 * 
+	 * @param string $zip_file Path to ZIP file
+	 * @param string $destination Destination directory
+	 * @return true|WP_Error True on success, WP_Error on failure
+	 */
+	function ampforwp_safe_unzip_fonts( $zip_file, $destination ) {
+		// Allowed font file extensions
+		$allowed_extensions = array( 'ttf', 'otf', 'woff', 'woff2', 'eot', 'svg' );
+		
+		// Load WordPress file functions if not available
+		if ( ! function_exists( 'WP_Filesystem' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		}
+		
+		WP_Filesystem();
+		global $wp_filesystem;
+		
+		// Open ZIP file
+		$zip = new ZipArchive();
+		if ( $zip->open( $zip_file ) !== true ) {
+			return new WP_Error( 'zip_open_failed', 'Failed to open ZIP file' );
+		}
+		
+		// Validate all entries before extraction
+		for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+			$entry = $zip->statIndex( $i );
+			$entry_name = $entry['name'];
+			
+			// Security: Prevent path traversal attacks
+			if ( strpos( $entry_name, '..' ) !== false || strpos( $entry_name, '/' ) === 0 || strpos( $entry_name, '\\' ) === 0 ) {
+				$zip->close();
+				return new WP_Error( 'path_traversal_detected', 'Invalid file path detected in ZIP archive' );
+			}
+			
+			// Skip directories and hidden files
+			if ( substr( $entry_name, -1 ) === '/' || substr( basename( $entry_name ), 0, 1 ) === '.' ) {
+				continue;
+			}
+			
+			// Validate file extension
+			$file_ext = strtolower( pathinfo( $entry_name, PATHINFO_EXTENSION ) );
+			if ( ! in_array( $file_ext, $allowed_extensions, true ) ) {
+				$zip->close();
+				return new WP_Error( 'invalid_file_type', 'ZIP archive contains non-font files: ' . $entry_name );
+			}
+			
+			// Validate file size (max 10MB per file)
+			if ( $entry['size'] > 10 * 1024 * 1024 ) {
+				$zip->close();
+				return new WP_Error( 'file_too_large', 'Font file exceeds maximum size: ' . $entry_name );
+			}
+		}
+		
+		// Extract only font files to destination
+		for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+			$entry = $zip->statIndex( $i );
+			$entry_name = $entry['name'];
+			
+			// Skip directories and hidden files
+			if ( substr( $entry_name, -1 ) === '/' || substr( basename( $entry_name ), 0, 1 ) === '.' ) {
+				continue;
+			}
+			
+			// Get file extension
+			$file_ext = strtolower( pathinfo( $entry_name, PATHINFO_EXTENSION ) );
+			
+			// Extract only allowed font files
+			if ( in_array( $file_ext, $allowed_extensions, true ) ) {
+				// Extract to flat directory structure (remove subdirectories)
+				$target_file = $destination . '/' . basename( $entry_name );
+				
+				// Ensure target file path is within destination
+				$real_destination = realpath( $destination );
+				$real_target = realpath( dirname( $target_file ) );
+				
+				if ( $real_target === false || strpos( $real_target, $real_destination ) !== 0 ) {
+					$zip->close();
+					return new WP_Error( 'invalid_target_path', 'Invalid extraction path' );
+				}
+				
+				// Extract file
+				$content = $zip->getFromIndex( $i );
+				if ( $content === false ) {
+					$zip->close();
+					return new WP_Error( 'extraction_failed', 'Failed to extract file: ' . $entry_name );
+				}
+				
+				// Write file
+				if ( ! $wp_filesystem->put_contents( $target_file, $content, FS_CHMOD_FILE ) ) {
+					$zip->close();
+					return new WP_Error( 'write_failed', 'Failed to write file: ' . basename( $entry_name ) );
+				}
+			}
+		}
+		
+		$zip->close();
+		return true;
+	}
+}
+
+if(!function_exists('ampforwp_recursive_delete_directory')){
+	/**
+	 * Recursively delete a directory and all its contents
+	 * 
+	 * @param string $dir Directory path to delete
+	 * @param bool $keep_root Whether to keep the root directory (only delete contents)
+	 * @return bool True on success, false on failure
+	 */
+	function ampforwp_recursive_delete_directory( $dir, $keep_root = false ) {
+		if ( ! file_exists( $dir ) ) {
+			return true;
+		}
+		
+		if ( ! is_dir( $dir ) ) {
+			return wp_delete_file( $dir );
+		}
+		
+		// Scan directory
+		$items = scandir( $dir );
+		if ( $items === false ) {
+			return false;
+		}
+		
+		foreach ( $items as $item ) {
+			if ( $item === '.' || $item === '..' ) {
+				continue;
+			}
+			
+			$path = $dir . '/' . $item;
+			
+			if ( is_dir( $path ) ) {
+				// Recursively delete subdirectory
+				ampforwp_recursive_delete_directory( $path, false );
+			} else {
+				// Delete file
+				wp_delete_file( $path );
+			}
+		}
+		
+		// Remove directory itself unless we want to keep root
+		if ( ! $keep_root ) {
+			/* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_rmdir */
+			return @rmdir( $dir );
+		}
+		
+		return true;
 	}
 }
 
