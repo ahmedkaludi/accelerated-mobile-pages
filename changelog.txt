@@ -1,5 +1,5 @@
 == Changelog ==
-= 1.1.13 (21 April 2026) =
+= 1.1.13 (22 April 2026) =
 * Improvement : flush_rewrite_rules() being called on every admin visit when using Memcached #5725
 * Improvement : Showing header and footer in each post in infinite scroll #5729
 * Fixed : Fatal error in ServerSideRendering.php: removeAttribute() called on bool #5730
