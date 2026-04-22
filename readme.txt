@@ -194,13 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
-= 1.1.13 (21 April 2026) =
+= 1.1.13 (22 April 2026) =
 * Improvement : flush_rewrite_rules() being called on every admin visit when using Memcached #5725
 * Improvement : Showing header and footer in each post in infinite scroll #5729
 * Fixed : Fatal error in ServerSideRendering.php: removeAttribute() called on bool #5730
 * Fixed : AMP is still showing on posts even after disabling all the options in the General Settings. #5734
 * Fixed : After PHP 8.5 Update: Undefined $postID & Null ID Warnings in amp-elementor-pagebuilder.php #5733
 * Fixed : Warning for missing social option keys after plugin upgrade #5731
+* Fixed : Authenticated (Author+) Arbitrary File Write with Local Font Upload disclosed by Wordfence (Leonid Semenenko)
 
 = 1.1.12 (02 March 2026) =
 * Fixed : Fatal error when inmobi privacy mode is enabled #5722
@@ -333,12 +334,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: While using the News12Paper theme and tagDiv Composer plugin, there is an issue with the AMP menu (user-end issue). #5608
 * Fixed: Change Twitter as X #5609
 * Fixed: Amazon auto links are not working on AMP #5583
-
-= 1.0.95 (7th May 2024) =
-* Fixed: rtrim(): Argument #1 ($string) must be of type string, WP_Error given #5588
-* Fixed: Issue persist due to recent update with poll maker plugin #5585
-* Fixed: PHP Warning: Attempt to read property "ID" on null #5589
-* Test: Test with new version of wordpress i.e. 6.5v #5581
-* Fixed: Validation issues in images when using Pencil builder #5592
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
