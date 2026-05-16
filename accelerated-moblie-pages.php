@@ -918,6 +918,7 @@ require ( AMPFORWP_PLUGIN_DIR.'/install/index.php' );
 if ( !function_exists('amp_activate') ) {
 	require_once(  AMPFORWP_PLUGIN_DIR. 'base_remover/base_remover.php' );
 	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/thirdparty-compatibility.php' );
+	require_once(  AMPFORWP_PLUGIN_DIR. 'includes/compatibility/age-gate.php' );
 	$enablePb = false;
 	if(is_admin()){
 		global $pagenow;
