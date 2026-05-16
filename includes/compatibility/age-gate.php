@@ -418,19 +418,11 @@ function ampforwp_age_gate_advance_fields() {
 
 	return array(
 		array(
-			'id'             => 'ampforwp-age-gate-section',
-			'type'           => 'section',
-			'title'          => esc_html__( 'Age Gate Compatibility', 'accelerated-mobile-pages' ),
-			'indent'         => true,
-			'layout_type'    => 'accordion',
-			'accordion-open' => 1,
-		),
-		array(
 			'id'               => 'ampforwp-age-gate-compat',
 			'type'             => 'switch',
 			'title'            => esc_html__( 'Age Gate Support', 'accelerated-mobile-pages' ),
 			'tooltip-subtitle' => esc_html__(
-				'When enabled, visitors who have not passed Age Gate are redirected from AMP URLs to the non-AMP page so they can complete age verification there.',
+				'When enabled, visitors who have not passed Age Gate are sent to the non-AMP page to verify, then returned to the AMP URL they opened.',
 				'accelerated-mobile-pages'
 			),
 			'desc'             => sprintf(
