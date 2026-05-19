@@ -1,4 +1,8 @@
 == Changelog ==
+= 1.1.14 (19 May 2026) =
+* Compatibility : Added compatibility with age gate plugin #5727
+* Fixed : On enabling Social Share toggle, Disallowed attribute or attribute value present in HTML tag. #5702
+
 = 1.1.13 (22 April 2026) =
 * Improvement : flush_rewrite_rules() being called on every admin visit when using Memcached #5725
 * Improvement : Showing header and footer in each post in infinite scroll #5729
