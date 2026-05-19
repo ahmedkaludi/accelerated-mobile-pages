@@ -16,6 +16,7 @@ require_once AMPFORWP_PLUGIN_DIR."includes/features/structure-data/structured-da
 require_once AMPFORWP_PLUGIN_DIR."includes/features/notice-bar/notice-bar-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/push-notification/push-notification-options.php";
 require_once AMPFORWP_PLUGIN_DIR."includes/features/contact-form/contact-form-options.php";
+require_once AMPFORWP_PLUGIN_DIR . 'includes/compatibility/age-gate.php';
 require_once AMPFORWP_PLUGIN_DIR."includes/features/pagebuilders-support/pagebuilders_support.php";
 
 // Option name where all the Redux data is stored.
@@ -149,6 +150,7 @@ if(function_exists('heateor_sss_save_default_options')){
                         'desc' => esc_html__( 'Making endpoints to ?amp will help you get the amp in tricky setups with taxonomies & post typs. Question mark in the url will not make any difference in the SEO.','accelerated-mobile-pages' ),
                     );
     }
+$amp_advance_age_gate = function_exists( 'ampforwp_age_gate_advance_fields' ) ? ampforwp_age_gate_advance_fields() : array();
 global $all_extensions_data;
 $extension_listing_array = array(
                          array(
@@ -3250,7 +3252,7 @@ Redux::setSection( $opt_name, array(
    'desc'       => esc_html__( 'This section has some advanced settings, please use it with care','accelerated-mobile-pages'),
    'id'         => 'amp-advance',
    'subsection' => true,
-   'fields'     => array(
+   'fields'     => array_merge( array(
 
                     array(
                         'id'       => 'amp-mobile-redirection',
@@ -3301,6 +3303,7 @@ Redux::setSection( $opt_name, array(
                         Enable this option to give your visitors normal version on Desktop when accessing AMP','accelerated-mobile-pages'),
                         'default' => 0,
                     ),
+   ), $amp_advance_age_gate, array(
                     array(
                         'id'       => 'convert-internal-nonamplinks-to-amp',
                         'type'     => 'switch',
@@ -3574,7 +3577,7 @@ Redux::setSection( $opt_name, array(
                         'default'   => 0,
                         'tooltip-subtitle'      => esc_html__('Enable this if you would like AMPforWP to completely remove all of its data when uninstalling via Plugins > Delete.', 'accelerated-mobile-pages' ),
                     ),
-   ),
+   ) ),
 
 ) );
 

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 7.0
-Stable tag: 1.1.13
+Stable tag: 1.1.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.14 (19 May 2026) =
+* Compatibility : Added compatibility with age gate plugin #5727
+* Fixed : On enabling Social Share toggle, Disallowed attribute or attribute value present in HTML tag. #5702
+
 = 1.1.13 (22 April 2026) =
 * Improvement : flush_rewrite_rules() being called on every admin visit when using Memcached #5725
 * Improvement : Showing header and footer in each post in infinite scroll #5729
@@ -323,16 +327,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 = 1.0.96.1 (1st July 2024) =
 * Fixed: Update Twitter Icon as X  in author box #5609
 * Fixed: AMP footer Menu showing as text for some users
-
-= 1.0.96 (28th June 2024) =
-* Fixed: Featured image caption is not working #5574
-* Fixed: PHP deprecated error (PHP 8.2) #5587
-* Fixed: PHP warning message displayed on the user's end. #5594
-* Fixed: Publisher desk "Dismiss" button is not working.  #5591
-* Fixed: PHP error on the user end. #5605
-* Fixed: Undefined property: stdClass::$inContentPlacementMethod #5607
-* Fixed: While using the News12Paper theme and tagDiv Composer plugin, there is an issue with the AMP menu (user-end issue). #5608
-* Fixed: Change Twitter as X #5609
-* Fixed: Amazon auto links are not working on AMP #5583
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
