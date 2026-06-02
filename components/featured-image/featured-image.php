@@ -5,6 +5,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 function ampforwp_framework_get_featured_image(){
 	do_action('ampforwp_before_featured_image_hook');
 	global $post, $redux_builder_amp;
+	
+	// Normalize $post: If it's an integer, hydrate the full WP_Post object
+	if ( is_numeric( $post ) ) {
+		$post = get_post( $post );
+	}
+
+	// Sanity check: bail early if it's still not a valid object
+	if ( ! is_object( $post ) ) {
+		return;
+	}
+
 	$post_id 		= $post->ID;
 	$featured_image = $image_size = "";
 	$amp_html 		= "";
