@@ -12,18 +12,35 @@ function ampforwp_isjson($string) {
  json_decode($string);
  return (json_last_error() == JSON_ERROR_NONE);
 }
+
+/**
+ * Sanitize Page Builder head HTML (scripts_data).
+ *
+ * Allowlist-only: strips all HTML tags (script/img/svg/event handlers, etc.).
+ * Applied at both save and render so stored payloads cannot execute.
+ *
+ * @param mixed $html Raw scripts_data value.
+ * @return string Sanitized value safe for head output.
+ */
+function ampforwp_pagebuilder_sanitize_scripts_data( $html ) {
+	if ( ! is_string( $html ) || $html === '' ) {
+		return '';
+	}
+	return wp_kses( $html, array() );
+}
+
 function amppb_save_post( $post_id, $post ){
  
     /* Stripslashes Submitted Data */
     $request = stripslashes_deep( $_POST );
  
-    /* Verify/validate */
-    if ( ! isset( $request['amppb_nonce'] ) || ! wp_verify_nonce( $request['amppb_nonce'], 'amppb_nonce_action' ) ){
+    /* Verify/validate — nonce is bound to the post ID being saved */
+    if ( ! isset( $request['amppb_nonce'] ) || ! wp_verify_nonce( $request['amppb_nonce'], 'amppb_nonce_action_' . $post_id ) ){
         return $post_id;
     }
     
 
-    if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
          return $post_id;
     }
     /* Do not save on autosave */
@@ -44,19 +61,24 @@ function amppb_save_post( $post_id, $post ){
 
 
     $submitted_data = json_decode($submitted_data,true);
-    //Script
-    preg_match_all("/<script(?:(?!src).)*>(.*?)<\/script>/",$submitted_data['settingdata']['scripts_data'], $outremove, PREG_SET_ORDER);
-    if($outremove && count($outremove)>0){
-        foreach($outremove as $unwanted){
-            $submitted_data['settingdata']['scripts_data'] = str_replace($unwanted[0], '', $submitted_data['settingdata']['scripts_data']);
-        }
+    if ( ! is_array( $submitted_data ) ) {
+        $submitted_data = null;
     }
 
-    //Style 
-    $submitted_data['settingdata']['style_data'] = wp_strip_all_tags($submitted_data['settingdata']['style_data']);
-    $submitted_data = wp_json_encode($submitted_data);
+    if ( is_array( $submitted_data ) ) {
+        if ( ! isset( $submitted_data['settingdata'] ) || ! is_array( $submitted_data['settingdata'] ) ) {
+            $submitted_data['settingdata'] = array();
+        }
+        // Allowlist sanitizer — do not use blocklist regex for scripts_data.
+        $scripts_data = isset( $submitted_data['settingdata']['scripts_data'] ) ? $submitted_data['settingdata']['scripts_data'] : '';
+        $submitted_data['settingdata']['scripts_data'] = ampforwp_pagebuilder_sanitize_scripts_data( $scripts_data );
 
-    $submitted_data = wp_slash($submitted_data);
+        // Style
+        $style_data = isset( $submitted_data['settingdata']['style_data'] ) ? $submitted_data['settingdata']['style_data'] : '';
+        $submitted_data['settingdata']['style_data'] = wp_strip_all_tags( $style_data );
+        $submitted_data = wp_json_encode( $submitted_data );
+        $submitted_data = wp_slash( $submitted_data );
+    }
     
     /* New data submitted, No previous data, create it  */
     if ( $submitted_data && '' == $saved_data ){

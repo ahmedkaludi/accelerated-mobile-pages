@@ -154,7 +154,7 @@ function ampforwp_call_page_builder(){
 			<label  @click="showModal = true;"><?php echo esc_html__('Pre-built AMP Layouts','accelerated-mobile-pages'); ?></label>
 		</div>
 		<div id="amp-page-builder" v-if="startPagebuilder==1">
-	 		<?php wp_nonce_field( "amppb_nonce_action", "amppb_nonce" ) ?>
+	 		<?php wp_nonce_field( 'amppb_nonce_action_' . $postId, 'amppb_nonce' ); ?>
 	        <input type="hidden" name="amp-page-builder" id="amp-page-builder-data" class="amp-data" v-model="JSON.stringify(mainContent)" value='<?php 
 			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $previousData; // nothing to escaped ?>'>
