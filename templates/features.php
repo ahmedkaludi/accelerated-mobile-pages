@@ -8677,6 +8677,7 @@ function ampforwp_is_gutenberg_active() {
 }
 
 add_filter( 'amp_post_template_data', 'ampforwp_pblayout_head_scripts');
+global $pb_remove_script;
 $pb_remove_script = array();
 function ampforwp_pblayout_head_scripts($data){
    $postId = ampforwp_get_the_ID();
@@ -8726,6 +8727,9 @@ function ampforwp_pblayout_head_scripts($data){
 }
 function ampforwp_remove_unused_pb_amp_script($data){
    global $pb_remove_script;
+   if ( empty( $pb_remove_script ) || ! is_array( $pb_remove_script ) ) {
+      return $data;
+   }
    for($i=0;$i<count($pb_remove_script);$i++){
       $data = preg_replace('/<script(.*?)custom-element=\"'.esc_attr($pb_remove_script[$i]).'\"(.*?)src=\"(.*?)\"(.*?)><\/script>/', '', $data);
    }

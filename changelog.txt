@@ -1,7 +1,15 @@
 == Changelog ==
+= 1.1.15 (24 July 2026) =
+* Fixed : Authenticated (Editor+) Stored Cross-Site Scripting disclosed by Helder Gonçalves
+* Fixed : PHP 8.4 Compatibility: Fix "Attempt to read property on int" Warnings in featured-image.php #5740
+* Fixed : Fatal error count(): null given in ampforwp_remove_unused_pb_amp_script
+* Compatibility : improved compatibility with Age Gate Plugin #5739
+
+
 = 1.1.14 (19 May 2026) =
 * Compatibility : Added compatibility with age gate plugin #5727
 * Fixed : On enabling Social Share toggle, Disallowed attribute or attribute value present in HTML tag. #5702
+* Fixed : AMP Page Builder scripts_data XSS — allowlist AMP CDN scripts only (e.g. amp-access), scoped edit_post capability, post-bound nonce
 
 = 1.1.13 (22 April 2026) =
 * Improvement : flush_rewrite_rules() being called on every admin visit when using Memcached #5725
@@ -11,7 +19,6 @@
 * Fixed : After PHP 8.5 Update: Undefined $postID & Null ID Warnings in amp-elementor-pagebuilder.php #5733
 * Fixed : Warning for missing social option keys after plugin upgrade #5731
 * Fixed : Authenticated (Author+) Arbitrary File Write with Local Font Upload disclosed by Wordfence (Leonid Semenenko)
-
 
 = 1.1.12 (02 March 2026) =
 * Fixed : Fatal error when inmobi privacy mode is enabled #5722

@@ -53,14 +53,12 @@ function ampforwp_pagebuilder_header_html_output(){
 	if($previousData!="" && $ampforwp_pagebuilder_enable=='yes'){
 		$previousData = json_decode($previousData,true);
 		if(isset($previousData['settingdata']['scripts_data']) && $previousData['settingdata']['scripts_data']!=""){
-			preg_match_all("/<script(?:(?!src).)*>(.*?)<\/script>/",$previousData['settingdata']['scripts_data'], $outremove, PREG_SET_ORDER);
-		    if($outremove && count($outremove)>0){
-		        foreach($outremove as $unwanted){
-		            $previousData['settingdata']['scripts_data'] = str_replace($unwanted[0], '', $previousData['settingdata']['scripts_data']);
-		        }
-		    }
-			//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo $previousData['settingdata']['scripts_data']; // nothing to escaped
+			// AMP CDN scripts / JSON configs only — strips XSS vectors at render time.
+			$scripts_data = ampforwp_pagebuilder_sanitize_scripts_data( $previousData['settingdata']['scripts_data'] );
+			if ( $scripts_data !== '' ) {
+				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Sanitized via ampforwp_pagebuilder_sanitize_scripts_data() (AMP allowlist).
+				echo $scripts_data;
+			}
 		}
 	}
 }

@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 7.0
-Stable tag: 1.1.14
+Stable tag: 1.1.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,12 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.15 (24 July 2026) =
+* Fixed : Authenticated (Editor+) Stored Cross-Site Scripting disclosed by Helder Gonçalves
+* Fixed : PHP 8.4 Compatibility: Fix "Attempt to read property on int" Warnings in featured-image.php #5740
+* Fixed : Fatal error count(): null given in ampforwp_remove_unused_pb_amp_script
+* Compatibility : improved compatibility with Age Gate Plugin #5739
+
 = 1.1.14 (19 May 2026) =
 * Compatibility : Added compatibility with age gate plugin #5727
 * Fixed : On enabling Social Share toggle, Disallowed attribute or attribute value present in HTML tag. #5702
@@ -323,9 +329,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Disqus comments are not showing on the AMP. #5353
 * Fixed: Warning in query monitor, "Array to String Conversion" #5610
 * Tested: WordPress version 6.6 #5618
-
-= 1.0.96.1 (1st July 2024) =
-* Fixed: Update Twitter Icon as X  in author box #5609
-* Fixed: AMP footer Menu showing as text for some users
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
