@@ -26,7 +26,7 @@ function ampforwp_pagebuilder_sanitize_scripts_data( $html ) {
 	if ( ! is_string( $html ) || $html === '' ) {
 		return '';
 	}
-	return wp_kses( $html, array() );
+	return wp_kses_post( $html );
 }
 
 function amppb_save_post( $post_id, $post ){
