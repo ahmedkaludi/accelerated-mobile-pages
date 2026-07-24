@@ -16,17 +16,85 @@ function ampforwp_isjson($string) {
 /**
  * Sanitize Page Builder head HTML (scripts_data).
  *
- * Allowlist-only: strips all HTML tags (script/img/svg/event handlers, etc.).
- * Applied at both save and render so stored payloads cannot execute.
+ * Allowlist: AMP CDN loader scripts and application/json (or ld+json) config
+ * blocks only. Strips XSS vectors (img/svg/onerror, inline JS, non-AMP src).
+ *
+ * Allowed examples:
+ * <script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
+ * <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
  *
  * @param mixed $html Raw scripts_data value.
- * @return string Sanitized value safe for head output.
+ * @return string Sanitized AMP-only head markup.
  */
 function ampforwp_pagebuilder_sanitize_scripts_data( $html ) {
 	if ( ! is_string( $html ) || $html === '' ) {
 		return '';
 	}
-	return wp_kses_post( $html );
+
+	if ( ! preg_match_all( '/<script\b([^>]*)>(.*?)<\/script\s*>/is', $html, $matches, PREG_SET_ORDER ) ) {
+		return '';
+	}
+
+	$allowed = array();
+
+	foreach ( $matches as $match ) {
+		$attrs = $match[1];
+		$body  = trim( $match[2] );
+
+		// amp-access / amp-analytics style JSON config (no src, no executable JS).
+		if ( preg_match( '/\btype\s*=\s*([\'"])(application\/(?:ld\+)?json)\1/i', $attrs, $type_m )
+			&& ! preg_match( '/\bsrc\s*=/i', $attrs ) ) {
+			$decoded = json_decode( $body );
+			if ( json_last_error() !== JSON_ERROR_NONE ) {
+				continue;
+			}
+			$id_attr = '';
+			if ( preg_match( '/\bid\s*=\s*([\'"])([^\'"]+)\1/i', $attrs, $id_m ) ) {
+				$id_attr = ' id="' . esc_attr( $id_m[2] ) . '"';
+			}
+			// Re-encode so </script> cannot break out of the tag.
+			$safe_body = wp_json_encode( $decoded, JSON_HEX_TAG | JSON_HEX_AMP | JSON_UNESCAPED_SLASHES );
+			if ( false === $safe_body ) {
+				continue;
+			}
+			$allowed[] = '<script type="' . esc_attr( $type_m[2] ) . '"' . $id_attr . '>' . $safe_body . '</script>';
+			continue;
+		}
+
+		// AMP extension / runtime loaders must have an empty body (no inline JS).
+		if ( '' !== $body ) {
+			continue;
+		}
+
+		if ( ! preg_match( '/\bsrc\s*=\s*([\'"])(https:\/\/cdn\.ampproject\.org\/[^\'"\s]+)\1/i', $attrs, $src_m ) ) {
+			continue;
+		}
+
+		$src = esc_url( $src_m[2], array( 'https' ) );
+		if ( ! $src || 0 !== strpos( $src, 'https://cdn.ampproject.org/' ) ) {
+			continue;
+		}
+
+		$is_runtime = (bool) preg_match( '#^https://cdn\.ampproject\.org/v0\.js$#i', $src );
+		$custom_attr = '';
+
+		if ( preg_match( '/\bcustom-element\s*=\s*([\'"])(amp-[a-z0-9-]+)\1/i', $attrs, $ce_m ) ) {
+			$custom_attr = ' custom-element="' . esc_attr( $ce_m[2] ) . '"';
+		} elseif ( preg_match( '/\bcustom-template\s*=\s*([\'"])(amp-[a-z0-9-]+)\1/i', $attrs, $ct_m ) ) {
+			$custom_attr = ' custom-template="' . esc_attr( $ct_m[2] ) . '"';
+		} elseif ( ! $is_runtime ) {
+			continue;
+		}
+
+		$tag  = '<script';
+		$tag .= preg_match( '/\basync\b/i', $attrs ) ? ' async' : '';
+		$tag .= $custom_attr;
+		$tag .= ' src="' . esc_url( $src ) . '"></script>';
+
+		$allowed[] = $tag;
+	}
+
+	return implode( "\n", $allowed );
 }
 
 function amppb_save_post( $post_id, $post ){
