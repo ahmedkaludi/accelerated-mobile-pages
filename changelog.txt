@@ -1,6 +1,9 @@
 == Changelog ==
 = 1.1.15 (24 July 2026) =
 * Fixed : Authenticated (Editor+) Stored Cross-Site Scripting disclosed by Helder Gonçalves
+* Fixed : PHP 8.4 Compatibility: Fix "Attempt to read property on int" Warnings in featured-image.php #5740
+* Compatibility : improved compatibility with Age Gate Plugin #5739
+
 
 = 1.1.14 (19 May 2026) =
 * Compatibility : Added compatibility with age gate plugin #5727
