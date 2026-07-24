@@ -194,10 +194,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
-== Changelog ==
 = 1.1.15 (24 July 2026) =
 * Fixed : Authenticated (Editor+) Stored Cross-Site Scripting disclosed by Helder Gonçalves
 * Fixed : PHP 8.4 Compatibility: Fix "Attempt to read property on int" Warnings in featured-image.php #5740
+* Fixed : Fatal error count(): null given in ampforwp_remove_unused_pb_amp_script
 * Compatibility : improved compatibility with Age Gate Plugin #5739
 
 = 1.1.14 (19 May 2026) =
