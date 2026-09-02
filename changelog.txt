@@ -1,6 +1,7 @@
 == Changelog ==
 = 1.1.16 (02 September 2026) =
-* Tested :  Tested upto WordPress 7.1 
+* Tested : Tested upto WordPress 7.1 
+* Fixed  : Creation of dynamic property ReduxCore\ReduxFramework\ReduxFramework_multi_text::$add_text is deprecated
 
 = 1.1.15 (24 July 2026) =
 * Fixed : Authenticated (Editor+) Stored Cross-Site Scripting disclosed by Helder Gonçalves
