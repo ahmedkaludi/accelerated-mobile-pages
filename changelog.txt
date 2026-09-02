@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.1.16 (02 September 2026) =
+* Tested :  Tested upto WordPress 7.1 
+
 = 1.1.15 (24 July 2026) =
 * Fixed : Authenticated (Editor+) Stored Cross-Site Scripting disclosed by Helder Gonçalves
 * Fixed : PHP 8.4 Compatibility: Fix "Attempt to read property on int" Warnings in featured-image.php #5740
