@@ -1,4 +1,8 @@
 == Changelog ==
+= 1.1.17 (10 September 2026) =
+* Fixed  : Stored Cross-Site Scripting via Comment Content Regex Transformation in ampforwp_remove_unwanted_code() disclosed by Wordfence (Pham Duc Anh)
+* Improvement : Optimized feedback form 
+
 = 1.1.16 (02 September 2026) =
 * Tested : Tested upto WordPress 7.1 
 * Fixed  : Creation of dynamic property ReduxCore\ReduxFramework\ReduxFramework_multi_text::$add_text is deprecated
@@ -8,7 +12,6 @@
 * Fixed : PHP 8.4 Compatibility: Fix "Attempt to read property on int" Warnings in featured-image.php #5740
 * Fixed : Fatal error count(): null given in ampforwp_remove_unused_pb_amp_script
 * Compatibility : improved compatibility with Age Gate Plugin #5739
-
 
 = 1.1.14 (19 May 2026) =
 * Compatibility : Added compatibility with age gate plugin #5727

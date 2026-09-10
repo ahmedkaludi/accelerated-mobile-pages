@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 7.1
-Stable tag: 1.1.16
+Stable tag: 1.1.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.17 (10 September 2026) =
+* Fixed  : Stored Cross-Site Scripting via Comment Content Regex Transformation in ampforwp_remove_unwanted_code() — use DOM-based label attribute removal and block javascript: href protocols
+* Improvement : Optimized feedback form 
+
 = 1.1.16 (02 September 2026) =
 * Tested :  Tested upto WordPress 7.1
 * Fixed  : Creation of dynamic property ReduxCore\ReduxFramework\ReduxFramework_multi_text::$add_text is deprecated 
@@ -321,9 +325,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Conflict issue with Infinite Scroll option. #5638
 * Fixed: Some language characters breaking in amp footer #5627 , #5639 , #5620
 * Fixed: Code Improvement #5630
-
-= 1.0.98 (9th August 2024) =
-* Fixed: PHP errors and warnings #5617,#5624,#5619,#5628,#5629,#5626
-* Fixed: Disqus comments are not showing on the AMP. #5353
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

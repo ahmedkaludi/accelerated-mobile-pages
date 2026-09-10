@@ -8817,13 +8817,128 @@ function ampforwp_remove_unwanted_code($content){
 		return $content;
 	}
   
-	if(preg_match('/<a(.*?)\slabel\s(.*?)>/', $content)){
-		$content = preg_replace_callback('/<a\b[^>]*>/i', function ($matches) {
-			// Only match standalone 'label' attribute, not 'aria-label' or other attributes containing 'label'
-			return preg_replace('/(?<!aria-)\blabel\s*=\s*"[^"]*"/i', '', $matches[0]);
-		}, $content);
+	// Strip invalid standalone `label` attributes from anchors without crossing attribute
+	// boundaries (previous regex enabled Stored XSS via href="label=" ... title="javascript:...").
+	// Only rewrite tags that actually need label removal or dangerous-protocol scrubbing.
+	if ( preg_match( '/<a\b[^>]*(?:\slabel\s*=|\bhref\s*=\s*[\'"]\s*(?:javascript|vbscript|data)\s*:)/i', $content ) ) {
+		$content = preg_replace_callback( '/<a\b[^>]*>/i', 'ampforwp_sanitize_anchor_opening_tag', $content );
 	}
 	return $content;
+}
+
+/**
+ * Sanitize an opening <a> tag: remove standalone label attrs and block dangerous href protocols.
+ *
+ * @param array $matches Full opening-tag match from preg_replace_callback.
+ * @return string Sanitized opening tag.
+ */
+function ampforwp_sanitize_anchor_opening_tag( $matches ) {
+	$tag = isset( $matches[0] ) ? $matches[0] : '';
+	if ( '' === $tag ) {
+		return $tag;
+	}
+
+	// Skip tags that neither have a real label attribute nor a dangerous href protocol.
+	$needs_label_strip = (bool) preg_match( '/(?<=\s)label\s*=/i', $tag );
+	$needs_href_scrub  = (bool) preg_match( '/\bhref\s*=\s*[\'"]\s*(?:javascript|vbscript|data)\s*:/i', $tag );
+	if ( ! $needs_label_strip && ! $needs_href_scrub ) {
+		return $tag;
+	}
+
+	if ( class_exists( 'DOMDocument' ) ) {
+		$dom = new DOMDocument();
+		$previous = libxml_use_internal_errors( true );
+		// Wrap so loadHTML can parse a single opening tag fragment safely.
+		$loaded = @$dom->loadHTML(
+			'<?xml encoding="utf-8"><div id="ampforwp-a-wrap">' . $tag . '</a></div>',
+			LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+		);
+		libxml_clear_errors();
+		libxml_use_internal_errors( $previous );
+
+		if ( $loaded ) {
+			$anchors = $dom->getElementsByTagName( 'a' );
+			if ( $anchors->length > 0 ) {
+				$anchor = $anchors->item( 0 );
+
+				// Remove only the real `label` attribute (DOM sees attrs distinctly; aria-label is untouched).
+				if ( $anchor->hasAttribute( 'label' ) ) {
+					$anchor->removeAttribute( 'label' );
+				}
+
+				if ( $anchor->hasAttribute( 'href' ) ) {
+					$href  = $anchor->getAttribute( 'href' );
+					$clean = ampforwp_sanitize_anchor_href( $href );
+					if ( '' === $clean ) {
+						$anchor->setAttribute( 'href', '#' );
+					} elseif ( $clean !== $href ) {
+						$anchor->setAttribute( 'href', $clean );
+					}
+				}
+
+				$saved = $dom->saveHTML( $anchor );
+				if ( is_string( $saved ) && '' !== $saved ) {
+					// saveHTML may emit a full <a>...</a>; keep opening tag only.
+					if ( preg_match( '/<a\b[^>]*>/i', $saved, $open ) ) {
+						return $open[0];
+					}
+				}
+			}
+		}
+	}
+
+	// Fallback when DOMDocument is unavailable or parsing fails:
+	// require whitespace before `label=` so values like href="label=" are never matched.
+	$tag = preg_replace( '/(?<=\s)label\s*=\s*(?:"[^"]*"|\'[^\']*\'|[^\s>\/]+)/i', '', $tag );
+	$tag = preg_replace_callback(
+		'/\bhref\s*=\s*(["\'])(.*?)\1/i',
+		function ( $href_match ) {
+			$clean = ampforwp_sanitize_anchor_href( html_entity_decode( $href_match[2], ENT_QUOTES | ENT_HTML5, 'UTF-8' ) );
+			if ( '' === $clean ) {
+				$clean = '#';
+			}
+			return 'href=' . $href_match[1] . $clean . $href_match[1];
+		},
+		$tag
+	);
+
+	return $tag;
+}
+
+/**
+ * Block javascript:/vbscript:/data: hrefs; optionally use wp_kses_bad_protocol when available.
+ *
+ * @param string $href Raw href value.
+ * @return string Sanitized href, or empty string if the protocol is not allowed.
+ */
+function ampforwp_sanitize_anchor_href( $href ) {
+	$href = is_string( $href ) ? trim( $href ) : '';
+	if ( '' === $href ) {
+		return '';
+	}
+
+	// Normalize for protocol checks (browsers ignore whitespace/control chars in schemes).
+	$normalized = preg_replace( '/[\x00-\x20\x7f]+/', '', $href );
+	$normalized = rawurldecode( $normalized );
+
+	if ( preg_match( '/^(?:javascript|vbscript|data)\s*:/i', $normalized ) ) {
+		return '';
+	}
+
+	if ( function_exists( 'wp_kses_bad_protocol' ) && function_exists( 'wp_allowed_protocols' ) ) {
+		$allowed = wp_allowed_protocols();
+		// Preserve common share deep-links used in AMP templates.
+		$allowed = array_unique(
+			array_merge(
+				(array) $allowed,
+				array( 'fb-messenger', 'viber', 'whatsapp', 'tg', 'sms', 'tel', 'skype', 'intent' )
+			)
+		);
+		$clean = wp_kses_bad_protocol( $href, $allowed );
+		return is_string( $clean ) ? $clean : '';
+	}
+
+	return $href;
 }
 add_filter( 'amp_post_template_css', 'ampforwp_add_penci_block_css' );
 function ampforwp_add_penci_block_css() {
