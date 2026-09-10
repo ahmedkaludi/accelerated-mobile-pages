@@ -70,6 +70,17 @@ function ampforwp_send_feedback() {
         $text = implode( "\n\r", $form['ampforwp_disable_text'] );
     }
 
+    $reason = isset( $form['ampforwp_disable_reason'] ) ? $form['ampforwp_disable_reason'] : '';
+    $allowed_reasons = array( 'missing', 'technical', 'other' );
+
+    // Only email for missing feature, technical issue, or other — and only if text has at least 2 words.
+    $text = trim( $text );
+    $word_count = count( preg_split( '/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY ) );
+
+    if ( ! in_array( $reason, $allowed_reasons, true ) || $word_count < 2 ) {
+        wp_die();
+    }
+
     $headers = array();
 
     $from = isset( $form['ampforwp_disable_from'] ) ? $form['ampforwp_disable_from'] : '';
@@ -78,28 +89,15 @@ function ampforwp_send_feedback() {
         $headers[] = "Reply-To: $from";
     }
 
-    $subject = isset( $form['ampforwp_disable_reason'] ) ? $form['ampforwp_disable_reason'] : '(no reason given)';
+    $subject = $reason . ' - Accelerated Mobile Pages';
 
-    $subject = $subject.' - Accelerated Mobile Pages';
-
-    if($subject == 'technical - Accelerated Mobile Pages'){
-
-          $text = trim($text);
-
-          if(!empty($text)){
-
-            $text = 'technical issue description: '.$text;
-
-          }else{
-
-            $text = 'no description: '.$text;
-          }
-      
+    if ( 'technical' === $reason ) {
+        $text = 'technical issue description: ' . $text;
     }
 
     wp_mail( 'team@magazine3.in', $subject, $text, $headers );
 
-    die();
+    wp_die();
 }
 
 add_action( 'wp_ajax_ampforwp_send_feedback', 'ampforwp_send_feedback' );

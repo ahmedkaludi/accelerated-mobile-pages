@@ -3,8 +3,8 @@ Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
-Tested up to: 7.0
-Stable tag: 1.1.15
+Tested up to: 7.1
+Stable tag: 1.1.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.17 (10 September 2026) =
+* Fixed  : Stored Cross-Site Scripting via Comment Content Regex Transformation in ampforwp_remove_unwanted_code() — use DOM-based label attribute removal and block javascript: href protocols
+* Improvement : Optimized feedback form 
+
+= 1.1.16 (02 September 2026) =
+* Tested :  Tested upto WordPress 7.1
+* Fixed  : Creation of dynamic property ReduxCore\ReduxFramework\ReduxFramework_multi_text::$add_text is deprecated 
+
 = 1.1.15 (24 July 2026) =
 * Fixed : Authenticated (Editor+) Stored Cross-Site Scripting disclosed by Helder Gonçalves
 * Fixed : PHP 8.4 Compatibility: Fix "Attempt to read property on int" Warnings in featured-image.php #5740
@@ -317,17 +325,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Conflict issue with Infinite Scroll option. #5638
 * Fixed: Some language characters breaking in amp footer #5627 , #5639 , #5620
 * Fixed: Code Improvement #5630
-
-= 1.0.98 (9th August 2024) =
-* Fixed: PHP errors and warnings #5617,#5624,#5619,#5628,#5629,#5626
-* Fixed: Disqus comments are not showing on the AMP. #5353
-
-= 1.0.97 (22nd July 2024) =
-* Fixed: Stored Cross-Site Scripting via SVG File Upload (Reported by Wordfence)
-* Fixed: Contributor+ Broken Access Control discovered by Rafie Muhammad (Patchstack)
-* Fixed: PHP Deprecated: error with AMP #5621
-* Fixed: Disqus comments are not showing on the AMP. #5353
-* Fixed: Warning in query monitor, "Array to String Conversion" #5610
-* Tested: WordPress version 6.6 #5618
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)
