@@ -681,13 +681,15 @@ function ampforwp_new_dir( $dir ) {
 			add_filter( 'the_content', 'ampforwp_the_content_filter', 2 );
 		}
 		function ampforwp_the_content_filter( $content ) {
-				 $content = preg_replace('/property=[^>]*/', '', $content);
-				 $content = preg_replace('/vocab=[^>]*/', '', $content);
-				 $content = preg_replace('/noshade=[^>]*/', '', $content);
-				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
-				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
-				 $content = preg_replace('/security=[^>]*/', '', $content);
-				 $content = preg_replace('/deposit=[^>]*/', '', $content);
+				 // Match only as HTML attributes (space-prefixed inside a tag) so URL
+				 // query params like selectedproperty= are not corrupted. #5747
+				 $content = preg_replace('/(<[^>]+)(\sproperty=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\svocab=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\snoshade=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\scontenteditable=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\snon-refundable=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\ssecurity=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\sdeposit=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
 				 $content = preg_replace('/nowrap="nowrap"/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
 				 $content = preg_replace('#<badge.*?>(.*?)</badge>#i', '', $content);
