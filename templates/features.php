@@ -9747,7 +9747,8 @@ function ampforwp_wp_rocket_compatibility($content){
 	    }else if(isset($cnds_arr['all'])){
 	    	$img_cdn_url = $cnds_arr['all'];
 	    }
-	    if($img_cdn_url!=''){
+	    // Skip empty buffer (e.g. redirects); loadHTML('') throws ValueError on PHP 8. #5745
+	    if($img_cdn_url!='' && !empty($content)){
 	    	$parse_url = parse_url($img_cdn_url);
 			if(!isset($parse_url['scheme'])){
 			     if(!preg_match('/\/\//', $img_cdn_url)){
