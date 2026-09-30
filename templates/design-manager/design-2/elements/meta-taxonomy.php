@@ -3,11 +3,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 global $redux_builder_amp;
-	if( isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single']) { ?>
+	$ampforwp_has_custom_tax = ampforwp_post_has_custom_taxonomies( $this->ID );
+	if( ( isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single'] ) || $ampforwp_has_custom_tax ) { ?>
 <div class="amp-wp-article-header amp-wp-article-category ampforwp-meta-taxonomy ">
-<?php	$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
+<?php	do_action('ampforwp_before_meta_taxonomy_hook',$this);
+		if( isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single'] ) {
+			$ampforwp_tags=  get_the_terms( $this->ID, 'post_tag' );
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags ) ) :?>
-		<?php do_action('ampforwp_before_meta_taxonomy_hook',$this); ?>
 		<div class="amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag">
 				<?php
 				//if RTL is OFF
@@ -33,7 +35,10 @@ global $redux_builder_amp;
 				?>
 
 		</div>
-<?php endif;?>
+<?php endif;
+		}
+		ampforwp_display_custom_taxonomies( $this->ID );
+?>
 </div> <?php } ?>
 
 <?php

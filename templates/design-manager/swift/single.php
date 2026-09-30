@@ -124,7 +124,12 @@ $page = intval($page); ?>
 			            <div class="tags">
 			            	<?php amp_tags_list();?>
 			            </div>
-		            <?php } 
+		            <?php }
+		            if ( ampforwp_post_has_custom_taxonomies() ) { ?>
+			            <div class="tags ampforwp-custom-taxonomies">
+			            	<?php ampforwp_display_custom_taxonomies( null, array( 'wrapper_class' => 'amp-tags', 'term_prefix' => 'amp-tag-' ) ); ?>
+			            </div>
+		            <?php }
 		             if( true == ampforwp_get_setting('swift-date') ) { ?>
 			            <div class="post-date desk-date">
 			            	<?php amp_date(); ?><?php edit_post_link(); ?>
@@ -401,7 +406,12 @@ do_action("ampforwp_single_design_type_handle_d1");
 						            <div class="tags">
 						            	<?php amp_tags_list();?>
 						            </div>
-					            <?php } 
+					            <?php }
+					            if ( ampforwp_post_has_custom_taxonomies() ) { ?>
+						            <div class="tags ampforwp-custom-taxonomies">
+						            	<?php ampforwp_display_custom_taxonomies( null, array( 'wrapper_class' => 'amp-tags', 'term_prefix' => 'amp-tag-' ) ); ?>
+						            </div>
+					            <?php }
 					             if( true == ampforwp_get_setting('swift-date') ) { ?>
 						            <div class="post-date">
 						            	<?php amp_date(); ?><?php edit_post_link(); ?>

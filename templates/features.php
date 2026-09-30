@@ -4128,6 +4128,9 @@ function ampforwp_view_nonamp(){
    		$nofollow = 'rel=nofollow';
    	}
 	$amp_url = ampforwp_amphtml_generator();
+	if ( empty( $amp_url ) ) {
+		return;
+	}
 	$amp_url = explode('/', $amp_url);
 	$amp_url = array_flip($amp_url);
 	$endpoint = AMPFORWP_AMP_QUERY_VAR;

@@ -1559,6 +1559,144 @@ function ampforwp_category_base_remove_notice(){
     }
 }
 
+/**
+ * Custom taxonomies to show on AMP singles.
+ * Uses ampforwp-custom-taxonomies when set; otherwise public non-builtin taxonomies for the post type.
+ */
+function ampforwp_get_custom_taxonomies_for_single( $post_id = null ) {
+	if ( empty( $post_id ) ) {
+		$post_id = ampforwp_get_the_ID();
+	}
+	if ( empty( $post_id ) ) {
+		return array();
+	}
+
+	$taxonomies = ampforwp_get_setting( 'ampforwp-custom-taxonomies' );
+	if ( ! empty( $taxonomies ) && is_array( $taxonomies ) ) {
+		$taxonomies = array_values( array_filter( $taxonomies ) );
+	} else {
+		$taxonomies = array();
+		$post_type  = get_post_type( $post_id );
+		if ( $post_type ) {
+			$objects = get_object_taxonomies( $post_type, 'objects' );
+			if ( ! empty( $objects ) ) {
+				foreach ( $objects as $tax ) {
+					if ( ! empty( $tax->public ) && empty( $tax->_builtin ) ) {
+						$taxonomies[] = $tax->name;
+					}
+				}
+			}
+		}
+	}
+
+	$taxonomies = array_diff( $taxonomies, array( 'category', 'post_tag' ) );
+	return apply_filters( 'ampforwp_single_custom_taxonomies', array_values( $taxonomies ), $post_id );
+}
+
+/**
+ * Whether the post has any displayable custom taxonomy terms on AMP singles.
+ */
+function ampforwp_post_has_custom_taxonomies( $post_id = null ) {
+	if ( empty( $post_id ) ) {
+		$post_id = ampforwp_get_the_ID();
+	}
+	$taxonomies = ampforwp_get_custom_taxonomies_for_single( $post_id );
+	if ( empty( $taxonomies ) ) {
+		return false;
+	}
+	foreach ( $taxonomies as $taxonomy ) {
+		if ( ! taxonomy_exists( $taxonomy ) ) {
+			continue;
+		}
+		$terms = get_the_terms( $post_id, $taxonomy );
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * Render custom taxonomy terms on AMP single post/page.
+ *
+ * @param int|null $post_id Post ID.
+ * @param array    $args    Optional. wrapper_class, term_prefix, echo.
+ * @return string|bool HTML when echo is false, true when echoed, false when nothing to show.
+ */
+function ampforwp_display_custom_taxonomies( $post_id = null, $args = array() ) {
+	if ( empty( $post_id ) ) {
+		$post_id = ampforwp_get_the_ID();
+	}
+	if ( empty( $post_id ) ) {
+		return false;
+	}
+
+	$taxonomies = ampforwp_get_custom_taxonomies_for_single( $post_id );
+	if ( empty( $taxonomies ) ) {
+		return false;
+	}
+
+	$args = wp_parse_args(
+		$args,
+		array(
+			'wrapper_class' => 'amp-wp-meta amp-wp-tax-tag ampforwp-tax-tag',
+			'term_prefix'   => 'amp-tag-',
+			'echo'          => true,
+		)
+	);
+
+	$link_enabled = ( true == ampforwp_get_setting( 'ampforwp-cats-tags-links-single' ) );
+	$amp_archives = ( true == ampforwp_get_setting( 'ampforwp-archive-support' ) );
+	$selected     = ampforwp_get_setting( 'ampforwp-custom-taxonomies' );
+	if ( ! is_array( $selected ) ) {
+		$selected = array();
+	}
+	$output = '';
+
+	foreach ( $taxonomies as $taxonomy ) {
+		if ( ! taxonomy_exists( $taxonomy ) ) {
+			continue;
+		}
+		$terms = get_the_terms( $post_id, $taxonomy );
+		if ( empty( $terms ) || is_wp_error( $terms ) ) {
+			continue;
+		}
+
+		$tax_obj = get_taxonomy( $taxonomy );
+		$label   = ( isset( $tax_obj->labels->name ) && $tax_obj->labels->name ) ? $tax_obj->labels->name : $taxonomy;
+
+		$output .= '<div class="' . esc_attr( $args['wrapper_class'] ) . ' ampforwp-custom-taxonomy ampforwp-tax-' . esc_attr( $taxonomy ) . '">';
+		$output .= '<span class="ampforwp-tax-label">' . esc_html( $label ) . ': </span>';
+
+		foreach ( $terms as $term ) {
+			$term_html = esc_html( $term->name );
+			if ( $link_enabled ) {
+				$term_link = get_term_link( $term );
+				if ( ! is_wp_error( $term_link ) ) {
+					if ( $amp_archives && in_array( $taxonomy, $selected, true ) ) {
+						$term_link = ampforwp_url_controller( $term_link );
+					}
+					$term_html = '<a href="' . esc_url( $term_link ) . '" title="' . esc_attr( $term->name ) . '">' . esc_html( $term->name ) . '</a>';
+				}
+			}
+			$output .= '<span class="' . esc_attr( $args['term_prefix'] . $term->term_id ) . '">' . $term_html . '</span>';
+		}
+		$output .= '</div>';
+	}
+
+	if ( '' === $output ) {
+		return false;
+	}
+
+	if ( $args['echo'] ) {
+		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $output;
+		return true;
+	}
+
+	return $output;
+}
+
 // HIDE/SHOW TAG AND CATEGORY #4326 
 function ampforwp_get_taxonomy_meta($term_id,$type=''){
     if($type=='' || $type=='data'){
