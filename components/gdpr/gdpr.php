@@ -36,6 +36,8 @@ function amp_gdpr_output(){
 	$settings = $gdpr_text['settings'];
 	$more_info = isset($gdpr_text['more_info']) ? $gdpr_text['more_info'] : "";
 	$privacy_button_text = $gdpr_text['privacy_button_text'];
+	$gpc_enabled = function_exists( 'ampforwp_is_gpc_enabled' ) && ampforwp_is_gpc_enabled();
+	$gpc_check_url = $gpc_enabled && function_exists( 'ampforwp_get_gpc_check_consent_url' ) ? ampforwp_get_gpc_check_consent_url() : '';
     ?>
     <amp-geo layout="nodisplay">
         <script type="application/json">
@@ -47,17 +49,34 @@ function amp_gdpr_output(){
         </script>
     </amp-geo>
     <amp-consent id="ampforwpConsent" layout="nodisplay">
-		<script type="application/json">{
-		"consentInstanceId": "ampforwp-consent",
-		"consentRequired": false,
-		"geoOverride": {
-			"eea": {
-			"promptUI": "gdpr_c",
-			"consentRequired": true
-			}
-		},
-		"postPromptUI": "post-consent-ui"
-		}</script>
+		<script type="application/json"><?php
+		$consent_config = array(
+			'consentInstanceId' => 'ampforwp-consent',
+			'consentRequired'   => false,
+			'geoOverride'       => array(
+				'eea' => array(
+					'promptUI'        => 'gdpr_c',
+					'consentRequired' => true,
+				),
+			),
+			'postPromptUI'      => 'post-consent-ui',
+		);
+		if ( $gpc_enabled && $gpc_check_url ) {
+			// Remote check handles GPC opt-out and EEA prompting via matchedGeoGroup.
+			$consent_config['consentRequired']  = 'remote';
+			$consent_config['checkConsentHref'] = $gpc_check_url;
+			$consent_config['promptUI']         = 'gdpr_c';
+		}
+		/**
+		 * Filter amp-consent JSON config for the built-in GDPR / GPC UI.
+		 *
+		 * @param array $consent_config Consent configuration.
+		 */
+		$consent_config = apply_filters( 'ampforwp_amp_consent_config', $consent_config );
+		echo "\n\t\t";
+		echo wp_json_encode( $consent_config );
+		echo "\n\t\t";
+		?></script>
           <div class="gdpr" id="gdpr_c">
             <div class="gdpr_w">
               <div class="gdpr_x" role="button" tabindex="0" on="tap:ampforwpConsent.dismiss">X</div>

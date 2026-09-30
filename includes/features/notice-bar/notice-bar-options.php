@@ -251,6 +251,26 @@ function ampforwp_notice_bar_options($opt_name){
                'title'     => esc_html__('New Guidelines', 'accelerated-mobile-pages'),
                'default'   => 0,
            ),
+           array(
+            'id' => 'ampforwp-notice-gpc',
+            'type' => 'section',
+            'title' => esc_html__('Global Privacy Control (GPC)', 'accelerated-mobile-pages'),
+            'indent' => true,
+            'layout_type' => 'accordion',
+            'accordion-open'=> 1,
+                  ),
+           array(
+               'id'        =>'amp-gpc-compliance-switch',
+               'type'      => 'switch',
+               'title'     => esc_html__('Respect Global Privacy Control (GPC)', 'accelerated-mobile-pages'),
+               'default'   => 0,
+               'tooltip-subtitle' => sprintf(
+                    '%s <a href="%s" target="_blank">%s</a>',
+                    esc_html__('When enabled, visitors who send a GPC / Sec-GPC signal are treated as opted out of sale or sharing. Ads and analytics stay blocked via amp-consent. Also publishes', 'accelerated-mobile-pages'),
+                    esc_url('https://globalprivacycontrol.org/'),
+                    esc_html__('Learn more about GPC', 'accelerated-mobile-pages')
+               ),
+           ),
             array(
             'id' => 'ampforwp-notice-quantcast',
             'type' => 'section',

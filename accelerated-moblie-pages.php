@@ -724,6 +724,7 @@ if ( ! class_exists( 'Ampforwp_Init', false ) ) {
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/analytics/analytics-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/structure-data/structured-data-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/notice-bar/notice-bar-functions.php";
+			require_once AMPFORWP_PLUGIN_DIR."includes/features/gpc/gpc-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/features/push-notification/push-notification-functions.php";
 			require_once AMPFORWP_PLUGIN_DIR."includes/mb-helper-function.php";
 			
@@ -1096,12 +1097,16 @@ if(!function_exists('ampforwp_get_setup_info')){
         }else if($ux_option=="ampforwp-ux-privacy-section"){
 			$ux_cookie_enable = ampforwp_get_setting('amp-enable-notifications');
 			$ux_compiance_switch = ampforwp_get_setting('amp-gdpr-compliance-switch');
+			$ux_gpc_switch = ampforwp_get_setting('amp-gpc-compliance-switch');
 			$policy_arr = array();
 			if($ux_cookie_enable){
 				$policy_arr[] = "Cookie Consent";
 			}
 			if($ux_compiance_switch){
 				$policy_arr[] = "GDPR";
+			}
+			if($ux_gpc_switch){
+				$policy_arr[] = "GPC";
 			}
 			$ux_content = implode(", ", $policy_arr);
 		}else if($ux_option=="ampforwp_ux_extension_check"){
@@ -1351,12 +1356,19 @@ if ( ! function_exists('ampforwp_initialise_classes') ) {
 function ampforwp_get_data_consent(){
 	global $redux_builder_amp;
 	$dboc = false;
-	$is_dboc = '';
-	if(isset($redux_builder_amp['amp-gdpr-compliance-switch']) && $redux_builder_amp['amp-gdpr-compliance-switch'] ){
-		
-				$dboc = true;
+	if ( isset( $redux_builder_amp['amp-gdpr-compliance-switch'] ) && $redux_builder_amp['amp-gdpr-compliance-switch'] ) {
+		$dboc = true;
 	}
-	return $dboc;
+	// GPC uses amp-consent + data-block-on-consent the same way GDPR does.
+	if ( function_exists( 'ampforwp_is_gpc_enabled' ) && ampforwp_is_gpc_enabled() ) {
+		$dboc = true;
+	}
+	/**
+	 * Filter whether AMP components should use data-block-on-consent.
+	 *
+	 * @param bool $dboc Whether consent blocking is active.
+	 */
+	return (bool) apply_filters( 'ampforwp_get_data_consent', $dboc );
 }
 
 //Levelup Compatibility
