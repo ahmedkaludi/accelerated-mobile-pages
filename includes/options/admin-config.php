@@ -7429,6 +7429,15 @@ $single_page_options = array(
                 'required' => array('content-sneak-peek' , '=' , '1'),
             ),
             array(
+                'id'       => 'content-sneak-peek-nonamp',
+                'type'     => 'switch',
+                'class'    => 'child_opt child_opt_arrow',
+                'title'    => esc_html__('Link to Non-AMP page', 'accelerated-mobile-pages'),
+                'default'  => 0,
+                'tooltip-subtitle' => esc_html__('Redirect visitors to the non-AMP version when they click the Show Full Article button.', 'accelerated-mobile-pages'),
+                'required' => array('content-sneak-peek' , '=' , '1'),
+            ),
+            array(
                 'id'        => 'content-sneak-peek-txt-color',
                 'title'     => esc_html__('Text Color', 'accelerated-mobile-pages'),
                 'tooltip-subtitle'  => esc_html__('Choose the color for button\'s text','accelerated-mobile-pages'),

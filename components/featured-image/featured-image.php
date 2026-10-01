@@ -72,12 +72,23 @@ function ampforwp_framework_get_featured_image(){
 			if(function_exists('fifu_show_elements')){
 				$fifu_image_url = get_post_meta($post_id, 'fifu_image_url', true);
 				if($fifu_image_url){
-					$size = getimagesize(get_the_post_thumbnail_url());
-					if(isset($size[0])){
-						$image[1] = $size[0];
-					}
-					if(isset($size[1])){
-						$image[2] = $size[1];
+					$fifu_dimension = get_post_meta($post_id, 'fifu_image_dimension', true);
+					if ( ! empty( $fifu_dimension ) && false !== strpos( $fifu_dimension, ';' ) ) {
+						$fifu_size = explode( ';', $fifu_dimension );
+						if ( ! empty( $fifu_size[0] ) ) {
+							$image[1] = $fifu_size[0];
+						}
+						if ( ! empty( $fifu_size[1] ) ) {
+							$image[2] = $fifu_size[1];
+						}
+					} elseif ( ini_get( 'allow_url_fopen' ) ) {
+						$size = @getimagesize( get_the_post_thumbnail_url() );
+						if ( isset( $size[0] ) ) {
+							$image[1] = $size[0];
+						}
+						if ( isset( $size[1] ) ) {
+							$image[2] = $size[1];
+						}
 					}
 				}
 			}

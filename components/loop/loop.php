@@ -111,6 +111,9 @@ $count = 1;
 function call_loops_standard($data=array()){
 	global $amp_q;
 	$post_type = get_post_type();
+	if ( empty( $post_type ) ) {
+		$post_type = 'post';
+	}
 	if (get_query_var( 'paged' ) ) {
 	    $paged = get_query_var('paged');
 	} elseif ( get_query_var( 'page' ) ) {
@@ -124,6 +127,14 @@ function call_loops_standard($data=array()){
 	if ( is_archive() ) {
 		$exclude_ids = ampforwp_exclude_posts();
 		$qobj = get_queried_object();
+		// On taxonomy archives get_post_type() is often false / wrong before the loop,
+		// so use the post types registered for that taxonomy (e.g. custom post types).
+		if ( ! empty( $qobj->taxonomy ) && taxonomy_exists( $qobj->taxonomy ) ) {
+			$taxonomy_obj = get_taxonomy( $qobj->taxonomy );
+			if ( ! empty( $taxonomy_obj->object_type ) ) {
+				$post_type = $taxonomy_obj->object_type;
+			}
+		}
 		if( !is_date() ){
 				
 				$args = array(

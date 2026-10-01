@@ -681,13 +681,15 @@ function ampforwp_new_dir( $dir ) {
 			add_filter( 'the_content', 'ampforwp_the_content_filter', 2 );
 		}
 		function ampforwp_the_content_filter( $content ) {
-				 $content = preg_replace('/property=[^>]*/', '', $content);
-				 $content = preg_replace('/vocab=[^>]*/', '', $content);
-				 $content = preg_replace('/noshade=[^>]*/', '', $content);
-				 $content = preg_replace('/contenteditable=[^>]*/', '', $content);
-				 $content = preg_replace('/non-refundable=[^>]*/', '', $content);
-				 $content = preg_replace('/security=[^>]*/', '', $content);
-				 $content = preg_replace('/deposit=[^>]*/', '', $content);
+				 // Match only as HTML attributes (space-prefixed inside a tag) so URL
+				 // query params like selectedproperty= are not corrupted. #5747
+				 $content = preg_replace('/(<[^>]+)(\sproperty=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\svocab=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\snoshade=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\scontenteditable=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\snon-refundable=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\ssecurity=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
+				 $content = preg_replace('/(<[^>]+)(\sdeposit=(?:"[^"]*"|\'[^\']*\'|[^\s>]*))/', '$1', $content);
 				 $content = preg_replace('/nowrap="nowrap"/', '', $content);
 				 $content = preg_replace('#<comments-count.*?>(.*?)</comments-count>#i', '', $content);
 				 $content = preg_replace('#<badge.*?>(.*?)</badge>#i', '', $content);
@@ -4126,6 +4128,9 @@ function ampforwp_view_nonamp(){
    		$nofollow = 'rel=nofollow';
    	}
 	$amp_url = ampforwp_amphtml_generator();
+	if ( empty( $amp_url ) ) {
+		return;
+	}
 	$amp_url = explode('/', $amp_url);
 	$amp_url = array_flip($amp_url);
 	$endpoint = AMPFORWP_AMP_QUERY_VAR;
@@ -7172,9 +7177,17 @@ if ( ! function_exists('ampforwp_content_sneak_peek') ) {
 function ampforwp_sneak_peek_content_modifier($content){
 	
 	if ( strlen($content) >= 3000 ) {
-		$content = '<div class="fd-h" data-amp-bind-class="contentVisible ? \'show\' : \'fd-h\'">' . $content . '</div>';
-		$content = $content . '<div id="fader" class="content-fader" data-amp-bind-class="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
-		$content = $content . '<div class="fd-b-c" data-amp-bind-class="contentVisible ? \'fd-b-c hide\' : \'fd-b-c\'"><button class="fd-b" data-amp-bind-text="contentVisible ? \'\' : \''.ampforwp_translation(ampforwp_get_setting('content-sneak-peek-btn-text'), 'Show Full Article').'\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.ampforwp_translation(ampforwp_get_setting('content-sneak-peek-btn-text'), 'Show Full Article').'</button></div>';
+		$btn_text = ampforwp_translation(ampforwp_get_setting('content-sneak-peek-btn-text'), 'Show Full Article');
+		// Redirect to non-AMP when option is enabled #5744
+		if ( ampforwp_get_setting('content-sneak-peek-nonamp') ) {
+			$content = '<div class="fd-h">' . $content . '</div>';
+			$content = $content . '<div id="fader" class="content-fader"></div>';
+			$content = $content . '<div class="fd-b-c"><a class="fd-b" href="'.esc_url( get_permalink() ).'">'.esc_html( $btn_text ).'</a></div>';
+		} else {
+			$content = '<div class="fd-h" data-amp-bind-class="contentVisible ? \'show\' : \'fd-h\'">' . $content . '</div>';
+			$content = $content . '<div id="fader" class="content-fader" data-amp-bind-class="contentVisible ? \'content-fader hide\' : \'content-fader\'"></div>';
+			$content = $content . '<div class="fd-b-c" data-amp-bind-class="contentVisible ? \'fd-b-c hide\' : \'fd-b-c\'"><button class="fd-b" data-amp-bind-text="contentVisible ? \'\' : \''.esc_attr( $btn_text ).'\'" on="tap:AMP.setState({contentVisible: !contentVisible})">'.esc_html( $btn_text ).'</button></div>';
+		}
 	}
 	return $content;
 }
@@ -7192,7 +7205,7 @@ function ampforwp_sneak_peek_css(){
 	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo ampforwp_sanitize_color($txt_color); ?>;font-size: 16px;font-weight: 700;padding: 12px 32px 12px 32px;background-color: <?php 
 	//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo ampforwp_sanitize_color($btn_color); ?>;
+	echo ampforwp_sanitize_color($btn_color); ?>;text-decoration:none;display:inline-block;
     }
     .fd-h:after {
 	    content: "";
@@ -7207,6 +7220,10 @@ function ampforwp_sneak_peek_css(){
 <?php }
 // Content Sneak Peek Scripts
 function ampforwp_sneak_peek_scripts($data) {
+	// amp-bind only needed for in-place expand; skip when redirecting to non-AMP #5744
+	if ( ampforwp_get_setting('content-sneak-peek-nonamp') ) {
+		return $data;
+	}
 	if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
 		$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
 	}
@@ -9745,7 +9762,8 @@ function ampforwp_wp_rocket_compatibility($content){
 	    }else if(isset($cnds_arr['all'])){
 	    	$img_cdn_url = $cnds_arr['all'];
 	    }
-	    if($img_cdn_url!=''){
+	    // Skip empty buffer (e.g. redirects); loadHTML('') throws ValueError on PHP 8. #5745
+	    if($img_cdn_url!='' && !empty($content)){
 	    	$parse_url = parse_url($img_cdn_url);
 			if(!isset($parse_url['scheme'])){
 			     if(!preg_match('/\/\//', $img_cdn_url)){

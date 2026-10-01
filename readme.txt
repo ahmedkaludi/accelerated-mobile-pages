@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 7.1
-Stable tag: 1.1.17
+Stable tag: 1.1.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,14 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.18 (01 October 2026) =
+* Added : Option to redirect to non-AMP version from Content Sneak Peek "Show Full Article" button #5744
+* Added : Integration with Global Privacy Control (GPC) consent #5728
+* Added : Custom meta taxonomy support for amp #5748
+* Compatibility : Add compatibility with FIFU plugin #5732
+* Fixed : Regex in ampforwp_the_content_filter() can modify URL query parameters #5747
+* Fixed : Redirects on AMP URLs return HTTP 500 on PHP 8 with WP Rocket #5745
+
 = 1.1.17 (10 September 2026) =
 * Fixed  : Stored Cross-Site Scripting via Comment Content Regex Transformation in ampforwp_remove_unwanted_code() — use DOM-based label attribute removal and block javascript: href protocols
 * Improvement : Optimized feedback form 
@@ -314,16 +322,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: PHP Deprecated: error with AMP #5621
 * Test: Test with WordPress version 6.7 #5657
 * Improvement : Few improvements required #5630
-
-= 1.0.99.2 (23 October 2024) =
-* Fixed: Cross-Site Request Forgery discovered by David Gallagher ( Wordfence )
-
-= 1.0.99.1 (24 September 2024) =
-* Fixed: The tag <? is disallowed error in 1.0.99 WITH MENU #5646
-
-= 1.0.99 (23 September 2024) =
-* Fixed: Conflict issue with Infinite Scroll option. #5638
-* Fixed: Some language characters breaking in amp footer #5627 , #5639 , #5620
-* Fixed: Code Improvement #5630
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

@@ -3,7 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 global $redux_builder_amp;
-	if( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['ampforwp-cats-single'] || isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single'] ) { ?>
+	$ampforwp_has_custom_tax = ampforwp_post_has_custom_taxonomies( $this->ID );
+	if( ( isset($redux_builder_amp['ampforwp-cats-single']) && $redux_builder_amp['ampforwp-cats-single'] ) || ( isset($redux_builder_amp['ampforwp-tags-single']) && $redux_builder_amp['ampforwp-tags-single'] ) || $ampforwp_has_custom_tax ) { ?>
 <div class="amp-wp-article-header amp-wp-article-category ampforwp-meta-taxonomy ">
 
 	
@@ -58,7 +59,9 @@ global $redux_builder_amp;
 						  	echo '<span class="tt-lb">'.esc_attr( ampforwp_translation($redux_builder_amp['amp-translator-tags-text'], 'Tags:' ) .' ' ).'</span>';
 						}?>
 				</div>
-	<?php endif; }?>
+	<?php endif; }
+		ampforwp_display_custom_taxonomies( $this->ID );
+	?>
 
 </div> <?php } ?>
 

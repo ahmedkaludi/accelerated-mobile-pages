@@ -1564,6 +1564,9 @@ function ampforwp_is_callrail_switch_active()
 
 add_action('pre_amp_render_post', 'amp_saswp_faq_comp');
 function amp_saswp_faq_comp(){
+    if ( ! defined( 'SASWP_VERSION' ) ) {
+        return;
+    }
     if ( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() ) {
     	remove_shortcode('saswp_tiny_multiple_faq');
     	add_shortcode( 'saswp_tiny_multiple_faq', 'amp_saswp_tiny_multi_faq_render' );
@@ -1573,6 +1576,7 @@ function amp_saswp_faq_comp(){
 function amp_saswp_tiny_multi_faq_render( $atts, $content = null ){
     global $saswp_tiny_multi_faq;
     $output = '';
+    $allowed_headline_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'div' );
     $saswp_tiny_multi_faq = shortcode_atts(
         [
             'css_class' => '',
@@ -1589,11 +1593,15 @@ function amp_saswp_tiny_multi_faq_render( $atts, $content = null ){
     if($saswp_tiny_multi_faq['html'] == 'true'){
         if( !empty($saswp_tiny_multi_faq['elements']) ){
             foreach ($saswp_tiny_multi_faq['elements'] as $value) {
+                $headline_tag = isset( $value['headline'] ) ? strtolower( trim( $value['headline'] ) ) : 'h3';
+                if ( ! in_array( $headline_tag, $allowed_headline_tags, true ) ) {
+                    $headline_tag = 'h3';
+                }
                 $output .= '<details>';
                 $output .= '<summary>';
-                $output .= '<'.esc_attr($value['headline']).'>';
+                $output .= '<'.$headline_tag.'>';
                 $output .=  esc_html($value['question']);
-                $output .= '</'.esc_attr($value['headline']).'>';
+                $output .= '</'.$headline_tag.'>';
                 $output .= '</summary>';
                 $output .= '<div>';
                 if ( ! empty( $value['image'] ) ) {
