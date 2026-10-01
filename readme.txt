@@ -201,6 +201,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Compatibility : Add compatibility with FIFU plugin #5732
 * Fixed : Regex in ampforwp_the_content_filter() can modify URL query parameters #5747
 * Fixed : Redirects on AMP URLs return HTTP 500 on PHP 8 with WP Rocket #5745
+* Fixed : Unauthenticated Stored Cross-Site Scripting via 'headline-*' Shortcode Attribute disclosed by Wordfence (crow)
 
 = 1.1.17 (10 September 2026) =
 * Fixed  : Stored Cross-Site Scripting via Comment Content Regex Transformation in ampforwp_remove_unwanted_code() — use DOM-based label attribute removal and block javascript: href protocols
