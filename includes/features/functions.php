@@ -1874,3 +1874,20 @@ function ampforwp_get_infinite_scroll_post_on_id(){
     }
     return $in_ids;
 }
+
+/**
+ * Print AMP-sanitized archive description.
+ * Author bio is editable by Subscriber+; never execute shortcodes there (CVE-2026-103908).
+ * Category/tag/tax descriptions may still run shortcodes (#3653).
+ *
+ * @param string $arch_desc Already AMP-sanitized HTML from AMPFORWP_Content.
+ */
+function ampforwp_print_archive_description( $arch_desc ) {
+	if ( is_author() ) {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- amphtml content, no kses
+		echo $arch_desc;
+		return;
+	}
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- amphtml content, no kses
+	echo do_shortcode( $arch_desc );
+}

@@ -66,7 +66,7 @@ function amp_archive_title(){
 		    }
 				if($paged <= '1' && ampforwp_get_setting('ampforwp-cat-description')) {?>
 					<div class="amp-archive-desc">
-						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
+						<?php ampforwp_print_archive_description( $arch_desc ); // amphtml content, no kses ?>
 					</div> <?php	
 			}
 		}	

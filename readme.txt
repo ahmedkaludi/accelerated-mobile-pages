@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 3.0
 Tested up to: 7.1
-Stable tag: 1.1.18
+Stable tag: 1.1.19
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.19 (03 October 2026) =
+* Fixed : Authenticated (Subscriber+) Arbitrary Shortcode Execution via Author Biographical Info disclosed by Wordfence (Kuba) CVE-2026-103908
+
 = 1.1.18 (01 October 2026) =
 * Added : Option to redirect to non-AMP version from Content Sneak Peek "Show Full Article" button #5744
 * Added : Integration with Global Privacy Control (GPC) consent #5728
