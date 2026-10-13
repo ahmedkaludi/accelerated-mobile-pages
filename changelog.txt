@@ -1,5 +1,5 @@
 == Changelog ==
-= 1.1.19 (03 October 2026) =
+= 1.1.19 (13 October 2026) =
 * Fixed : Authenticated (Subscriber+) Arbitrary Shortcode Execution via Author Biographical Info disclosed by Wordfence (Kuba)
 
 = 1.1.18 (01 October 2026) =

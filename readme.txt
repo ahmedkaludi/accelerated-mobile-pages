@@ -194,7 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
-= 1.1.19 (03 October 2026) =
+= 1.1.19 (13 October 2026) =
 * Fixed : Authenticated (Subscriber+) Arbitrary Shortcode Execution via Author Biographical Info disclosed by Wordfence (Kuba) CVE-2026-103908
 
 = 1.1.18 (01 October 2026) =
