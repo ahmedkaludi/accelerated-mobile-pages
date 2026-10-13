@@ -113,7 +113,7 @@ if ( get_query_var( 'paged' ) ) {
 			if( $arch_desc ) {  
 				if($paged <= '1' && ampforwp_get_setting('ampforwp-cat-description')) {?>
 					<div class="taxonomy-description">
-						<?php echo do_shortcode($arch_desc);// amphtml content, no kses ?>
+						<?php ampforwp_print_archive_description( $arch_desc ); // amphtml content, no kses ?>
 				  </div>
 			  </div> <?php
 				}
