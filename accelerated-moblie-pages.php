@@ -3,7 +3,7 @@
 Plugin Name: Accelerated Mobile Pages
 Plugin URI: https://wordpress.org/plugins/accelerated-mobile-pages/
 Description: AMP for WP - Accelerated Mobile Pages for WordPress
-Version: 1.1.19
+Version: 1.1.20
 Author: Ahmed Kaludi, Mohammed Kaludi
 Author URI: https://ampforwp.com/
 Donate link: https://www.paypal.me/Kaludi/25
@@ -20,7 +20,7 @@ define('AMPFORWP_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('AMPFORWP_DISQUS_URL',plugin_dir_url(__FILE__).'includes/disqus.html');
 define('AMPFORWP_IMAGE_DIR',plugin_dir_url(__FILE__).'images');
 define('AMPFORWP_MAIN_PLUGIN_DIR', plugin_dir_path( __DIR__ ) );
-define('AMPFORWP_VERSION','1.1.19');
+define('AMPFORWP_VERSION','1.1.20');
 define('AMPFORWP_EXTENSION_DIR',plugin_dir_path(__FILE__).'includes/options/extensions');
 define('AMPFORWP_ANALYTICS_URL',plugin_dir_url(__FILE__).'includes/features/analytics');
 
@@ -43,7 +43,7 @@ function ampforwp_maybe_flush_rewrite_on_version_change() {
 
 if(!defined('AMPFROWP_HOST_NAME')){
 	$urlinfo = get_bloginfo('url');
-	$url = parse_url($urlinfo);
+	$url = wp_parse_url($urlinfo);
 	$host = $url['host'];
 	define('AMPFROWP_HOST_NAME', esc_attr($host));
 }
@@ -783,7 +783,7 @@ function ampforwp_bundle_core_amp_files(){
 		remove_filter( 'amp_content_sanitizers', 'jnews_amp_content_sanitize');
 	}
 	if (function_exists('wpda_hb_pro__plugins_loaded')) {
-		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+		$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
     	if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
 			remove_action('plugins_loaded', 'wpda_hb_pro__plugins_loaded');
 		}
@@ -807,8 +807,7 @@ if ( ! function_exists('ampforwp_init') ) {
 
 	do_action( 'amp_init' );
 
-	load_plugin_textdomain( 'accelerated-mobile-pages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-	
+	// Translations load from the plugin headers. WordPress.org supplies them automatically.
 	// Adding rewrite rules only when we are in standard mode
 	if (!is_amp_plugin_active()) {
 	add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
@@ -849,8 +848,8 @@ function amp_update_db_check() {
 		wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ampforwp_notice'] ) ), 'ampforwp_notice' ) ) {
 
 		update_option( 'ampforwp_theme_notice', true, false );
-		wp_redirect("admin.php?page=amp_options");
-		exit; // Always exit after wp_redirect
+		wp_safe_redirect( admin_url( 'admin.php?page=amp_options' ) );
+		exit;
 	}
 
 	if ( get_option( 'AMPforwp_db_version' ) !== $ampforwp_current_version ) {
@@ -861,8 +860,8 @@ function amp_update_db_check() {
 			wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ampforwp_notice'] ) ), 'ampforwp_notice' ) ) {
 
 			update_option( 'AMPforwp_db_version', $ampforwp_current_version );
-			wp_redirect(remove_query_arg('ampforwp-dismiss'), 301);
-			exit; // Always exit after wp_redirect
+			wp_safe_redirect( remove_query_arg( 'ampforwp-dismiss' ), 301 );
+			exit;
 		}
 	}
 }
@@ -1313,7 +1312,8 @@ if ( false == get_transient('ampforwp-pm-disabler') ) {
 			update_option('active_plugins', array_flip($ampforwp_active_plugins), false);
 			set_transient('ampforwp-pm-disabler', true);
 			include_once( ABSPATH . 'wp-includes/pluggable.php' );
-			wp_redirect(admin_url('plugins.php'));
+			wp_safe_redirect( admin_url( 'plugins.php' ) );
+			exit;
 		}
 	}
 	elseif(isset($ampforwp_active_plugins['amp-plugin-manager-master/ampforwp-3rd-party-plugin-creator.php'] )){
@@ -1323,7 +1323,8 @@ if ( false == get_transient('ampforwp-pm-disabler') ) {
 			update_option('active_plugins', array_flip($ampforwp_active_plugins), false);
 			set_transient('ampforwp-pm-disabler', true);
 			include_once( ABSPATH . 'wp-includes/pluggable.php' );
-			wp_redirect(admin_url('plugins.php'));
+			wp_safe_redirect( admin_url( 'plugins.php' ) );
+			exit;
 		}
 	}
 

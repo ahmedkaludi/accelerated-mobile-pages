@@ -1,5 +1,9 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /* Loader.php is for loading custom extensions for redux and in 
  * accelerated-mobile-pages\includes\options\extensions folder
  * 

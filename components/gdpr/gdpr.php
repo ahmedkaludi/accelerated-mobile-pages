@@ -333,7 +333,7 @@ function amp_consent_submission(){
 		//setcookie('ampforwp_gdpr_action','true', time() + (86400 * 30), "/");
        	$current_url = $site_url = $site_host = $amp_site = '';
 		$current_url 	= wp_get_referer();
-		$site_url 		= parse_url( get_site_url() );
+		$site_url 		= wp_parse_url( get_site_url() );
 		$site_host 		= $site_url['host'];
 		$amp_site 		= $site_url['scheme'] . '://' . $site_url['host'];
 		header("AMP-Access-Control-Allow-Source-Origin: ".esc_url($amp_site));

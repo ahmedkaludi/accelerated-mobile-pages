@@ -2,9 +2,9 @@
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
-Requires at least: 3.0
+Requires at least: 6.4
 Tested up to: 7.1
-Stable tag: 1.1.19
+Stable tag: 1.1.20
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.20 (4 November 2026) =
+* Fixed : Unauthenticated Stored Cross-Site Scripting via attribute-boundary shift in ampforwp_the_content_filter_full() disclosed by Wordfence (Kohav) CVE-2026-120686
+* Fixed : Worked on Plugin Check Plugin issues
+
 = 1.1.19 (13 October 2026) =
 * Fixed : Authenticated (Subscriber+) Arbitrary Shortcode Execution via Author Biographical Info disclosed by Wordfence (Kuba) CVE-2026-103908
 
@@ -310,21 +314,5 @@ You can contact us from [here](https://ampforwp.com/contact/)
 * Fixed: Security issue reported by "Wordfence" #5662
 * Fixed: AMP Pixel URL Issue After Recent Plugin Update 1.1.1 #5663
 * Fixed: Function _load_textdomain_just_in_time was called incorrectly #5664
-
-= 1.1.1 (12 November 2024) =
-* New : Manual post selection in infinite scroll #5651
-* Fixed: Version 1.0.99.1 causing Tag issue. #5650
-* Fixed: Errors in debug.log, PHP Deprecated: trim(): Passing null to parameter #5652
-* Fixed: GA-4 Analytic not working on infinite scroll post #5656
-* Fixed: The Last Modified date appears broken in the AMP version #5659
-* Fixed: Feature images are not loading in homepage due to conflict with JNews theme lazyload #5655
-* Fixed: Afterpay Gateway for WooCommerce plugin is causing issue in Amp Validator #5643
-* Fixed: FV Gravatar Cache plugin conflicts with AMP. #5611
-* Fixed: Php error on user end. #5642
-* Fixed: The author image added by the "Simple User Avatar plugin" is not showing in the AMP. #5606
-* Fixed: Cron reschedule event error for hook #5595
-* Fixed: PHP Deprecated: error with AMP #5621
-* Test: Test with WordPress version 6.7 #5657
-* Improvement : Few improvements required #5630
 
 Full changelog available [ at changelog.txt](https://plugins.svn.wordpress.org/accelerated-mobile-pages/trunk/changelog.txt)

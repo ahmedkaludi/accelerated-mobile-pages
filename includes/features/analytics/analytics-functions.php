@@ -105,7 +105,7 @@ function ampforwp_analytics() {
 							'gtag_id'=>$ga4_id,
 							),
 						);
-		$url = parse_url( home_url() , PHP_URL_HOST );
+		$url = wp_parse_url( home_url() , PHP_URL_HOST );
 		$ga4_fields['vars']['config'] = array(
 						$ga4_id=> array(
 								'groups'=>'default',

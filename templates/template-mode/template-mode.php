@@ -111,7 +111,7 @@ Class AMPforWP_theme_mode{
 		  header("access-control-allow-headers:Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token");
 		    /* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
 		  header("Access-Control-Allow-Origin:".esc_attr($_SERVER['HTTP_ORIGIN']) );
-		  $siteUrl = parse_url(  get_site_url() );
+		  $siteUrl = wp_parse_url(  get_site_url() );
 		  header("AMP-Access-Control-Allow-Source-Origin:".esc_attr($siteUrl['scheme']) . '://' . esc_attr($siteUrl['host']) );
 		  header("access-control-expose-headers:AMP-Access-Control-Allow-Source-Origin");
 		  header("Content-Type:application/json;charset=utf-8");
@@ -687,7 +687,7 @@ Class AMPforWP_theme_mode{
 }//Class Closed
 add_action('after_setup_theme', 'ampforwp_template_mode_is_activate', 999);
 function ampforwp_template_mode_is_activate(){
-	$url_path = parse_url(add_query_arg(array()), PHP_URL_PATH);
+	$url_path = wp_parse_url(add_query_arg(array()), PHP_URL_PATH);
 	if($url_path=="" || $url_path==null){
 		$url_path = $url_path.'/';
 	}

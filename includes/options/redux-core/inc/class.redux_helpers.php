@@ -335,7 +335,7 @@ namespace ReduxCore\ReduxFramework;
                             if ( filetype( $dir . "/" . $object ) == "dir" ) {
                                 rrmdir( $dir . "/" . $object );
                             } else {
-                                unlink( $dir . "/" . $object );
+                                wp_delete_file( $dir . "/" . $object );
                             }
                         }
                     }
@@ -687,7 +687,7 @@ namespace ReduxCore\ReduxFramework;
                         $version   = '';
 
                         if ( preg_match( '/^[ \t\/*#@]*' . preg_quote( '@version', '/' ) . '(.*)$/mi', $file_data, $match ) && $match[1] ) {
-                            $version = _cleanup_header_comment( $match[1] );
+                            $version = trim( preg_replace( '/\s*(?:\*\/|\?>).*/', '', $match[1] ) );
                         }
                     }else{
                         $version = '';

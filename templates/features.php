@@ -2239,7 +2239,7 @@ function ampforwp_lazy_loading_plugins_compatibility() {
     remove_filter( 'rocket_buffer', '__rocket_protocol_rewrite', PHP_INT_MAX );
     remove_filter( 'wp_calculate_image_srcset', '__rocket_protocol_rewrite_srcset', PHP_INT_MAX );
     if(function_exists('magplus_after_setup')){
-    	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+    	$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 		if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
     		remove_action( 'template_redirect', 'magplus_pagination_redirect' );
     	}
@@ -2393,7 +2393,7 @@ function ampforwp_copat_wp_html_compression() {
 	remove_action('get_header', 'wp_html_compression_start');
 	
 	if( class_exists('BunnyCDN') ){
-		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+		$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 		if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
 			//Remove Action to remove CDN URL from BunnyCDN Plugin
 			remove_action("template_redirect", "doRewrite");
@@ -2445,15 +2445,18 @@ function ampforwp_footer_html_output() {
   	 $privacy = ampforwp_get_setting('amp-inmobi-privacy-mode');
   	 $lang = ampforwp_get_setting('amp-inmobi-lang');
   	 if (empty($privacy)) {
-  	 	$privacy = ["GDPR"];
+  	 	$privacy = array( 'GDPR' );
   	 }else{
 		$exp = explode(',',$privacy);
 		$pri_arr = array();
-		for ($i=0; $i < count($exp); $i++) { 
-			$pr ='"'.$exp[$i].'"';
-			$pri_arr[] = $pr;
+		for ($i=0; $i < count($exp); $i++) {
+			$mode = trim( $exp[$i] );
+			if ( '' === $mode ) {
+				continue;
+			}
+			$pri_arr[] = $mode;
 		}
-		$privacy = $pri_arr;
+		$privacy = ! empty( $pri_arr ) ? $pri_arr : array( 'GDPR' );
 	 }
   	 if (empty($lang)) {
   	 	$lang = 'en';
@@ -2494,7 +2497,7 @@ function ampforwp_footer_html_output() {
           "vendorPurposeIds": [2,4,6,7,9,10,1,3,5,8,11],
           "totalVendors": 1420,
           "lang_": "en",
-          "privacyMode": [<?php echo implode( ',', $privacy);?>],
+          "privacyMode": <?php echo wp_json_encode( $privacy ); ?>,
           "publisherPurposeLegitimateInterestIds": [],
           "hashCode": "<?php echo esc_attr($hashcode)?>",
           "vendorSpecialFeaturesIds": [
@@ -3637,7 +3640,7 @@ if ( ! function_exists( 'ampforwp_youtube_shortcode') ) {
 		$parsed_url = array();
 		$youtube_url = 'https://www.youtube.com/watch?v=';
 		if(isset( $params['id']) ){
-			$parsed_url = parse_url( $params['id'] );
+			$parsed_url = wp_parse_url( $params['id'] );
 		}
 		$server = 'www.youtube.com';
 
@@ -7001,7 +7004,7 @@ function ampforwp_vuukle_comments_markup() {
  				$tag_name = $individual_tag->name;
 			}
    	}
-	$urlParts = parse_url($siteUrl);
+	$urlParts = wp_parse_url($siteUrl);
 	$siteUrl = preg_replace('/^www\./', '', $urlParts['host']);// remove www
 	$srcUrl = 'https://cdn.vuukle.com/amp.html?';
 	$srcUrl = add_query_arg('url' ,get_permalink(), $srcUrl);
@@ -7238,7 +7241,7 @@ function ampforwp_thrive_architect_content(){
 			add_filter( 'ampforwp_modify_the_content','ampforwp_thrive_content');
 		}
 	}
-	$url_path = parse_url(add_query_arg(array()), PHP_URL_PATH);
+	$url_path = wp_parse_url(add_query_arg(array()), PHP_URL_PATH);
 	if($url_path=="" || $url_path==null){
 		$url_path = $url_path.'/';
 	}
@@ -9420,7 +9423,7 @@ function amp_youtube_the_content($content){
  function get_video_id_from_url( $url ) {
 	$short_url_host = 'youtu.be';
 	$video_id = false;
-	$parsed_url = parse_url( $url );
+	$parsed_url = wp_parse_url( $url );
 	
 	if(!isset($parsed_url['host'])){
 		$parsed_url['host'] = '';
@@ -9585,11 +9588,9 @@ function ampforwp_themify_compatibility($content){
 
 add_action( 'wp_ajax_ampforwp_referesh_related_post', 'ampforwp_referesh_related_post' );
 function ampforwp_referesh_related_post() {
-	global $wpdb;
-
 	if (
 		! isset($_POST['verify_nonce']) ||
-		! wp_verify_nonce($_POST['verify_nonce'], 'ampforwp_refresh_related_poost')
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['verify_nonce'] ) ), 'ampforwp_refresh_related_poost' )
 	) {
 		wp_send_json(array('status' => 403, 'message' => esc_html__('User request is not allowed', 'accelerated-mobile-pages')));
 	}
@@ -9597,26 +9598,31 @@ function ampforwp_referesh_related_post() {
 	// Clear transient cache
 	delete_option( '_ampforwp_get_post_percent' );
 
-	// Fetch up to 30 published posts without the meta key
-	$post_ids = $wpdb->get_col("
-		SELECT p.ID
-		FROM {$wpdb->posts} p
-		LEFT JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id AND pm.meta_key = 'ampforwp-amp-on-off'
-		WHERE pm.post_id IS NULL
-		AND p.post_status = 'publish'
-		AND p.post_type = 'post'
-		ORDER BY p.ID ASC
-		LIMIT 30
-	");
+	// Fetch up to 30 published posts without the meta key.
+	$missing_meta = new WP_Query(
+		array(
+			'post_type'              => 'post',
+			'post_status'            => 'publish',
+			'posts_per_page'         => 30,
+			'orderby'                => 'ID',
+			'order'                  => 'ASC',
+			'fields'                 => 'ids',
+			'no_found_rows'          => true,
+			'update_post_term_cache' => false,
+			'meta_query'             => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Admin refresh updates 30 posts that are missing this meta key.
+				array(
+					'key'     => 'ampforwp-amp-on-off',
+					'compare' => 'NOT EXISTS',
+				),
+			),
+		)
+	);
+	$post_ids = $missing_meta->posts;
 
-	// Bulk insert default meta value
-	if (!empty($post_ids)) {
-		$values = array();
-		foreach ($post_ids as $post_id) {
-			$values[] = $wpdb->prepare("(%d, %s, %s)", $post_id, 'ampforwp-amp-on-off', 'default');
+	if ( ! empty( $post_ids ) ) {
+		foreach ( $post_ids as $post_id ) {
+			add_post_meta( (int) $post_id, 'ampforwp-amp-on-off', 'default', true );
 		}
-		$values_sql = implode(',', $values);
-		$wpdb->query("INSERT INTO {$wpdb->postmeta} (post_id, meta_key, meta_value) VALUES $values_sql");
 	}
 
 	// Return updated percent
@@ -9764,7 +9770,7 @@ function ampforwp_wp_rocket_compatibility($content){
 	    }
 	    // Skip empty buffer (e.g. redirects); loadHTML('') throws ValueError on PHP 8. #5745
 	    if($img_cdn_url!='' && !empty($content)){
-	    	$parse_url = parse_url($img_cdn_url);
+	    	$parse_url = wp_parse_url($img_cdn_url);
 			if(!isset($parse_url['scheme'])){
 			     if(!preg_match('/\/\//', $img_cdn_url)){
 			     	$img_cdn_url = '//'.$img_cdn_url;
@@ -9929,14 +9935,14 @@ if (class_exists('WPSEO_Options')) {
 }
 
 function ampforwp_yoast_seo_development($dev){
-	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home() && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
 		$dev = true;
 	}
 	return $dev;
 }	
 function ampforwp_remove_homepage_breadcrumb($data){
-	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 	if (ampforwp_get_setting('ampforwp-seo-selection') == 'yoast' && ampforwp_get_setting('ampforwp-seo-yoast-schema') && ampforwp_is_home() && function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
 		if (isset($data["@graph"][2]["breadcrumb"])) {
 			unset($data["@graph"][2]["breadcrumb"]);

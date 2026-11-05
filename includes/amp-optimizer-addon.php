@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 if (true == ampforwp_get_setting('amp-server-side-rendering')) {
 	add_filter('ampforwp_the_content_last_filter', 'ampforwp_add_optimizer_addon',12);// phpcs:ignore PHPCompatibility.Constants.NewConstants.php_int_minFound
 }

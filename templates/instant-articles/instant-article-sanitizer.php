@@ -133,12 +133,13 @@ function ampforwp_fbia_get_content_DOM($content){
 		$libxml_previous_state = libxml_use_internal_errors( true );
 		$DOMDocument = new DOMDocument( '1.0', get_option( 'blog_charset' ) );
 
-		// DOMDocument isn’t handling encodings too well, so let’s help it a little
+		// DOMDocument expects ISO-8859-1 bytes. HTML entities keep characters intact on WordPress 6.4+.
 		if ( function_exists( 'mb_convert_encoding' ) ) {
 			$content = mb_convert_encoding( $content, 'HTML-ENTITIES', get_option( 'blog_charset' ) );
+			$content = mb_convert_encoding( $content, 'ISO-8859-1', 'UTF-8' );
 		}
 
-		$result = $DOMDocument->loadHTML( '<!doctype html><html><body>' . utf8_decode( $content ) . '</body></html>' );
+		$result = $DOMDocument->loadHTML( '<!doctype html><html><body>' . $content . '</body></html>' );
 		libxml_clear_errors();
 		libxml_use_internal_errors( $libxml_previous_state );
 

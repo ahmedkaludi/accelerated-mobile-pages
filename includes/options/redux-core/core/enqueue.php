@@ -85,7 +85,7 @@ namespace ReduxCore\ReduxFramework;
                 //*****************************************************************
                 Redux_CDN::register_style(
                     'select2-css',
-                    '//cdn.jsdelivr.net/select2/3.5.2/select2.css',
+                    ReduxFramework::$_url . 'assets/css/select2.css',
                     array(),
                     $this->timestamp, //'3.5.2'
                     'all'
@@ -223,7 +223,7 @@ namespace ReduxCore\ReduxFramework;
                 
                 Redux_CDN::register_script(
                     'select2-js',
-                    '//cdn.jsdelivr.net/select2/3.5.2/select2' . $this->min . '.js',
+                    ReduxFramework::$_url . 'assets/js/select2.min.js',
                     array( 'jquery', 'redux-select2-sortable-js' ),
                     $this->timestamp, //'3.5.2',
                     true

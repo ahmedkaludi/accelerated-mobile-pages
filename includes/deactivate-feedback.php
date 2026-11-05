@@ -1,4 +1,7 @@
-<?php 
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 $reasons = array(
     	1 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="temporary"/>' . esc_html__('It is only temporary', 'accelerated-mobile-pages') . '</label></li>',
 		2 => '<li><label><input type="radio" name="ampforwp_disable_reason" value="stopped"/>' . esc_html__('I stopped using AMP on my site', 'accelerated-mobile-pages') . '</label></li>',

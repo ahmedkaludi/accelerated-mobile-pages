@@ -657,7 +657,7 @@ function ampforwp_simple_author_box(){
 		$uaf_upload_url = preg_replace('#^https?:#', '', $uaf_upload_url);
 		
 		if ($uaf_use_absolute_font_path == 0){ // If user use relative path
-			$url_parts = parse_url($uaf_upload_url);
+			$url_parts = wp_parse_url($uaf_upload_url);
 			@$uaf_upload_url = "$url_parts[path]$url_parts[query]$url_parts[fragment]";
 		}
 		$fontsRawData 	= get_option('uaf_font_data');
@@ -1149,7 +1149,7 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 			if ( function_exists('mvp_setup') ) {
 				return ' <span><a class="zox_tw" href="https://twitter.com/'.esc_attr($twitter).'" target="_blank"></a></span>';
 			}else{
-				$parse = parse_url($twitter);	
+				$parse = wp_parse_url($twitter);	
 				if(isset($parse['host']) && $parse['host'] == 'twitter.com'){
 					$twitter_url = $twitter;
 				}else{
@@ -1171,7 +1171,7 @@ if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
 add_action('init','ampforwp_enfold_theme_compatibility',2);
 if(!function_exists('ampforwp_enfold_theme_compatibility')){
 	function ampforwp_enfold_theme_compatibility(){
-		$url_path = parse_url(add_query_arg(array()), PHP_URL_PATH);
+		$url_path = wp_parse_url(add_query_arg(array()), PHP_URL_PATH);
 		if($url_path=="" || $url_path==null){
 			$url_path = $url_path.'/';
 		}
@@ -1194,9 +1194,9 @@ if(!function_exists('ampforwp_remove_enfold_theme_shortcodes_tags')){
 add_action('wp_loaded','ampforwp_http_remover_support');
 function ampforwp_http_remover_support(){
 	if ( class_exists('HTTP_HTTPS_REMOVER')){
-	  	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	  	$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 	  	if (true == ampforwp_get_setting('amp-core-end-point')) {
-	  		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_QUERY),'/' );
+	  		$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_QUERY),'/' );
 	  	}
       	$explode_path = explode('/', $url_path);
 	    if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)) {
@@ -1268,7 +1268,7 @@ function ampforwp_valid_amp_componet_script(){
 //iframes are not working with WP optimize premium #4290
 add_filter('wp_optimize_lazy_load_hook_these','ampforwp_wp_optimize_iframe');
 function ampforwp_wp_optimize_iframe($content){
-	$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+	$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
 	$explode_path = explode('/', $url_path);
 	if ( AMPFORWP_AMP_QUERY_VAR === end( $explode_path)) {
 		$content = array_flip($content);
@@ -1319,7 +1319,7 @@ function ampforwp_execute_amp_prior_marfeel(){
     }
     //Removed OMGF Host Google Fonts Locally in AMP #4775
     if(function_exists( 'omgf_pro_init' ) ){
-        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
+        $url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );
         if( function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path)) {
             remove_action( 'plugins_loaded', 'omgf_pro_init', 49 );
         }
@@ -1439,7 +1439,7 @@ function ampforwp_zeen_lazyload($lazyload){
 
 add_action('plugins_loaded', 'ampforwp_jetpack_boost_compatibility' , 1);
 function ampforwp_jetpack_boost_compatibility(){
-	$url_path = parse_url(add_query_arg(array()), PHP_URL_PATH);
+	$url_path = wp_parse_url(add_query_arg(array()), PHP_URL_PATH);
 	if($url_path=="" || $url_path==null){
 		$url_path = $url_path.'/';
 	}
@@ -1511,7 +1511,7 @@ if(!function_exists('ampforwp_get_coauthor_meta')){
 add_action('template_redirect', 'ampforwp_callrail_buffer_start', 0);
 function ampforwp_callrail_buffer_start() {
 	if(ampforwp_is_callrail_switch_active()){
-		$url_path = trim(parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
+		$url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_PATH),'/' );	
 		if(function_exists('ampforwp_is_amp_inURL') && ampforwp_is_amp_inURL($url_path) && !is_admin()) {
 			add_action('shutdown', 'ampforwp_callrail_buffer_stop', PHP_INT_MAX);
 	    	ob_start('ampforwp_callrail_modify_content'); 

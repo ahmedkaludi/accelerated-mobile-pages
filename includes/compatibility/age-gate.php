@@ -142,18 +142,18 @@ function ampforwp_age_gate_content_requires_verification() {
 	$pass_name   = AgeGate\Utility\Cookie::$prefix . $settings->getCookieName();
 	$failed_name = AgeGate\Utility\Cookie::$prefix . $settings->getCookieName() . '_failed';
 	$saved       = array(
-		'pass'   => isset( $_COOKIE[ $pass_name ] ) ? $_COOKIE[ $pass_name ] : null,
-		'failed' => isset( $_COOKIE[ $failed_name ] ) ? $_COOKIE[ $failed_name ] : null,
+		'pass'   => isset( $_COOKIE[ $pass_name ] ) ? sanitize_text_field( wp_unslash( $_COOKIE[ $pass_name ] ) ) : null,
+		'failed' => isset( $_COOKIE[ $failed_name ] ) ? sanitize_text_field( wp_unslash( $_COOKIE[ $failed_name ] ) ) : null,
 	);
 
 	unset( $_COOKIE[ $pass_name ], $_COOKIE[ $failed_name ] );
 	$requires = age_gate_is_restricted();
 
 	if ( null !== $saved['pass'] ) {
-		$_COOKIE[ $pass_name ] = $saved['pass'];
+		$_COOKIE[ $pass_name ] = wp_slash( $saved['pass'] );
 	}
 	if ( null !== $saved['failed'] ) {
-		$_COOKIE[ $failed_name ] = $saved['failed'];
+		$_COOKIE[ $failed_name ] = wp_slash( $saved['failed'] );
 	}
 
 	return $requires;
@@ -205,8 +205,8 @@ function ampforwp_age_gate_send_amp_headers() {
 	$site_host = wp_parse_url( $home, PHP_URL_SCHEME ) . '://' . wp_parse_url( $home, PHP_URL_HOST );
 
 	$source_origin = $site_host;
-	if ( ! empty( $_GET['__amp_source_origin'] ) ) {
-		$source_origin = esc_url_raw( wp_unslash( $_GET['__amp_source_origin'] ) );
+	if ( ! empty( $_GET['__amp_source_origin'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- AMP cache source origin, not a WordPress form.
+		$source_origin = esc_url_raw( wp_unslash( $_GET['__amp_source_origin'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- AMP cache source origin, not a WordPress form.
 	} elseif ( ! empty( $_SERVER['HTTP_ORIGIN'] ) ) {
 		$source_origin = esc_url_raw( wp_unslash( $_SERVER['HTTP_ORIGIN'] ) );
 	}
@@ -690,10 +690,10 @@ function ampforwp_age_gate_build_status_response( $required_age = 0 ) {
 function ampforwp_age_gate_get_return_url() {
 	$redirect = '';
 
-	if ( ! empty( $_GET['redirect_to'] ) ) {
-		$redirect = esc_url_raw( wp_unslash( $_GET['redirect_to'] ) );
-	} elseif ( ! empty( $_REQUEST['redirect_to'] ) ) {
-		$redirect = esc_url_raw( wp_unslash( $_REQUEST['redirect_to'] ) );
+	if ( ! empty( $_GET['redirect_to'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Return URL is same-host only; callers verify the HMAC token.
+		$redirect = esc_url_raw( wp_unslash( $_GET['redirect_to'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Return URL is same-host only; callers verify the HMAC token.
+	} elseif ( ! empty( $_REQUEST['redirect_to'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Return URL is same-host only; callers verify the HMAC token.
+		$redirect = esc_url_raw( wp_unslash( $_REQUEST['redirect_to'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Return URL is same-host only; callers verify the HMAC token.
 	} elseif ( ! empty( $_SERVER['HTTP_REFERER'] ) ) {
 		$redirect = esc_url_raw( wp_unslash( $_SERVER['HTTP_REFERER'] ) );
 	}
@@ -766,9 +766,8 @@ function ampforwp_age_gate_ajax_submit() {
 
 	ampforwp_age_gate_send_amp_headers();
 
-	/* phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized */
-	$token = isset( $_REQUEST['amp_token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['amp_token'] ) ) : '';
-	$age   = isset( $_REQUEST['amp_age'] ) ? (int) $_REQUEST['amp_age'] : (int) $config['required_age'];
+	$token = isset( $_REQUEST['amp_token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['amp_token'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Cache-safe HMAC checked below.
+	$age   = isset( $_REQUEST['amp_age'] ) ? (int) $_REQUEST['amp_age'] : (int) $config['required_age']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Cache-safe HMAC checked below.
 
 	if ( empty( $token ) || ! hash_equals( ampforwp_age_gate_pass_token( $age ), $token ) ) {
 		wp_send_json(
@@ -797,8 +796,8 @@ function ampforwp_age_gate_ajax_submit() {
 		$post_data['age_gate'] = array();
 	}
 
-	if ( ! isset( $post_data['age_gate']['confirm'] ) && isset( $_POST['age_gate']['confirm'] ) ) {
-		$post_data['age_gate']['confirm'] = wp_unslash( $_POST['age_gate']['confirm'] );
+	if ( ! isset( $post_data['age_gate']['confirm'] ) && isset( $_POST['age_gate']['confirm'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Authorized by the HMAC amp_token checked above.
+		$post_data['age_gate']['confirm'] = sanitize_text_field( wp_unslash( $_POST['age_gate']['confirm'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Authorized by the HMAC amp_token checked above.
 	}
 
 	if ( empty( $post_data['age_gate']['age'] ) ) {
@@ -899,8 +898,8 @@ function ampforwp_age_gate_pass_handler() {
 	ampforwp_age_gate_prevent_response_cache();
 
 	$config = ampforwp_age_gate_get_display_config();
-	$age    = isset( $_REQUEST['age'] ) ? (int) $_REQUEST['age'] : (int) $config['required_age'];
-	$token  = isset( $_REQUEST['token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['token'] ) ) : '';
+	$age    = isset( $_REQUEST['age'] ) ? (int) $_REQUEST['age'] : (int) $config['required_age']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Cache-safe HMAC checked below.
+	$token  = isset( $_REQUEST['token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['token'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Cache-safe HMAC checked below.
 
 	if ( ! ampforwp_age_gate_verify_token( $age, $token ) ) {
 		wp_die( esc_html__( 'Invalid age verification request.', 'accelerated-mobile-pages' ), '', array( 'response' => 403 ) );
@@ -936,8 +935,8 @@ function ampforwp_age_gate_pass_ajax_handler() {
 	ampforwp_age_gate_prevent_response_cache();
 
 	$config = ampforwp_age_gate_get_display_config();
-	$age    = isset( $_REQUEST['age'] ) ? (int) $_REQUEST['age'] : (int) $config['required_age'];
-	$token  = isset( $_REQUEST['token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['token'] ) ) : '';
+	$age    = isset( $_REQUEST['age'] ) ? (int) $_REQUEST['age'] : (int) $config['required_age']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Cache-safe HMAC checked below.
+	$token  = isset( $_REQUEST['token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['token'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Cache-safe HMAC checked below.
 
 	if ( ! ampforwp_age_gate_verify_token( $age, $token ) ) {
 		ampforwp_age_gate_send_amp_headers();
@@ -986,8 +985,8 @@ function ampforwp_age_gate_fail_handler() {
 	ampforwp_age_gate_prevent_response_cache();
 
 	$config = ampforwp_age_gate_get_display_config();
-	$age    = isset( $_REQUEST['age'] ) ? (int) $_REQUEST['age'] : (int) $config['required_age'];
-	$token  = isset( $_REQUEST['token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['token'] ) ) : '';
+	$age    = isset( $_REQUEST['age'] ) ? (int) $_REQUEST['age'] : (int) $config['required_age']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Cache-safe HMAC checked below.
+	$token  = isset( $_REQUEST['token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['token'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Cache-safe HMAC checked below.
 
 	if ( ! ampforwp_age_gate_verify_token( $age, $token ) ) {
 		wp_die( esc_html__( 'Invalid age verification request.', 'accelerated-mobile-pages' ), '', array( 'response' => 403 ) );
@@ -1043,7 +1042,7 @@ function ampforwp_age_gate_output() {
 	$pass_token   = ampforwp_age_gate_pass_token( $required_age );
 	$return_url   = ( is_ssl() ? 'https://' : 'http://' );
 	$return_url  .= isset( $_SERVER['HTTP_HOST'] ) ? sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) : '';
-	$return_url  .= isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$return_url  .= isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	$return_url   = esc_url_raw( $return_url );
 
 	$yes_url = ampforwp_age_gate_ajax_url(

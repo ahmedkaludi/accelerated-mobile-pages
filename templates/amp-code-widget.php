@@ -46,8 +46,14 @@ class AMPFORWP_AMP_Code_Widget extends WP_Widget {
     /** This filter is documented in wp-includes/widgets/class-wp-widget-text.php */
     $content = apply_filters( 'widget_text', $instance['content'], $simulated_text_widget_instance, $this );
 
-    // Adds 'noopener' relationship, without duplicating values, to all HTML A elements that have a target.
-    $content = wp_targeted_link_rel( $content );
+    // Add rel="noopener" to links that open in a new tab, without duplicating an existing value.
+    $content = preg_replace_callback(
+        '|<a\s([^>]*target\s*=[^>]*)>|i',
+        static function ( $matches ) {
+            return wp_rel_callback( $matches, 'noopener' );
+        },
+        $content
+    );
     $args['before_widget'] = preg_replace( '/(?<=\sclass=["\'])/', 'widget_text ', $args['before_widget'] );
 //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $args['before_widget'];
