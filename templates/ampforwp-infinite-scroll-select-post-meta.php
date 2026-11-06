@@ -1,4 +1,7 @@
-<?php 
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 add_action( 'add_meta_boxes', function() {
 	add_meta_box( 'ampforwp_select_post_metabox', 'Select Infinite Scroll Post For AMP', 'ampforwp_select_post_meta', 'post' );
 } );

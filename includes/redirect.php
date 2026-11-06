@@ -258,7 +258,7 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
       $redirection_location = get_the_permalink();
       $url_path = '';
       if (true == ampforwp_get_setting('amp-core-end-point')) {
-        $url_path = trim(parse_url(add_query_arg(array()), PHP_URL_QUERY),'/' );
+        $url_path = trim(wp_parse_url(add_query_arg(array()), PHP_URL_QUERY),'/' );
         if (strpos($url_path, '&') !== false) {
           $url_path = explode('&', $url_path);
           $url_path = end($url_path);
@@ -407,7 +407,17 @@ if(is_search() && 0 == ampforwp_get_setting('amp-redirection-search')){
           $_SESSION['ampforwp_amp_mode'] = 'mobile-on';
 
           if ( $url_to_redirect ) {
-            wp_redirect( $url_to_redirect , 301 );
+            $redirect_host = wp_parse_url( $url_to_redirect, PHP_URL_HOST );
+            if ( is_string( $redirect_host ) && '' !== $redirect_host ) {
+              add_filter(
+                'allowed_redirect_hosts',
+                static function ( $hosts ) use ( $redirect_host ) {
+                  $hosts[] = $redirect_host;
+                  return $hosts;
+                }
+              );
+            }
+            wp_safe_redirect( $url_to_redirect, 301 );
             exit();
           }        
           // if nothing matches then return back

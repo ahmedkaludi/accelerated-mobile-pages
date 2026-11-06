@@ -1,3 +1,8 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+?>
 <div class="wrap about-wrap">
     <h1><?php esc_html_e( 'Redux Framework - A Community Effort', 'accelerated-mobile-pages' ); ?></h1>
 

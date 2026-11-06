@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 add_action( 'amp_post_template_css', 'ampforwp_theme_support_fonts' );
 function ampforwp_theme_support_fonts(){
  global $redux_builder_amp;

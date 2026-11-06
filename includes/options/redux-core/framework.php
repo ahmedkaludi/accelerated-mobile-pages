@@ -594,7 +594,7 @@
                     $this->set_options( $data );
                 }
 
-                wp_redirect( add_query_arg( array(
+                wp_safe_redirect( add_query_arg( array(
                     'page'    => $this->args['page_slug'],
                     'updated' => 'true'
                 ), network_admin_url( 'settings.php' ) ) );
@@ -623,29 +623,7 @@
              * @since    3.0.5
              */
             private function _internationalization() {
-
-                /**
-                 * Locale for text domain
-                 * filter 'redux/textdomain/{opt_name}'
-                 *
-                 * @param string     The locale of the blog or from the 'locale' hook
-                 * @param string     'redux-framework'  text domain
-                 */
-                //                $locale = apply_filters( "redux/textdomain/{$this->args['opt_name']}", get_locale(), 'accelerated-mobile-pages' );
-                //
-                //                if ( strpos( $locale, '_' ) === false ) {
-                //                    if ( file_exists( self::$_dir . 'languages/' . strtolower( $locale ) . '_' . strtoupper( $locale ) . '.mo' ) ) {
-                //                        $locale = strtolower( $locale ) . '_' . strtoupper( $locale );
-                //                    }
-                //                }
-
-                $basename = basename( __FILE__ );
-                $basepath = plugin_basename( __FILE__ );
-                $basepath = str_replace( $basename, '', $basepath );
-
-                $basepath = apply_filters( "redux/textdomain/basepath/{$this->args['opt_name']}", $basepath );
-
-                load_plugin_textdomain( 'accelerated-mobile-pages', false, $basepath . 'languages' );
+                // Translations for accelerated-mobile-pages load from the plugin headers.
             }
             // _internationalization()
 
@@ -1679,7 +1657,7 @@
 
                             (function() {
                                 var wf = document.createElement( 'script' );
-                                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js';
+                                wf.src = '<?php echo esc_url( self::$_url . 'assets/js/webfont.js' ); ?>';
                                 wf.type = 'text/javascript';
                                 wf.async = 'true';
                                 var s = document.getElementsByTagName( 'script' )[0];

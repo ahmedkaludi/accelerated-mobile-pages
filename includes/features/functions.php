@@ -269,11 +269,9 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
     if ((!is_plugin_active('amp/amp.php') && function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint() ) 
         || 
         (function_exists('amp_activate') && function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() )) {
-        $content_buffer = preg_replace("/' defer='defer/", "", $content_buffer);
-        $content_buffer = preg_replace("/' defer onload='/", "", $content_buffer);
-        $content_buffer = preg_replace("/' defer /", "", $content_buffer);
-        $content_buffer = preg_replace("/onclick=[^>]*/", "", $content_buffer);
-        $content_buffer = preg_replace("/<\\/?thrive_headline(.|\\s)*?>/",'',$content_buffer);
+        // CVE-2026-120686: remove defer/onclick and disallowed tags by token,
+        // not by a quote-blind scan of the whole page.
+        $content_buffer = ampforwp_sanitize_amp_output_buffer( $content_buffer );
         // Remove Extra styling added by other Themes/ Plugins
         preg_match('/(<style(.*?)>(.*?)<\/style>)<!doctype html>/', $content_buffer, $m1);
         if($m1){
@@ -283,19 +281,12 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
         if($m2){
             $content_buffer = preg_replace('/(<style(.*?)>(.*?)<\/style>)(\/\*)/','$4',$content_buffer);
         }
-        $content_buffer = preg_replace("/<\\/?g(.|\\s)*?>/",'',$content_buffer);
-        $content_buffer = preg_replace('/(<[^>]+) spellcheck="false"/', '$1', $content_buffer);
-        $content_buffer = preg_replace('/(<[^>]+) spellcheck="true"/', '$1', $content_buffer);
         $content_buffer = preg_replace("/about:blank/", "#", $content_buffer);
-        $content_buffer = preg_replace("/<script data-cfasync[^>]*>.*?<\/script>/", "", $content_buffer);
-        $content_buffer = preg_replace('/<font(.*?)>(.*?)<\/font>/', '$2', $content_buffer);
-        $content_buffer = preg_replace('/<ta([^a-z]*|\s(.*?))>(.*?)<\/ta>/', '$3', $content_buffer);
         //$content_buffer = preg_replace('/<style type=(.*?)>|\[.*?\]\s\{(.*)\}|<\/style>(?!(<\/noscript>)|(\n<\/head>)|(<noscript>))/','',$content_buffer);
 
         // xlink attribute causes Validatation Issues #1149
         $content_buffer = preg_replace('/xlink="href"/','',$content_buffer);
         $content_buffer = preg_replace('/!important/', '' , $content_buffer);
-        $content_buffer = preg_replace('/<area(.*?)>/', '', $content_buffer);
         //  Compatibility with the footnotes plugin. #2447
         if(class_exists('MCI_Footnotes')){
         $footnote_collapse_link = '';
@@ -320,6 +311,488 @@ function ampforwp_the_content_filter_full( $content_buffer ) {
     return $content_buffer;
 }
 add_action('wp', function(){ ob_start('ampforwp_the_content_filter_full'); }, 999);
+
+/**
+ * Strip defer/onclick/spellcheck and a few invalid tags without reading inside attribute values.
+ *
+ * Quote-blind replacements in this buffer turned kses-legal title text into live attributes.
+ *
+ * @param string $html Full AMP page buffer.
+ * @return string
+ */
+function ampforwp_sanitize_amp_output_buffer( $html ) {
+    if ( ! is_string( $html ) || '' === $html ) {
+        return $html;
+    }
+    $html = ampforwp_amp_buffer_strip_attributes( $html );
+    return ampforwp_amp_buffer_drop_tags( $html );
+}
+
+/**
+ * Drop onclick, defer, and spellcheck only when they are real attribute names.
+ *
+ * @param string $html HTML string.
+ * @return string
+ */
+function ampforwp_amp_buffer_strip_attributes( $html ) {
+    $length = strlen( $html );
+    $out    = '';
+    $i      = 0;
+
+    while ( $i < $length ) {
+        if ( '<' !== $html[ $i ] ) {
+            $next = strpos( $html, '<', $i );
+            if ( false === $next ) {
+                $out .= substr( $html, $i );
+                break;
+            }
+            $out .= substr( $html, $i, $next - $i );
+            $i = $next;
+        }
+
+        $rewritten = ampforwp_amp_buffer_rewrite_tag_at( $html, $i, $length );
+        $out      .= $rewritten['html'];
+        if ( $rewritten['next'] <= $i ) {
+            $out .= $html[ $i ];
+            $i++;
+            continue;
+        }
+        $i = $rewritten['next'];
+    }
+
+    return $out;
+}
+
+/**
+ * Rewrite one tag starting at $offset, leaving quoted values untouched.
+ *
+ * @param string $html   HTML string.
+ * @param int    $offset Offset of a '<'.
+ * @param int    $length Byte length of $html.
+ * @return array{html:string,next:int}
+ */
+function ampforwp_amp_buffer_rewrite_tag_at( $html, $offset, $length ) {
+    $drop = array(
+        'onclick'    => true,
+        'defer'      => true,
+        'spellcheck' => true,
+    );
+
+    if ( $offset + 4 <= $length && '<!--' === substr( $html, $offset, 4 ) ) {
+        $end = strpos( $html, '-->', $offset + 4 );
+        if ( false === $end ) {
+            return array(
+                'html' => substr( $html, $offset ),
+                'next' => $length,
+            );
+        }
+        $end += 3;
+        return array(
+            'html' => substr( $html, $offset, $end - $offset ),
+            'next' => $end,
+        );
+    }
+
+    if ( $offset + 9 <= $length && '<![CDATA[' === substr( $html, $offset, 9 ) ) {
+        $end = strpos( $html, ']]>', $offset + 9 );
+        if ( false === $end ) {
+            return array(
+                'html' => substr( $html, $offset ),
+                'next' => $length,
+            );
+        }
+        $end += 3;
+        return array(
+            'html' => substr( $html, $offset, $end - $offset ),
+            'next' => $end,
+        );
+    }
+
+    if ( $offset + 1 < $length && ( '!' === $html[ $offset + 1 ] || '?' === $html[ $offset + 1 ] ) ) {
+        $end = strpos( $html, '>', $offset + 2 );
+        if ( false === $end ) {
+            return array(
+                'html' => substr( $html, $offset ),
+                'next' => $length,
+            );
+        }
+        $end++;
+        return array(
+            'html' => substr( $html, $offset, $end - $offset ),
+            'next' => $end,
+        );
+    }
+
+    $i = $offset + 1;
+    if ( $i < $length && '/' === $html[ $i ] ) {
+        $i++;
+    }
+    $name_start = $i;
+    while ( $i < $length && ampforwp_amp_buffer_is_name_char( $html[ $i ] ) ) {
+        $i++;
+    }
+    if ( $i === $name_start ) {
+        return array(
+            'html' => '<',
+            'next' => $offset + 1,
+        );
+    }
+
+    $out = substr( $html, $offset, $i - $offset );
+
+    while ( $i < $length ) {
+        $ws_start = $i;
+        while ( $i < $length && ampforwp_amp_buffer_is_ws( $html[ $i ] ) ) {
+            $i++;
+        }
+        if ( $i >= $length ) {
+            $out .= substr( $html, $ws_start );
+            return array(
+                'html' => $out,
+                'next' => $length,
+            );
+        }
+
+        $char = $html[ $i ];
+        if ( '>' === $char || '/' === $char ) {
+            $end = strpos( $html, '>', $i );
+            if ( false === $end ) {
+                $out .= substr( $html, $ws_start );
+                return array(
+                    'html' => $out,
+                    'next' => $length,
+                );
+            }
+            $end++;
+            $out .= substr( $html, $ws_start, $end - $ws_start );
+            return array(
+                'html' => $out,
+                'next' => $end,
+            );
+        }
+
+        $attr_start = $i;
+        while ( $i < $length && ! ampforwp_amp_buffer_is_attr_stop( $html[ $i ] ) ) {
+            $i++;
+        }
+        $attr_name = strtolower( substr( $html, $attr_start, $i - $attr_start ) );
+        if ( '' === $attr_name ) {
+            $out .= substr( $html, $ws_start, $i - $ws_start + 1 );
+            $i++;
+            continue;
+        }
+
+        $after_name = $i;
+        while ( $i < $length && ampforwp_amp_buffer_is_ws( $html[ $i ] ) ) {
+            $i++;
+        }
+        if ( $i < $length && '=' === $html[ $i ] ) {
+            $i++;
+            while ( $i < $length && ampforwp_amp_buffer_is_ws( $html[ $i ] ) ) {
+                $i++;
+            }
+            if ( $i < $length && ( '"' === $html[ $i ] || "'" === $html[ $i ] ) ) {
+                $quote = $html[ $i ];
+                $i++;
+                while ( $i < $length && $html[ $i ] !== $quote ) {
+                    $i++;
+                }
+                if ( $i < $length && $html[ $i ] === $quote ) {
+                    $i++;
+                }
+            } else {
+                while ( $i < $length && ! ampforwp_amp_buffer_is_ws( $html[ $i ] ) && '>' !== $html[ $i ] ) {
+                    $i++;
+                }
+            }
+        } else {
+            $i = $after_name;
+        }
+
+        if ( ! isset( $drop[ $attr_name ] ) ) {
+            $out .= substr( $html, $ws_start, $i - $ws_start );
+        }
+    }
+
+    return array(
+        'html' => $out,
+        'next' => $length,
+    );
+}
+
+/**
+ * Remove disallowed tags using tag tokens so attribute values are never scanned.
+ *
+ * @param string $html HTML string.
+ * @return string
+ */
+function ampforwp_amp_buffer_drop_tags( $html ) {
+    $parts = ampforwp_amp_buffer_split( $html );
+    if ( ! is_array( $parts ) ) {
+        return $html;
+    }
+
+    $out   = '';
+    $count = count( $parts );
+    for ( $i = 0; $i < $count; $i++ ) {
+        $part = $parts[ $i ];
+        if ( ! is_string( $part ) || '' === $part || '<' !== $part[0] ) {
+            $out .= $part;
+            continue;
+        }
+
+        $info = ampforwp_amp_buffer_tag_info( $part );
+        if ( null === $info ) {
+            $out .= $part;
+            continue;
+        }
+
+        if ( ampforwp_amp_buffer_should_drop_tag( $info['name'] ) ) {
+            continue;
+        }
+
+        if ( ! $info['closing'] && 'script' === $info['name'] && ampforwp_amp_buffer_token_has_attribute( $part, 'data-cfasync' ) ) {
+            $end = null;
+            for ( $j = $i + 1; $j < $count; $j++ ) {
+                $inner = ampforwp_amp_buffer_tag_info( isset( $parts[ $j ] ) ? $parts[ $j ] : '' );
+                if ( $inner && $inner['closing'] && 'script' === $inner['name'] ) {
+                    $end = $j;
+                    break;
+                }
+            }
+            if ( null !== $end ) {
+                $i = $end;
+                continue;
+            }
+        }
+
+        $out .= $part;
+    }
+
+    return $out;
+}
+
+/**
+ * Split HTML into text and tag tokens.
+ *
+ * @param string $html HTML string.
+ * @return array
+ */
+function ampforwp_amp_buffer_split( $html ) {
+    if ( function_exists( 'wp_html_split' ) ) {
+        $parts = wp_html_split( $html );
+        if ( is_array( $parts ) ) {
+            return $parts;
+        }
+    }
+
+    $parts = preg_split( ampforwp_amp_buffer_split_regex(), $html, -1, PREG_SPLIT_DELIM_CAPTURE );
+    return is_array( $parts ) ? $parts : array( $html );
+}
+
+/**
+ * WordPress get_html_split_regex() equivalent for installs that predate wp_html_split().
+ *
+ * @return string
+ */
+function ampforwp_amp_buffer_split_regex() {
+    static $regex = null;
+    if ( null !== $regex ) {
+        return $regex;
+    }
+
+    $comments =
+          '!'
+        . '(?:'
+        .     '-(?!->)'
+        .     '[^\-]*+'
+        . ')*+'
+        . '(?:-->)?';
+
+    $cdata =
+          '!\[CDATA\['
+        . '[^\]]*+'
+        . '(?:'
+        .     '](?!]>)'
+        .     '[^\]]*+'
+        . ')*+'
+        . '(?:]]>)?';
+
+    $escaped =
+          '(?='
+        .    '!--'
+        . '|'
+        .    '!\[CDATA\['
+        . ')'
+        . '(?(?=!-)'
+        .     $comments
+        . '|'
+        .     $cdata
+        . ')';
+
+    $regex =
+          '/('
+        .     '<'
+        .     '(?'
+        .         $escaped
+        .     '|'
+        .         '[^>]*>?'
+        .     ')'
+        . ')/';
+
+    return $regex;
+}
+
+/**
+ * Tag name and whether the token is an end tag.
+ *
+ * @param string $token Tag token.
+ * @return array{name:string,closing:bool}|null
+ */
+function ampforwp_amp_buffer_tag_info( $token ) {
+    if ( ! is_string( $token ) || strlen( $token ) < 2 || '<' !== $token[0] ) {
+        return null;
+    }
+    if ( '!' === $token[1] || '?' === $token[1] ) {
+        return null;
+    }
+
+    $i       = 1;
+    $closing = false;
+    if ( '/' === $token[ $i ] ) {
+        $closing = true;
+        $i++;
+    }
+
+    $start  = $i;
+    $length = strlen( $token );
+    while ( $i < $length && ampforwp_amp_buffer_is_name_char( $token[ $i ] ) ) {
+        $i++;
+    }
+    if ( $i === $start ) {
+        return null;
+    }
+
+    return array(
+        'name'    => strtolower( substr( $token, $start, $i - $start ) ),
+        'closing' => $closing,
+    );
+}
+
+/**
+ * Tags the legacy buffer regexes removed or unwrapped.
+ *
+ * @param string $name Lowercase tag name.
+ * @return bool
+ */
+function ampforwp_amp_buffer_should_drop_tag( $name ) {
+    if ( 'font' === $name || 'area' === $name || 'thrive_headline' === $name ) {
+        return true;
+    }
+    if ( isset( $name[0] ) && 'g' === $name[0] ) {
+        return true;
+    }
+    if ( strlen( $name ) < 2 || 'ta' !== substr( $name, 0, 2 ) ) {
+        return false;
+    }
+    if ( 2 === strlen( $name ) ) {
+        return true;
+    }
+    // <table>, <tbody>, <textarea> stay. <ta> and <ta1> match the old <ta[^a-z] rule.
+    return ! ( $name[2] >= 'a' && $name[2] <= 'z' );
+}
+
+/**
+ * Whether a single tag token has an attribute by name.
+ *
+ * @param string $token Tag token.
+ * @param string $needle Attribute name.
+ * @return bool
+ */
+function ampforwp_amp_buffer_token_has_attribute( $token, $needle ) {
+    $needle = strtolower( $needle );
+    $length = strlen( $token );
+    $i      = 0;
+    while ( $i < $length && '>' !== $token[ $i ] && ! ampforwp_amp_buffer_is_ws( $token[ $i ] ) && '/' !== $token[ $i ] ) {
+        $i++;
+    }
+
+    while ( $i < $length ) {
+        while ( $i < $length && ampforwp_amp_buffer_is_ws( $token[ $i ] ) ) {
+            $i++;
+        }
+        if ( $i >= $length || '>' === $token[ $i ] || '/' === $token[ $i ] ) {
+            break;
+        }
+
+        $attr_start = $i;
+        while ( $i < $length && ! ampforwp_amp_buffer_is_attr_stop( $token[ $i ] ) ) {
+            $i++;
+        }
+        $attr_name = strtolower( substr( $token, $attr_start, $i - $attr_start ) );
+        if ( '' === $attr_name ) {
+            $i++;
+            continue;
+        }
+
+        $after_name = $i;
+        while ( $i < $length && ampforwp_amp_buffer_is_ws( $token[ $i ] ) ) {
+            $i++;
+        }
+        if ( $i < $length && '=' === $token[ $i ] ) {
+            $i++;
+            while ( $i < $length && ampforwp_amp_buffer_is_ws( $token[ $i ] ) ) {
+                $i++;
+            }
+            if ( $i < $length && ( '"' === $token[ $i ] || "'" === $token[ $i ] ) ) {
+                $quote = $token[ $i ];
+                $i++;
+                while ( $i < $length && $token[ $i ] !== $quote ) {
+                    $i++;
+                }
+                if ( $i < $length && $token[ $i ] === $quote ) {
+                    $i++;
+                }
+            } else {
+                while ( $i < $length && ! ampforwp_amp_buffer_is_ws( $token[ $i ] ) && '>' !== $token[ $i ] ) {
+                    $i++;
+                }
+            }
+        } else {
+            $i = $after_name;
+        }
+
+        if ( $attr_name === $needle ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * @param string $char Single byte.
+ * @return bool
+ */
+function ampforwp_amp_buffer_is_name_char( $char ) {
+    return false !== strpos( 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:_-.', $char );
+}
+
+/**
+ * @param string $char Single byte.
+ * @return bool
+ */
+function ampforwp_amp_buffer_is_ws( $char ) {
+    return ' ' === $char || "\n" === $char || "\r" === $char || "\t" === $char || "\f" === $char;
+}
+
+/**
+ * @param string $char Single byte.
+ * @return bool
+ */
+function ampforwp_amp_buffer_is_attr_stop( $char ) {
+    return ampforwp_amp_buffer_is_ws( $char ) || '=' === $char || '/' === $char || '>' === $char;
+}
 
 
 // 74. Featured Image check from Custom Fields
@@ -566,7 +1039,7 @@ function ampforwp_end_point_controller( $url, $check='' ) {
 
 if ( ! function_exists( 'ampforwp_isexternal ') ) {
     function ampforwp_isexternal($url) {
-        $components = parse_url($url);
+        $components = wp_parse_url($url);
 
         // we will treat url like '/relative.php' as relative
         if ( empty($components['host']) ) return false;  
@@ -632,7 +1105,7 @@ if(!function_exists('ampforwp_findInternalUrl')){
         }
         if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
           // Skip the URL's that have edit link to it
-          $parts = parse_url($url);
+          $parts = wp_parse_url($url);
           if ( isset($parts['query']) && $parts['query']) {
             parse_str($parts['query'], $query);
           }

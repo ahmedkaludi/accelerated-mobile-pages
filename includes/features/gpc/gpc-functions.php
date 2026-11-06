@@ -161,7 +161,7 @@ function ampforwp_serve_gpc_json() {
 		return;
 	}
 
-	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
 	$path        = wp_parse_url( $request_uri, PHP_URL_PATH );
 	if ( ! is_string( $path ) ) {
 		return;

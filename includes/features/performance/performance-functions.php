@@ -230,8 +230,23 @@ if( true == ampforwp_get_setting('ampforwp_leverage_browser_caching_mode')){
     ampforwp_leverage_browser_caching_remove();
 }
 
+/**
+ * Site-root .htaccess path.
+ *
+ * Apache only applies browser-caching rules from this file, so the uploads directory cannot be used.
+ *
+ * @return string
+ */
+function ampforwp_browser_cache_htaccess_path() {
+    if ( ! function_exists( 'get_home_path' ) ) {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+    }
+
+    return wp_normalize_path( trailingslashit( get_home_path() ) . '.htaccess' );
+}
+
 function ampforwp_leverage_browser_caching_remove(){
-    $htaccess_file = wp_normalize_path( ABSPATH . '.htaccess' );
+    $htaccess_file = ampforwp_browser_cache_htaccess_path();
     if ( file_exists( $htaccess_file ) ) {
 /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable */
         if ( is_readable( $htaccess_file ) && is_writable( $htaccess_file ) ) {
@@ -259,7 +274,7 @@ function ampforwp_leverage_browser_caching_remove(){
 }
 function ampforwp_leverage_browser_caching(){
     global $pagenow;
-    $htaccess_file = wp_normalize_path( ABSPATH . '.htaccess' );
+    $htaccess_file = ampforwp_browser_cache_htaccess_path();
     if ( file_exists( $htaccess_file ) ) {
         /* phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable */
         if ( is_readable( $htaccess_file ) && is_writable( $htaccess_file ) ) {

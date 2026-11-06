@@ -1,5 +1,9 @@
 <?php
 namespace ReduxCore\ReduxFramework;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Class and Function List:
  * Function list:
@@ -991,7 +995,7 @@ if ( ! class_exists( 'ReduxFramework_typography' ) ) {
                     $weekback     = strtotime( gmdate( 'jS F Y', time() + ( 60 * 60 * 24 * - 7 ) ) );
                     $last_updated = filemtime( $gFile );
                     if ( $last_updated < $weekback ) {
-                        unlink( $gFile );
+                        wp_delete_file( $gFile );
                     }
                 }
             }
