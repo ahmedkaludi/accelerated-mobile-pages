@@ -1929,9 +1929,9 @@ function ampforwp_add_target_attribute_in_form_tags( $amp_post_template_data )
 add_filter('the_content','ampforwp_heista_pro_frontpage_section');
 function ampforwp_heista_pro_frontpage_section($content){
 	global $redux_builder_amp;
-	$ampforwp_frontpage = $redux_builder_amp['amp-frontpage-select-option-pages']?intval($redux_builder_amp['amp-frontpage-select-option-pages']):0;
+	$ampforwp_frontpage = ( is_array( $redux_builder_amp ) && ! empty( $redux_builder_amp['amp-frontpage-select-option-pages'] ) ) ? intval( $redux_builder_amp['amp-frontpage-select-option-pages'] ) : 0;
 	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
-			if ( $redux_builder_amp['amp-frontpage-select-option'] == 1 && class_exists('Hestia_Defaults_Models')) {
+			if ( isset( $redux_builder_amp['amp-frontpage-select-option'] ) && 1 == $redux_builder_amp['amp-frontpage-select-option'] && class_exists('Hestia_Defaults_Models')) {
 				$slider_default = Hestia_Defaults_Models::instance()->get_slider_default();
 				$slider_content = get_theme_mod( 'hestia_slider_content',wp_json_encode($slider_default));
 				$slider_content = json_decode( $slider_content );
@@ -1979,7 +1979,7 @@ function ampforwp_heista_pro_frontpage_section($content){
 add_action('amp_post_template_css','ampforwp_heista_pro_frontpage_section_css');
 function ampforwp_heista_pro_frontpage_section_css(){
 	global $redux_builder_amp;
-	$ampforwp_frontpage = $redux_builder_amp['amp-frontpage-select-option-pages']?intval($redux_builder_amp['amp-frontpage-select-option-pages']):0;
+	$ampforwp_frontpage = ( is_array( $redux_builder_amp ) && ! empty( $redux_builder_amp['amp-frontpage-select-option-pages'] ) ) ? intval( $redux_builder_amp['amp-frontpage-select-option-pages'] ) : 0;
 	if ( (is_home() || is_page($ampforwp_frontpage)) && function_exists('hestia_run')) {
 		echo '.ampforwp-carousel-cont amp-carousel{height:400px} .ampforwp-carousel-wrapper{position:relative;width:100%;} .ampforwp-carousel-img-wrapper img{filter: brightness(50%);} .ampforwp-carousel-content h1 , .ampforwp-carousel-content p{width:90%;padding: 0px 10px;border-radius:8px} .ampforwp-carousel-content{position:absolute;top:0;bottom:0;right:0;left:0;text-align:center;display: flex;flex-direction: column;align-items: center;justify-content: center;color:#fff;}';
 	}
