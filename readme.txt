@@ -194,7 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
-= 1.1.20 (4 November 2026) =
+= 1.1.20 (6 November 2026) =
 * Fixed : Unauthenticated Stored Cross-Site Scripting via attribute-boundary shift in ampforwp_the_content_filter_full() disclosed by Wordfence (Kohav) CVE-2026-120686
 * Fixed : Worked on Plugin Check Plugin issues
 
