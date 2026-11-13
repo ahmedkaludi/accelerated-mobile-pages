@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 6.4
 Tested up to: 7.1
-Stable tag: 1.1.20
+Stable tag: 1.1.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,9 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.21 (13 November 2026) =
+* Fixed : PHP 8.3 deprecated warnings from the bundled AMP Optimizer DOM and configuration classes #5752
+
 = 1.1.20 (6 November 2026) =
 * Fixed : Unauthenticated Stored Cross-Site Scripting via attribute-boundary shift in ampforwp_the_content_filter_full() disclosed by Wordfence (Kohav) CVE-2026-120686
 * Fixed : Worked on Plugin Check Plugin issues

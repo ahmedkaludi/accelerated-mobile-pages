@@ -240,6 +240,15 @@ final class Document extends DOMDocument
     private $options;
 
     /**
+     * Lazily created document properties.
+     *
+     * Stored here so reads and writes do not create dynamic properties.
+     *
+     * @var array
+     */
+    private $properties = [];
+
+    /**
      * Whether `data-ampdevmode` was initially set on the the document element.
      *
      * @var bool
@@ -462,7 +471,7 @@ final class Document extends DOMDocument
      *                                  parameters if an int or string is passed. Defaults to an empty array.
      * @return bool true on success or false on failure.
      */
-    public function loadHTML($source, $options = [])
+    public function loadHTML($source, $options = []): bool
     {
         $source  = $this->normalizeDocumentStructure($source);
         $success = $this->loadHTMLFragment($source, $options);
@@ -572,6 +581,7 @@ final class Document extends DOMDocument
      * @param DOMNode|null $node Optional. Parameter to output a subset of the document.
      * @return string The HTML, or false if an error occurred.
      */
+    #[\ReturnTypeWillChange]
     public function saveHTML(DOMNode $node = null)
     {
         return $this->saveHTMLFragment($node);
@@ -1912,10 +1922,14 @@ final class Document extends DOMDocument
      */
     public function __get($name)
     {
+        if (array_key_exists($name, $this->properties)) {
+            return $this->properties[$name];
+        }
+
         switch ($name) {
             case 'xpath':
-                $this->xpath = new DOMXPath($this);
-                return $this->xpath;
+                $this->properties['xpath'] = new DOMXPath($this);
+                return $this->properties['xpath'];
             case Tag::HTML:
                 $html = $this->getElementsByTagName(Tag::HTML)->item(0);
 
@@ -1929,8 +1943,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forHtmlElement($html);
                 }
 
-                $this->html = $html;
-                return $this->html;
+                $this->properties['html'] = $html;
+                return $this->properties['html'];
             case Tag::HEAD:
                 $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
 
@@ -1944,8 +1958,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forHeadElement($head);
                 }
 
-                $this->head = $head;
-                return $this->head;
+                $this->properties['head'] = $head;
+                return $this->properties['head'];
             case Tag::BODY:
                 $body = $this->getElementsByTagName(Tag::BODY)->item(0);
 
@@ -1959,8 +1973,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forBodyElement($body);
                 }
 
-                $this->body = $body;
-                return $this->body;
+                $this->properties['body'] = $body;
+                return $this->properties['body'];
             case Attribute::VIEWPORT:
                 // This is not cached as it could potentially be requested too early, before the viewport was added, and
                 // the cache would then store null without rechecking later on after the viewport has been added.
@@ -1988,9 +2002,9 @@ final class Document extends DOMDocument
                     $this->head->appendChild($ampCustomStyle);
                 }
 
-                $this->ampCustomStyle = $ampCustomStyle;
+                $this->properties['ampCustomStyle'] = $ampCustomStyle;
 
-                return $this->ampCustomStyle;
+                return $this->properties['ampCustomStyle'];
 
             case 'ampCustomStyleByteCount':
                 if (!isset($this->ampCustomStyle)) {
@@ -1998,31 +2012,92 @@ final class Document extends DOMDocument
                     if (!$ampCustomStyle instanceof Element) {
                         return 0;
                     } else {
-                        $this->ampCustomStyle = $ampCustomStyle;
+                        $this->properties['ampCustomStyle'] = $ampCustomStyle;
                     }
                 }
 
-                if (!isset($this->ampCustomStyleByteCount)) {
-                    $this->ampCustomStyleByteCount = strlen($this->ampCustomStyle->textContent);
+                if (!isset($this->properties['ampCustomStyleByteCount'])) {
+                    $this->properties['ampCustomStyleByteCount'] = strlen($this->ampCustomStyle->textContent);
                 }
 
-                return $this->ampCustomStyleByteCount;
+                return $this->properties['ampCustomStyleByteCount'];
 
             case 'inlineStyleByteCount':
-                if (!isset($this->inlineStyleByteCount)) {
-                    $this->inlineStyleByteCount = 0;
+                if (!isset($this->properties['inlineStyleByteCount'])) {
+                    $this->properties['inlineStyleByteCount'] = 0;
                     $attributes = $this->xpath->query(self::XPATH_INLINE_STYLE_ATTRIBUTES_QUERY, $this->body);
                     foreach ($attributes as $attribute) {
-                        $this->inlineStyleByteCount += strlen($attribute->textContent);
+                        $this->properties['inlineStyleByteCount'] += strlen($attribute->textContent);
                     }
                 }
 
-                return $this->inlineStyleByteCount;
+                return $this->properties['inlineStyleByteCount'];
         }
 
         // Mimic regular PHP behavior for missing notices.
         trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
         return null;
+    }
+
+    /**
+     * Store a lazily created document property without creating a dynamic property.
+     *
+     * @param string $name  Name of the property to set.
+     * @param mixed  $value Value of the property.
+     * @return void
+     */
+    public function __set($name, $value)
+    {
+        if (! in_array($name, $this->getCachedPropertyKeys(), true)) {
+            trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+            return;
+        }
+
+        $this->properties[$name] = $value;
+    }
+
+    /**
+     * Check whether a lazily created document property has been cached.
+     *
+     * @param string $name Name of the property to check.
+     * @return bool Whether the property is cached.
+     */
+    public function __isset($name)
+    {
+        return isset($this->properties[$name]);
+    }
+
+    /**
+     * Drop a cached document property.
+     *
+     * @param string $name Name of the property to drop.
+     * @return void
+     */
+    public function __unset($name)
+    {
+        unset($this->properties[$name]);
+    }
+
+    /**
+     * Keys that may be cached on the document.
+     *
+     * Viewport is excluded because it can be requested before the meta element exists. ampElements is allowed but
+     * __get() does not store it, so server-side rendering always re-queries cloned elements.
+     *
+     * @return string[]
+     */
+    private function getCachedPropertyKeys()
+    {
+        return [
+            'xpath',
+            Tag::HTML,
+            Tag::HEAD,
+            Tag::BODY,
+            'ampElements',
+            'ampCustomStyle',
+            'ampCustomStyleByteCount',
+            'inlineStyleByteCount',
+        ];
     }
 
     /**
@@ -2047,8 +2122,13 @@ final class Document extends DOMDocument
      *                      You can also set the value later with Element->nodeValue.
      * @return Element|false A new instance of class Element or false if an error occurred.
      */
-    public function createElement($name, $value = null)
+    #[\ReturnTypeWillChange]
+    public function createElement($name, $value = '')
     {
+        if (null === $value) {
+            $value = '';
+        }
+
         $element = parent::createElement($name, $value);
 
         if (!$element instanceof Element) {
@@ -2071,8 +2151,12 @@ final class Document extends DOMDocument
      *                           You can also set the value later with Element->nodeValue.
      * @return Element|false A new instance of class Element or false if an error occurred.
      */
-    public function createElementWithAttributes($name, $attributes, $value = null)
+    public function createElementWithAttributes($name, $attributes, $value = '')
     {
+        if (null === $value) {
+            $value = '';
+        }
+
         $element = parent::createElement($name, $value);
 
         if (!$element instanceof Element) {
