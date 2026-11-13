@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer;
 use ArrayIterator;
 use Countable;
 use IteratorAggregate;
+use Traversable;
 
 /**
  * Collection of error objects to pass around the transformation engine.
@@ -54,7 +55,7 @@ final class ErrorCollection implements Countable, IteratorAggregate
      *
      * @return ArrayIterator Iterator for the contained errors.
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->errors);
     }

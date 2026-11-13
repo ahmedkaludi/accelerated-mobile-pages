@@ -25,6 +25,13 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
     private $allowedKeys;
 
     /**
+     * Associative array of configuration data.
+     *
+     * @var array
+     */
+    private $configuration = [];
+
+    /**
      * Instantiate an AmpRuntimeCssConfiguration object.
      *
      * @param array $configuration Optional. Associative array of configuration data. Defaults to an empty array.
@@ -38,7 +45,7 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
             if (! array_key_exists($key, $this->allowedKeys)) {
                 throw InvalidConfigurationKey::fromTransformerKey(static::class, $key);
             }
-            $this->$key = $this->validate($key, $value);
+            $this->configuration[$key] = $this->validate($key, $value);
         }
     }
 
@@ -59,7 +66,29 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
         }
 
         // At this point, the configuration should either have received this value or filled it with a default.
-        return $this->$key;
+        return $this->configuration[$key];
+    }
+
+    /**
+     * Get a configuration value by property name.
+     *
+     * @param string $name Name of the configuration entry.
+     * @return mixed Value stored under the given configuration key.
+     */
+    public function __get($name)
+    {
+        return $this->get($name);
+    }
+
+    /**
+     * Check whether a configuration entry exists.
+     *
+     * @param string $name Name of the configuration entry.
+     * @return bool Whether the entry exists.
+     */
+    public function __isset($name)
+    {
+        return array_key_exists($name, $this->configuration);
     }
 
     /**
@@ -72,7 +101,7 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
         $configArray = [];
 
         foreach (array_keys($this->allowedKeys) as $key) {
-            $configArray[$key] = $this->$key;
+            $configArray[$key] = $this->configuration[$key];
         }
 
         return $configArray;

@@ -42,6 +42,13 @@ final class Element extends DOMElement
     const PROPERTY_GETTER_ERROR_MESSAGE = 'Undefined property: AmpProject\\Dom\\Element::';
 
     /**
+     * Lazily created element properties.
+     *
+     * @var array
+     */
+    private $properties = [];
+
+    /**
      * Add CSS styles to the element as an inline style attribute.
      *
      * @param string $style CSS style(s) to add to the inline style attribute.
@@ -264,18 +271,61 @@ final class Element extends DOMElement
      */
     public function __get($name)
     {
+        if (array_key_exists($name, $this->properties)) {
+            return $this->properties[$name];
+        }
+
         switch ($name) {
             case 'inlineStyleByteCount':
-                if (!isset($this->inlineStyleByteCount)) {
-                    $this->inlineStyleByteCount = strlen((string)$this->getAttribute(Attribute::STYLE));
+                if (!isset($this->properties['inlineStyleByteCount'])) {
+                    $this->properties['inlineStyleByteCount'] = strlen((string)$this->getAttribute(Attribute::STYLE));
                 }
 
-                return $this->inlineStyleByteCount;
+                return $this->properties['inlineStyleByteCount'];
         }
 
         // Mimic regular PHP behavior for missing notices.
         trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
 
         return null;
+    }
+
+    /**
+     * Store a lazily created element property without creating a dynamic property.
+     *
+     * @param string $name  Name of the property to set.
+     * @param mixed  $value Value of the property.
+     * @return void
+     */
+    public function __set($name, $value)
+    {
+        if ('inlineStyleByteCount' !== $name) {
+            trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+            return;
+        }
+
+        $this->properties[$name] = $value;
+    }
+
+    /**
+     * Check whether a lazily created element property has been cached.
+     *
+     * @param string $name Name of the property to check.
+     * @return bool Whether the property is cached.
+     */
+    public function __isset($name)
+    {
+        return isset($this->properties[$name]);
+    }
+
+    /**
+     * Drop a cached element property.
+     *
+     * @param string $name Name of the property to drop.
+     * @return void
+     */
+    public function __unset($name)
+    {
+        unset($this->properties[$name]);
     }
 }
