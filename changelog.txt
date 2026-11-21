@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.1.22 (21 November 2026) =
+* Fixed : Unauthenticated XSS in AMP comment output via libxml attribute serialization reported by Patchstack (Santh)
+
 = 1.1.21 (13 November 2026) =
 * Fixed : PHP 8.3 deprecated warnings from the bundled AMP Optimizer DOM and configuration classes #5752
 * Fixed : PHP warning when reading post ID on AMP 404 pages in Design 1 #5751

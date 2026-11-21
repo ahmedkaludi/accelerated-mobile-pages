@@ -65,6 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<div class="cmt-content">
 			                        <?php $comment_content = get_comment_text();
 			                        	// Added <p> tag in comments #873
+			                        	$comment_content = make_clickable( $comment_content );
 			                        	$comment_content = wpautop( $comment_content );
 
 			                        	$sanitizer = new AMPFORWP_Content( $comment_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 
@@ -78,7 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			                          	 ) ) );
 			                        	$sanitized_comment_content = $sanitizer->get_amp_content();
 										//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			                        	echo make_clickable( $sanitized_comment_content );// amphtml content, no kses ?>      
+			                        	echo $sanitized_comment_content;// amphtml content, no kses ?>      
 									</div>
 									<?php do_action('ampforwp_reply_comment_form', $comment, $args, $depth);  ?>
 								</article> <!-- .cmt-body -->
