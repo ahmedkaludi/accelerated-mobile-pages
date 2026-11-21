@@ -195,7 +195,8 @@ You can contact us from [here](https://ampforwp.com/contact/)
 
 == Changelog ==
 = 1.1.22 (21 November 2026) =
-* Fixed : Unauthenticated Stored Cross-Site Scripting in AMP comment output via libxml attribute serialization and make_clickable()
+* Fixed : Unauthenticated XSS in AMP comment output via libxml attribute serialization reported by Patchstack (Santh)
+* Fixed : Unauthenticated Stored Cross-Site Scripting in the AMP Page Builder Comments module via htmlspecialchars_decode() of comment content repoted by Wordfence (UKO)
 
 = 1.1.21 (13 November 2026) =
 * Fixed : PHP 8.3 deprecated warnings from the bundled AMP Optimizer DOM and configuration classes #5752

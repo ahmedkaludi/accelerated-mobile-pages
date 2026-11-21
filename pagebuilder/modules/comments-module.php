@@ -29,7 +29,10 @@ function ampforwp_get_pb_comment_list($moduleFrontHtml, $moduleTemplate, $conten
 							}
 							$output .='<div class="pbc-auth-info"><div class="pbc-auth-name"><b class="fn">'.esc_attr($value->comment_author).'</b></div>';
 							$output .='<span>'.esc_attr(gmdate('F d, Y H:i:s', strtotime($value->comment_date))).'</span></div>';
-							$output .='<p class="pbc-comment">'.wp_kses_post($value->comment_content).'</p>';
+							// Escape again so the later module-wide htmlspecialchars_decode() restores KSES HTML
+							// instead of turning stored entities such as &lt;amp-script&gt; into live tags.
+							$comment_html = wp_kses_post( $value->comment_content );
+							$output .='<p class="pbc-comment">'.htmlspecialchars( $comment_html, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' ).'</p>';
 							$output .='</li>';	
 					} 	
 				$output .='</ul>'; 
