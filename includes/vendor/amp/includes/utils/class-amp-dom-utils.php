@@ -408,6 +408,27 @@ class AMP_DOM_Utils {
 			}
 		}
 
+		/*
+		 * libxml's HTML serializer does not escape <, >, or quotes inside an
+		 * attribute value that contains "&{" up to the next "}". Hold those
+		 * values out of saveHTML() and write them back escaped.
+		 */
+		$libxml_attr_placeholders = array();
+		foreach ( $xpath->query( '//@*' ) as $attribute ) {
+			$attr_value = $attribute->nodeValue;
+			$amp_brace  = strpos( $attr_value, '&{' );
+			if ( false === $amp_brace || false === strpos( $attr_value, '}', $amp_brace + 2 ) ) {
+				continue;
+			}
+			$token = 'ampforwpLibxmlAttr' . count( $libxml_attr_placeholders ) . 'T' . wp_rand();
+			$libxml_attr_placeholders[] = array(
+				'node'  => $attribute,
+				'token' => $token,
+				'value' => $attr_value,
+			);
+			$attribute->nodeValue = $token;
+		}
+
 		if ( version_compare( PHP_VERSION, '7.3', '>=' ) ) {
 			$html = $dom->saveHTML( $node );
 		} else {
@@ -454,6 +475,19 @@ class AMP_DOM_Utils {
 
 			$node->parentNode->removeChild( $comment_start );
 			$node->parentNode->removeChild( $comment_end );
+		}
+
+		foreach ( $libxml_attr_placeholders as $placeholder ) {
+			/*
+			 * Assigning the raw value warns and clears the attribute, because
+			 * libxml treats "&{" as an entity. Assigning the escaped form
+			 * decodes back to the original value.
+			 */
+			$escaped_value = htmlspecialchars( $placeholder['value'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8' );
+			$placeholder['node']->nodeValue = $escaped_value;
+			if ( is_string( $html ) ) {
+				$html = str_replace( $placeholder['token'], $escaped_value, $html );
+			}
 		}
 
 		// Whitespace just causes unit tests to fail... so whitespace begone.

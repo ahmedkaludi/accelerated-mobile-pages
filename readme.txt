@@ -4,7 +4,7 @@ Tags: AMP, accelerated mobile pages, mobile, google amp, SEO
 Donate link: https://www.paypal.me/Kaludi/25
 Requires at least: 6.4
 Tested up to: 7.1
-Stable tag: 1.1.21
+Stable tag: 1.1.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,10 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
+= 1.1.22 (23 November 2026) =
+* Fixed : Unauthenticated XSS in AMP comment output via libxml attribute serialization reported by Patchstack (Santh)
+* Fixed : Unauthenticated Stored Cross-Site Scripting in the AMP Page Builder Comments module via htmlspecialchars_decode() of comment content repoted by Wordfence (UKO)
+
 = 1.1.21 (13 November 2026) =
 * Fixed : PHP 8.3 deprecated warnings from the bundled AMP Optimizer DOM and configuration classes #5752
 * Fixed : PHP warning when reading post ID on AMP 404 pages in Design 1 #5751

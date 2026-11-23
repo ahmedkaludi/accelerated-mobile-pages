@@ -2773,4 +2773,83 @@ $("#subscribe-newsletter-form").on('submit',function(e){
             $(".ampforwp_remove_notice").remove();
         });
     });
+
+    var $bfcmBanner = $(".ampforwp-bfcm-banner");
+    if ($bfcmBanner.length) {
+        var bfcmEnd = parseInt($bfcmBanner.attr("data-end"), 10) * 1000;
+        var bfcmPad = function(value) {
+            return value < 10 ? "0" + value : String(value);
+        };
+        var bfcmTick = function() {
+            var diff = bfcmEnd - Date.now();
+            if (diff <= 0) {
+                $bfcmBanner.remove();
+                clearInterval(bfcmTimer);
+                return;
+            }
+            $bfcmBanner.find(".ampforwp-bfcm-days").text(bfcmPad(Math.floor(diff / 86400000)));
+            $bfcmBanner.find(".ampforwp-bfcm-hours").text(bfcmPad(Math.floor((diff % 86400000) / 3600000)));
+            $bfcmBanner.find(".ampforwp-bfcm-mins").text(bfcmPad(Math.floor((diff % 3600000) / 60000)));
+            $bfcmBanner.find(".ampforwp-bfcm-secs").text(bfcmPad(Math.floor((diff % 60000) / 1000)));
+        };
+        bfcmTick();
+        var bfcmTimer = setInterval(bfcmTick, 1000);
+
+        $bfcmBanner.on("click", ".ampforwp-bfcm-code", function() {
+            var $btn = $(this);
+            var code = $btn.attr("data-code");
+            var $label = $btn.find(".ampforwp-bfcm-code-label");
+            var original = $label.text();
+            var markCopied = function() {
+                $btn.addClass("is-copied");
+                $label.text($btn.attr("data-copied") || "COPIED");
+                setTimeout(function() {
+                    $btn.removeClass("is-copied");
+                    $label.text(original);
+                }, 1500);
+            };
+            var fallbackCopy = function() {
+                var $tmp = $("<input>");
+                $("body").append($tmp);
+                $tmp.val(code).trigger("select");
+                document.execCommand("copy");
+                $tmp.remove();
+                markCopied();
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code).then(markCopied).catch(fallbackCopy);
+            } else {
+                fallbackCopy();
+            }
+        });
+
+        $bfcmBanner.on("click", ".ampforwp-bfcm-dismiss", function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            $btn.prop("disabled", true);
+            $.post(ajaxurl, {
+                action: "ampforwp_bfcm_2026_dismiss",
+                nonce: (typeof ampforwp_nonce !== "undefined") ? ampforwp_nonce.security : ""
+            }, function(response) {
+                var data = response;
+                if (typeof response === "string") {
+                    try {
+                        data = JSON.parse(response);
+                    } catch (err) {
+                        data = {};
+                    }
+                }
+                if (data && data.status === "t") {
+                    clearInterval(bfcmTimer);
+                    $bfcmBanner.slideUp(160, function() {
+                        $bfcmBanner.remove();
+                    });
+                } else {
+                    $btn.prop("disabled", false);
+                }
+            }).fail(function() {
+                $btn.prop("disabled", false);
+            });
+        });
+    }
 });
