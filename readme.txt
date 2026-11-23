@@ -194,7 +194,7 @@ You can contact us from [here](https://ampforwp.com/contact/)
 11. Pingdom Speed Report for AMP
 
 == Changelog ==
-= 1.1.22 (21 November 2026) =
+= 1.1.22 (23 November 2026) =
 * Fixed : Unauthenticated XSS in AMP comment output via libxml attribute serialization reported by Patchstack (Santh)
 * Fixed : Unauthenticated Stored Cross-Site Scripting in the AMP Page Builder Comments module via htmlspecialchars_decode() of comment content repoted by Wordfence (UKO)
 

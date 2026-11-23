@@ -106,6 +106,7 @@ function ampforwp_add_admin_styling($hook_suffix){
         add_action('admin_notices', 'ampforwp_category_base_remove_notice' );
         add_action('admin_notices', 'ampforwp_internal_feedback_notice' );
         add_action('admin_notices', 'ampforwp_tpd_notice' );
+        add_action('admin_notices', 'ampforwp_bfcm_2026_banner' );
         if ( defined('AMPFORWPPRO_PLUGIN_DIR')  ) {     
             $license_info = get_option( 'ampforwppro_license_info');
             if (!$license_info) {
@@ -2196,6 +2197,105 @@ function ampforwp_get_taxonomy_meta($term_id,$type=''){
         return true;
     }
 }
+
+function ampforwp_bfcm_2026_ends_at() {
+    $timezone = function_exists( 'wp_timezone' ) ? wp_timezone() : new DateTimeZone( 'UTC' );
+    $end      = new DateTime( '2026-12-31 23:59:59', $timezone );
+    return $end->getTimestamp();
+}
+
+function ampforwp_bfcm_2026_banner() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    $end = ampforwp_bfcm_2026_ends_at();
+    if ( time() > $end ) {
+        return;
+    }
+
+    $hide_until = (int) get_user_meta( get_current_user_id(), 'ampforwp_bfcm_2026_hide_until', true );
+    if ( $hide_until && time() < $hide_until ) {
+        return;
+    }
+
+    $remaining = max( 0, $end - time() );
+    $days      = (int) floor( $remaining / DAY_IN_SECONDS );
+    $hours     = (int) floor( ( $remaining % DAY_IN_SECONDS ) / HOUR_IN_SECONDS );
+    $mins      = (int) floor( ( $remaining % HOUR_IN_SECONDS ) / MINUTE_IN_SECONDS );
+    $secs      = (int) ( $remaining % MINUTE_IN_SECONDS );
+    $offer_url = 'https://ampforwp.com/bfcm-2026';
+    ?>
+    <div class="ampforwp-bfcm-banner" data-end="<?php echo esc_attr( $end ); ?>" role="region" aria-label="<?php echo esc_attr__( 'Black Friday sale', 'accelerated-mobile-pages' ); ?>">
+        <button type="button" class="ampforwp-bfcm-dismiss" aria-label="<?php echo esc_attr__( 'Dismiss for 7 days', 'accelerated-mobile-pages' ); ?>">&times;</button>
+        <div class="ampforwp-bfcm-inner">
+            <div class="ampforwp-bfcm-main">
+                <span class="ampforwp-bfcm-pill">
+                    <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13 2L4 14h7l-1 8 10-14h-7z"/></svg>
+                    <?php echo esc_html__( 'Black Friday / Cyber Monday / Christmas Sale', 'accelerated-mobile-pages' ); ?>
+                </span>
+                <div class="ampforwp-bfcm-offer">
+                    <span class="ampforwp-bfcm-off">60%<small><?php echo esc_html__( 'OFF', 'accelerated-mobile-pages' ); ?></small></span>
+                    <div class="ampforwp-bfcm-copy">
+                        <strong class="ampforwp-bfcm-headline"><?php echo esc_html__( 'Biggest sale in our history — never before seen!', 'accelerated-mobile-pages' ); ?></strong>
+                        <span class="ampforwp-bfcm-sub"><?php echo esc_html__( 'Sale is here! 60% off on Everything for a very limited time!!!', 'accelerated-mobile-pages' ); ?></span>
+                        <button type="button" class="ampforwp-bfcm-code" data-code="BFCM2026" data-copied="<?php echo esc_attr__( 'Copied', 'accelerated-mobile-pages' ); ?>">
+                            <span class="ampforwp-bfcm-code-label"><?php echo esc_html__( 'CODE: BFCM2026', 'accelerated-mobile-pages' ); ?></span>
+                            <svg class="ampforwp-bfcm-copy-icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 1H6c-1.1 0-2 .9-2 2v12h2V3h10V1zm3 4H10c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H10V7h9v14z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="ampforwp-bfcm-side">
+                <div class="ampforwp-bfcm-expires">
+                    <span class="ampforwp-bfcm-expires-label">
+                        <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13 2L4 14h7l-1 8 10-14h-7z"/></svg>
+                        <?php echo esc_html__( 'Offer expires in:', 'accelerated-mobile-pages' ); ?>
+                    </span>
+                    <div class="ampforwp-bfcm-timer">
+                        <span><b class="ampforwp-bfcm-days"><?php echo esc_html( sprintf( '%02d', $days ) ); ?></b><small><?php echo esc_html__( 'Days', 'accelerated-mobile-pages' ); ?></small></span>
+                        <i aria-hidden="true">:</i>
+                        <span><b class="ampforwp-bfcm-hours"><?php echo esc_html( sprintf( '%02d', $hours ) ); ?></b><small><?php echo esc_html__( 'Hours', 'accelerated-mobile-pages' ); ?></small></span>
+                        <i aria-hidden="true">:</i>
+                        <span><b class="ampforwp-bfcm-mins"><?php echo esc_html( sprintf( '%02d', $mins ) ); ?></b><small><?php echo esc_html__( 'Mins', 'accelerated-mobile-pages' ); ?></small></span>
+                        <i aria-hidden="true">:</i>
+                        <span><b class="ampforwp-bfcm-secs"><?php echo esc_html( sprintf( '%02d', $secs ) ); ?></b><small><?php echo esc_html__( 'Secs', 'accelerated-mobile-pages' ); ?></small></span>
+                    </div>
+                </div>
+                <div class="ampforwp-bfcm-cta-wrap">
+                    <a class="ampforwp-bfcm-cta" href="<?php echo esc_url( $offer_url ); ?>" target="_blank" rel="noopener noreferrer">
+                        <?php echo esc_html__( 'Claim The Offer Now', 'accelerated-mobile-pages' ); ?>
+                        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13 2L4 14h7l-1 8 10-14h-7z"/></svg>
+                    </a>
+                    <span class="ampforwp-bfcm-guarantee">
+                        <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm-3 8V6a3 3 0 016 0v3H9z"/></svg>
+                        <?php echo esc_html__( '30-Day Money Back Guarantee', 'accelerated-mobile-pages' ); ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+function ampforwp_bfcm_2026_dismiss() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
+    if ( ! isset( $_POST['nonce'] ) ) {
+        return;
+    }
+    // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Reason Validating nonce so sanitization not needed
+    if ( ! wp_verify_nonce( $_POST['nonce'], 'ampforwp-verify-request' ) ) {
+        return;
+    }
+
+    update_user_meta( get_current_user_id(), 'ampforwp_bfcm_2026_hide_until', time() + ( 7 * DAY_IN_SECONDS ) );
+    echo wp_json_encode( array( 'status' => 't' ) );
+    wp_die();
+}
+add_action( 'wp_ajax_ampforwp_bfcm_2026_dismiss', 'ampforwp_bfcm_2026_dismiss' );
 
 function ampforwp_internal_feedback_notice(){
     $install_date = get_option('ampforwp_plugin_info');
