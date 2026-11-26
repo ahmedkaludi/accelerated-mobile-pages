@@ -1023,10 +1023,57 @@ if ( !function_exists('amp_call_now') ) {
 	}
 }
 // AddThis Support #2416
+// Pub ID and Tool ID defaults match the settings fields. A blank saved value still
+// renders <amp-addthis>, and the AMP runtime then errors because data-pub-id is required. #5759
+function ampforwp_get_addthis_ids() {
+	$pub_id    = ampforwp_get_setting( 'add-this-pub-id' );
+	$widget_id = ampforwp_get_setting( 'add-this-widget-id' );
+	$pub_id    = is_string( $pub_id ) ? trim( $pub_id ) : '';
+	$widget_id = is_string( $widget_id ) ? trim( $widget_id ) : '';
+	if ( '' === $pub_id ) {
+		$pub_id = 'ra-5cc8551aa4f16f5c';
+	}
+	if ( '' === $widget_id ) {
+		$widget_id = 'cwgj';
+	}
+	return array(
+		'pub_id'    => $pub_id,
+		'widget_id' => $widget_id,
+	);
+}
+
+// data-pub-id is required by amp-addthis but is not in the AMP allowlist, so sanitizers remove it. #5759
+function ampforwp_allow_addthis_pub_id_attribute( $sanitizers = null ) {
+	if ( class_exists( 'AMP_Rule_Spec' ) ) {
+		AMP_Rule_Spec::$additional_allowed_tags['amp-addthis'] = array(
+			'attr_spec_list' => array(
+				'data-pub-id'       => array(),
+				'data-widget-id'    => array(),
+				'data-widget-type'  => array(),
+				'data-product-code' => array(),
+			),
+			'tag_spec'       => array(
+				'amp_layout'         => array(
+					'supported_layouts' => array( 6, 2, 3, 7, 1, 4 ),
+				),
+				'requires_extension' => array( 'amp-addthis' ),
+			),
+		);
+	}
+	return $sanitizers;
+}
+add_filter( 'amp_content_sanitizers', 'ampforwp_allow_addthis_pub_id_attribute', 1 );
+add_filter( 'ampforwp_content_sanitizers', 'ampforwp_allow_addthis_pub_id_attribute', 1 );
+add_action( 'plugins_loaded', 'ampforwp_allow_addthis_pub_id_attribute', 20 );
+
 function ampforwp_addthis_support() {
-	
-	$data_pub_id = ampforwp_get_setting('add-this-pub-id');
-	$data_widget_id = ampforwp_get_setting('add-this-widget-id');
+	ampforwp_allow_addthis_pub_id_attribute();
+	$addthis_ids    = ampforwp_get_addthis_ids();
+	$data_pub_id    = $addthis_ids['pub_id'];
+	$data_widget_id = $addthis_ids['widget_id'];
+	if ( '' === $data_pub_id ) {
+		return;
+	}
 	$addthisWidth = '';	
 	if ( ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) {
 	 	if( ampforwp_get_setting('enable-add-this-option') ) {
@@ -1057,9 +1104,11 @@ function ampforwp_addthis_support() {
 
 add_action('amp_post_template_footer','ampforwp_addthis_floating_social_share');
 function ampforwp_addthis_floating_social_share(){
-	$data_pub_id = ampforwp_get_setting('add-this-pub-id');
-	$data_widget_id = ampforwp_get_setting('add-this-widget-id');
-	if ( ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) {
+	ampforwp_allow_addthis_pub_id_attribute();
+	$addthis_ids    = ampforwp_get_addthis_ids();
+	$data_pub_id    = $addthis_ids['pub_id'];
+	$data_widget_id = $addthis_ids['widget_id'];
+	if ( '' !== $data_pub_id && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social')) ) && !checkAMPforPageBuilderStatus(ampforwp_get_the_ID()) ) {
 	 	if( ampforwp_get_setting('enable-add-this-option') ) {
 			if( ampforwp_get_setting('addthis-floating-share') == true ){
 				echo '<amp-addthis width="320" height="92" data-pub-id="'.esc_attr($data_pub_id).'" data-widget-id="'. esc_attr($data_widget_id).'" data-widget-type="floating"></amp-addthis>';

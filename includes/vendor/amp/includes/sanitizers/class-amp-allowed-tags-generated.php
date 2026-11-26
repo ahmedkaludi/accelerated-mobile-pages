@@ -1141,6 +1141,8 @@ class AMP_Allowed_Tags_Generated {
 			array(
 				'attr_spec_list' => array(
 					'data-product-code' => array(),
+					'data-pub-id' => array(),
+					'data-widget-type' => array(),
 					'data-share-media' => array(
 						'value_url' => array(
 							'allow_empty' => true,
