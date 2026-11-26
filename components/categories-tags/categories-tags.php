@@ -9,6 +9,9 @@ TODO: 1: Connect with options panel(archive support and translational panel)
 global $post;
 function ampforwp_framework_get_categories_list( $separator = '' ){
 	global $post, $redux_builder_amp;
+	if ( ! is_object( $post ) ) {
+		return;
+	}
 	$ampforwp_categories = get_the_terms( $post->ID, 'category' );
 	$cat_id = '';
 	if (function_exists('seopress_activation')){
@@ -86,6 +89,9 @@ function ampforwp_framework_get_categories_list( $separator = '' ){
 }
 function ampforwp_framework_get_tags_list($separator=''){
 	global $post, $redux_builder_amp;
+	if ( ! is_object( $post ) ) {
+		return;
+	}
 	 	$ampforwp_tags = get_the_terms( $post->ID, 'post_tag' );
 			if ( $ampforwp_tags && ! is_wp_error( $ampforwp_tags )  ) :?>
 				<div class="amp-tags">

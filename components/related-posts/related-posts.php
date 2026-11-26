@@ -47,6 +47,9 @@ function ampforwp_framework_get_related_posts($argsdata=array()){
 
 function ampforwp_related_post_loop_query(){
 	global $post,  $redux_builder_amp;
+	if ( ! is_object( $post ) ) {
+		return new WP_Query();
+	}
 	$string_number_of_related_posts = $redux_builder_amp['ampforwp-number-of-related-posts'];
 	$int_number_of_related_posts = (int)$string_number_of_related_posts;
 	$args = null;
