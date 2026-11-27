@@ -122,8 +122,8 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 		
 		$carousel_markup_all = array(
 			'1'=>array(
-						'main-html'=>'{{with_carousel}}
-						{{amp_image_lightbox}}',
+						'main-html'=>'<div class="ampforwp-gallery-wrap">{{with_carousel}}
+						{{amp_image_lightbox}}</div>',
 						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption {{openbrack}}class{{closebrack}}="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span {{openbrack}}text{{closebrack}}="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
 						'gallery_css' => '.cls-btn { background: #0d0d0d; border: none;position: absolute;right: 10px;}
@@ -132,9 +132,9 @@ class AMP_Gallery_Embed_Handler extends AMP_Base_Embed_Handler {
 						'scripts' => array()
 									),
 			'2' => array(
-						'main-html'=>'{{with_carousel}}
+						'main-html'=>'<div class="ampforwp-gallery-wrap">{{with_carousel}}
 						{{with_carousel_thumbnail}}
-						{{amp_image_lightbox}}',
+						{{amp_image_lightbox}}</div>',
 						'image-with-caption-html'=>'<figure><div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div><figcaption {{openbrack}}class{{closebrack}}="expanded? \'expanded\' : \'\'" on="tap:AMP.setState({expanded: !expanded})" tabindex="0" role="button" >{{main_images_caption}}<span {{openbrack}}text{{closebrack}}="expanded ? \'less\' : \'more\'">more</span> </figcaption></figure>',
 						'image-without-caption-html' =>'<div class="ampforwp-gallery-item amp-carousel-container">{{main_images}} </div>',
 						'carousel_with_thumbnail_html'=>'<button on="tap:carousel-with-carousel-preview-{{unique_id}}.goToSlide(index={{unique_index}})" class="amp-carousel-slide amp-scrollable-carousel-slide">{{thumbnail}}</button>',
